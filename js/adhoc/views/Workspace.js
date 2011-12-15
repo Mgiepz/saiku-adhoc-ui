@@ -1,10 +1,10 @@
 /**
- * The query workspace
- * 
- * Represents one Compound CDA-Query with 
- * Subqueries in different Tabs
- * 
- */
+* The query workspace
+*
+* Represents one Compound CDA-Query with
+* Subqueries in different Tabs
+*
+*/
 var Workspace = Backbone.View.extend({
     className: 'tab_container',
     
@@ -18,7 +18,7 @@ var Workspace = Backbone.View.extend({
     initialize: function(args) {
 
         // Maintain `this` in jQuery event handlers
-        _.bindAll(this, "adjust", "toggle_sidebar", "prepare", "new_query", 
+        _.bindAll(this, "adjust", "toggle_sidebar", "prepare", "new_query",
                 "init_query", "update_caption", "populate_selections" , "uniqueId");
                 
                 
@@ -48,11 +48,11 @@ var Workspace = Backbone.View.extend({
         if (args && args.query) {
             this.query = args.query;
             this.query.workspace = this;
-            this.query.save({}, { success: this.init_query });            
+            this.query.save({}, { success: this.init_query });
         }
             
         // Create report edit panel
- //       this.report_edit = new ReportEditPanel({ workspace: this, query: this.query });
+ // this.report_edit = new ReportEditPanel({ workspace: this, query: this.query });
                 
         this.idCounter = 0;
                 
@@ -72,7 +72,7 @@ var Workspace = Backbone.View.extend({
         $(this.el).find('.workspace_results').css({
             width: $(document).width() - $(this.el).find('.sidebar').width() - 30,
             height: $(document).height() - $("#header").height() -
-                $(this.el).find('.workspace_toolbar').height() - 
+                $(this.el).find('.workspace_toolbar').height() -
                 $(this.el).find('.workspace_fields').height() - 40
         });
     },
@@ -88,7 +88,7 @@ var Workspace = Backbone.View.extend({
     template: function() {
         return _.template($("#template-workspace").html())({
             model_navigation: Application.session.model_navigation
-        });        
+        });
     },
     
     render: function() {
@@ -118,12 +118,12 @@ var Workspace = Backbone.View.extend({
         $(this.el).find('.workspace_report_canvas').append($(this.report.el));
         
         if(Settings.START_WITH_REPORT){
-        	$(this.el).find('.workspace_results').hide();
-        	$(this.el).find('.workspace_report').show();    
-        	$('.workspace_toolbar .view').addClass("table");    	
+         $(this.el).find('.workspace_results').hide();
+         $(this.el).find('.workspace_report').show();
+         $('.workspace_toolbar .view').addClass("table");
         }else{
-        	$(this.el).find('.workspace_results').show();
-        	$(this.el).find('.workspace_report').hide();        	
+         $(this.el).find('.workspace_results').show();
+         $(this.el).find('.workspace_report').hide();
         }
        
         //TODO: add report editpanel here
@@ -138,7 +138,7 @@ var Workspace = Backbone.View.extend({
         Application.session.trigger('workspace:new', { workspace: this });
 
 
-        return this; 
+        return this;
     },
     
     clear: function() {
@@ -151,9 +151,9 @@ var Workspace = Backbone.View.extend({
     },
     
     adjust: function() {
-    	
-    	//alert("adjusting");
-    	
+    
+     //alert("adjusting");
+    
         // Adjust the height of the separator
         $separator = $(this.el).find('.sidebar_separator');
         $separator.height($("body").height() - 87);
@@ -162,13 +162,13 @@ var Workspace = Backbone.View.extend({
         // Adjust the dimensions of the results window
         
         /*
-        $(this.el).find('.workspace_results').css({
-            width: $(document).width() - $(this.el).find('.sidebar').width() - 30,
-            height: $(document).height() - $("#header").height() -
-                $(this.el).find('.workspace_toolbar').height() - 
-                $(this.el).find('.workspace_fields').height() - 40
-        });
-        */
+$(this.el).find('.workspace_results').css({
+width: $(document).width() - $(this.el).find('.sidebar').width() - 30,
+height: $(document).height() - $("#header").height() -
+$(this.el).find('.workspace_toolbar').height() -
+$(this.el).find('.workspace_fields').height() - 40
+});
+*/
        
         // Fire off the adjust event
         //this.trigger('workspace:adjust', { workspace: this });
@@ -184,10 +184,10 @@ var Workspace = Backbone.View.extend({
     },
     
     toggle_report: function() {
-    	
-    	this.query.reportPerspective = this.query.reportPerspective ? false : true;
-    	$('.workspace_toolbar .view').toggleClass("table");
-    	
+    
+     this.query.reportPerspective = this.query.reportPerspective ? false : true;
+     $('.workspace_toolbar .view').toggleClass("table");
+    
         $(this.el).find('.workspace_results').toggle();
         $(this.el).find('.workspace_report').toggle();
     },
@@ -218,7 +218,7 @@ var Workspace = Backbone.View.extend({
         
 
         this.query = new Query({
-        	domainId: parsedModelInfo[0], 
+         domainId: parsedModelInfo[0],
             modelId: parsedModelInfo[1]
         }, {
             workspace: this
@@ -232,10 +232,10 @@ var Workspace = Backbone.View.extend({
     
     init_query: function() {
 
-		if(this.query.get('json')){
-			var json = JSON.parse(this.query.get('json'));
-			this.selected_model = json.clientModelSelection;
-		}
+if(this.query.get('json')){
+var json = JSON.parse(this.query.get('json'));
+this.selected_model = json.clientModelSelection;
+}
 
         // Find the selected cube
         if (this.selected_model === undefined) {
@@ -243,21 +243,21 @@ var Workspace = Backbone.View.extend({
            
         }
  
-  		$(this.el).find('.mdModels')
+   $(this.el).find('.mdModels')
                 .val(this.selected_model);
  
         // Clear workspace
         this.clear();
         
         if (this.selected_model) {
-        	
-        //alert("looking " + this.selected_model);	
-        	
+        
+        //alert("looking " + this.selected_model);
+        
         // Create new DimensionList and MeasureList
         this.mdmodel_list = new MdModelList({
             workspace: this,
             mdModel: Application.session.mdModels[this.selected_model]
-        });        
+        });
         $(this.el).find('.category_tree').html('').append($(this.mdmodel_list.el));
         
                 
@@ -269,8 +269,9 @@ var Workspace = Backbone.View.extend({
         }
         
         
-        $(this.el).find('.workspace_results').show();
-        $(this.el).find('.workspace_report').hide();
+//------------------------
+        //$(this.el).find('.workspace_results').show();
+        //$(this.el).find('.workspace_report').hide();
         
         this.populate_selections();
 
@@ -278,134 +279,127 @@ var Workspace = Backbone.View.extend({
     
     populate_selections: function() {
 
-		//I only get past here once
-		//i have to check wether the query has some loaded json model from the server
+//I only get past here once
+//i have to check wether the query has some loaded json model from the server
 
-		if(this.query.get('json')){
-			var model = JSON.parse(this.query.get('json'));
-		}
-		
-		if(model){
-		
-		var columns = model.columns ? model.columns : false;
-		
-		var groups = model.groups  ? model.groups : false;
-		
-		var parameters = model.parameters ? model.parameters : false;
-		
-		if(columns){
-			var $selections = $(this.el).find('.columns ul');
-			
-			 for (var columns_iter = 0; columns_iter < columns.length; columns_iter++) {
-			 	var column = columns[columns_iter];	
-			 	var name = column.name;
-			 	
-			 	var $logicalColumn = $(this.el).find('.category_tree')
+if(this.query.get('json')){
+var model = JSON.parse(this.query.get('json'));
+}
+
+if(model){
+
+var columns = model.columns ? model.columns : false;
+
+var groups = model.groups ? model.groups : false;
+
+var parameters = model.parameters ? model.parameters : false;
+
+if(columns){
+var $selections = $(this.el).find('.columns ul');
+
+for (var columns_iter = 0; columns_iter < columns.length; columns_iter++) {
+var column = columns[columns_iter];
+var name = column.name;
+
+var $logicalColumn = $(this.el).find('.category_tree')
                                 .find('a[title="' + name + '"]')
                                 .parent();
 
                 var $clone = $logicalColumn.clone()
                                 .addClass('d_dimension')
-                                .appendTo($selections);	
-			 }		
-		}
-		
-		if(groups){
-			var $groups = $(this.el).find('.group ul');
-			
-			 for (var groups_iter = 0; groups_iter < groups.length; groups_iter++) {
-			 	var group = groups[groups_iter];	
-			 	var name = group.groupName;
-			 	
-			 	var $logicalColumn = $(this.el).find('.category_tree')
+                                .appendTo($selections);
+}
+}
+
+if(groups){
+var $groups = $(this.el).find('.group ul');
+
+for (var groups_iter = 0; groups_iter < groups.length; groups_iter++) {
+var group = groups[groups_iter];
+var name = group.groupName;
+
+var $logicalColumn = $(this.el).find('.category_tree')
                                 .find('a[title="' + name + '"]')
                                 .parent();
 
                 var $clone = $logicalColumn.clone()
                                 .addClass('d_dimension')
-                                .appendTo($groups);	
-			 }		
-		}
-		
-	    if(parameters){
-			var $filters = $(this.el).find('.filter ul');
-			
-			 for (var filters_iter = 0; filters_iter < parameters.length; filters_iter++) {
-			 	var filter = parameters[filters_iter];	
-			 	var name = filter.name;
-			 	
-			 	var $logicalColumn = $(this.el).find('.category_tree')
+                                .appendTo($groups);
+}
+}
+
+if(parameters){
+var $filters = $(this.el).find('.filter ul');
+
+for (var filters_iter = 0; filters_iter < parameters.length; filters_iter++) {
+var filter = parameters[filters_iter];
+var name = filter.name;
+
+var $logicalColumn = $(this.el).find('.category_tree')
                                 .find('a[title="' + name + '"]')
-                                .parent();	
+                                .parent();
 
                 var $clone = $logicalColumn.clone()
                                 .addClass('d_dimension')
-                                .appendTo($filters);	
-			 }		
-		}
-		
-		this.query.run();
+                                .appendTo($filters);
+}
+}
+
+this.query.run();
 
 /*
-        // Populate selections - trust me, this is prettier than it was :-/
-        var axes = this.query ? this.query.get('axes') : false;
-        
-        if (axes) {
-            for (var axis_iter = 0; axis_iter < axes.length; axis_iter++) {
-                var axis = axes[axis_iter];
-                var $axis = $(this.el).find('.' + 
-                    axis.name.toLowerCase() + ' ul');
-                for (var dim_iter = 0; dim_iter < axis.dimensionSelections.length; dim_iter++) {
-                    var dimension = axis.dimensionSelections[dim_iter];
-                    var levels = [];
-                    var members = {};
-                    for (var sel_iter = 0; sel_iter < dimension.selections.length; sel_iter++) {
-                        var selection = dimension.selections[sel_iter];
-                        
-                        // Drag over dimensions and measures
-                        var type, name;
-                        if (selection.dimensionUniqueName == "Measures") {
-                            type = "measure";
-                            name = selection.uniqueName;
-                        } else {
-                            type = "dimension";
-                            name = selection.levelUniqueName;
-                        }
-                            
-                        if (levels.indexOf(name) === -1) {
-                            var $dim = $(this.el).find('.' + type + '_tree')
-                                .find('a[title="' + name + '"]')
-                                .parent();
-                            var $clone = $dim.clone()
-                                .addClass('d_' + type)
-                                .appendTo($axis);
-                            
-                            if (type == "dimension") {
-                                $("<span />").addClass('sprite')
-                                    .prependTo($clone);
-                            }
-                            
-                            $dim.css({fontWeight: "bold"})
-                                .draggable('disable')                                    
-                                .parents('.parent_dimension')
-                                .find('.root')
-                                .css({fontWeight: "bold"})
-                                .draggable('disable'); 
-                            levels.push(name);
-                        }
-                        
-                        // FIXME - something needs to be done about selections here
-                    }
-                }
-            }
-            
-            this.query.run();
-        }
-*/        
+// Populate selections - trust me, this is prettier than it was :-/
+var axes = this.query ? this.query.get('axes') : false;
+if (axes) {
+for (var axis_iter = 0; axis_iter < axes.length; axis_iter++) {
+var axis = axes[axis_iter];
+var $axis = $(this.el).find('.' +
+axis.name.toLowerCase() + ' ul');
+for (var dim_iter = 0; dim_iter < axis.dimensionSelections.length; dim_iter++) {
+var dimension = axis.dimensionSelections[dim_iter];
+var levels = [];
+var members = {};
+for (var sel_iter = 0; sel_iter < dimension.selections.length; sel_iter++) {
+var selection = dimension.selections[sel_iter];
+// Drag over dimensions and measures
+var type, name;
+if (selection.dimensionUniqueName == "Measures") {
+type = "measure";
+name = selection.uniqueName;
+} else {
+type = "dimension";
+name = selection.levelUniqueName;
+}
+if (levels.indexOf(name) === -1) {
+var $dim = $(this.el).find('.' + type + '_tree')
+.find('a[title="' + name + '"]')
+.parent();
+var $clone = $dim.clone()
+.addClass('d_' + type)
+.appendTo($axis);
+if (type == "dimension") {
+$("<span />").addClass('sprite')
+.prependTo($clone);
+}
+$dim.css({fontWeight: "bold"})
+.draggable('disable')
+.parents('.parent_dimension')
+.find('.root')
+.css({fontWeight: "bold"})
+.draggable('disable');
+levels.push(name);
+}
+// FIXME - something needs to be done about selections here
+}
+}
+}
+this.query.run();
+}
+*/
         // Add click handlers
         
         //$(this.el).find('.sidebar a.dimension, .sidebar a.measure')
-         //   .click(this.select_dimension);
+         // .click(this.select_dimension);
         
         // Make sure appropriate workspace buttons are enabled
         this.trigger('query:new', { workspace: this });
@@ -414,7 +408,7 @@ var Workspace = Backbone.View.extend({
         this.query.bind('query:save', this.update_caption);
        
     
-	}
+}
     },
     
     
@@ -431,9 +425,9 @@ var Workspace = Backbone.View.extend({
        // Generate a unique integer id (unique within the entire client session).
    // Useful for temporary DOM ids.
   
-   	uniqueId : function(prefix) {
-    	var id = this.idCounter++;
-    	return prefix ? prefix + id : id;
-  	}
+    uniqueId : function(prefix) {
+     var id = this.idCounter++;
+     return prefix ? prefix + id : id;
+   }
     
 });
