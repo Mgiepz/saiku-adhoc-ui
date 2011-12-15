@@ -1,0 +1,166 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<modelVersion>4.0.0</modelVersion>
+<groupId>org.saiku</groupId>
+<artifactId>saiku-adhoc-ui</artifactId>
+<packaging>pom</packaging>
+<version>2.2-SNAPSHOT</version>
+<build>
+<plugins>
+         <plugin>
+        <groupId>nl.windgazer</groupId>
+        <artifactId>jsdoctk-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+            <srcDir>${basedir}/js/adhoc/</srcDir>
+            <recurse>7</recurse><!-- This is the *level of recursion*, not a boolean -->
+        </configuration>
+        <executions>
+            <execution>
+                <id>copy-package</id>
+<phase>package</phase>
+<goals>
+<goal>jsdoc</goal>
+</goals>
+            </execution>
+        </executions>
+    </plugin>
+    <plugin>
+        <groupId>net.alchim31.maven</groupId>
+        <artifactId>yuicompressor-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>compress</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <nosuffix>true</nosuffix>
+          <sourceDirectory>${basedir}/js/adhoc/</sourceDirectory>
+          <aggregations>
+            <aggregation>
+              <!-- remove files after aggregation (default: false)
+<removeIncluded>true</removeIncluded>
+-->
+              <!-- insert new line after each concatenation (default: false) -->
+              <insertNewLine>true</insertNewLine>
+              <output>${basedir}/target/all.js</output>
+              <!-- files to include, path relative to output's directory or absolute path-->
+              <!--inputDir>base directory for non absolute includes, default to parent dir of output</inputDir-->
+              <includes>
+
+                <include>classes/Settings.js</include>
+<include>classes/models/Category.js</include>
+<include>classes/models/Column.js</include>
+<include>classes/models/CompoundQuery.js</include>
+<include>classes/models/Condition.js</include>
+<include>classes/models/Crossjoin.js</include>
+<include>classes/models/Domain.js</include>
+<include>classes/models/FileTree.js</include>
+<include>classes/models/InplaceEdit.js</include>
+<include>classes/models/MdModel.js</include>
+<include>classes/models/Operator.js</include>
+<include>classes/models/Order.js</include>
+<include>classes/models/Properties.js</include>
+<include>classes/models/Query.js</include>
+<include>classes/models/QueryAction.js</include>
+<include>classes/models/ReportResult.js</include>
+<include>classes/models/Repository.js</include>
+<include>classes/models/Result.js</include>
+<include>classes/models/ResultList.js</include>
+<include>classes/models/Session.js</include>
+<include>classes/models/Test.js</include>
+<include>classes/models/Union.js</include>
+<include>classes/views/CategoryList.js</include>
+<include>classes/views/ColumnConfigModal.js</include>
+<include>classes/views/ColumnSetupModal.js</include>
+<include>classes/views/DataTable.js</include>
+<include>classes/views/EditPanel.js</include>
+<include>classes/views/EditPanelDetails.js</include>
+<include>classes/views/EditPanelMessageLabel.js</include>
+<include>classes/views/ElementFormatPanel.js</include>
+<include>classes/views/ExportFileModal.js</include>
+<include>classes/views/FilterDropzone.js</include>
+<include>classes/views/MdModelList.js</include>
+<include>classes/views/Modal.js</include>
+<include>classes/views/Report.js</include>
+<include>classes/views/ReportEditPanel.js</include>
+<include>classes/views/SelectionDropzone.js</include>
+<include>classes/views/SelectionsModal.js</include>
+<include>classes/views/SetupReportModal.js</include>
+<include>classes/views/SetupTemplate.js</include>
+<include>classes/views/Tab.js</include>
+<include>classes/views/Table.js</include>
+<include>classes/views/Tabs.js</include>
+<include>classes/views/Toolbar.js</include>
+<include>classes/views/Workspace.js</include>
+<include>classes/views/WorkspaceDropZone.js</include>
+<include>classes/views/WorkspaceToolbar.js</include>
+                <include>classes/Application.js</include>
+                <include>classes/adapters/Server.js</include>
+                <include>classes/routers/QueryRouter.js</include>
+
+              </includes>
+
+            </aggregation>
+          </aggregations>
+        </configuration>
+      </plugin>
+<plugin>
+<groupId>org.apache.maven.plugins</groupId>
+<artifactId>maven-antrun-plugin</artifactId>
+<version>1.2</version>
+<executions>
+<execution>
+<id>copy-package</id>
+<phase>package</phase>
+<goals>
+<goal>run</goal>
+</goals>
+<configuration>
+<tasks>
+<mkdir dir="target/saiku-adhoc-ui" />
+<copy todir="target/saiku-adhoc-ui">
+<fileset dir="${basedir}/">
+                                        <exclude name="target/" />
+                                        <exclude name="pom.xml" />
+                                        <exclude name=".git/" />
+                                        <exclude name=".gitignore" />
+                                    </fileset>
+</copy>
+                                <copy todir="target/saikui-adhoc-ui/doc/">
+<fileset dir="${basedir}/target/jsdoc"/>
+</copy>
+<zip destfile="target/saiku-adhoc-ui-${project.version}.zip">
+<zipfileset dir="target/saiku-adhoc-ui/" />
+</zip>
+<zip destfile="target/saiku-adhoc-ui-${project.version}.war">
+<zipfileset dir="target/saiku-adhoc-ui/" />
+</zip>
+</tasks>
+</configuration>
+</execution>
+</executions>
+</plugin>
+
+</plugins>
+</build>
+     <repositories>
+        <repository>
+            <id>jsdoctk1</id>
+            <url>http://jsdoctk-plugin.googlecode.com/svn/repo</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>jsdoctk2</id>
+            <url>http://jsdoctk-plugin.googlecode.com/svn/repo</url>
+        </pluginRepository>
+        <pluginRepository>
+            <name>oss.sonatype.org</name>
+            <id>oss.sonatype.org</id>
+            <url>http://oss.sonatype.org/content/groups/public</url>
+        </pluginRepository>
+    </pluginRepositories>
+</project>

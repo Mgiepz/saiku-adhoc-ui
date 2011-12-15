@@ -1,0 +1,44 @@
+#fontselector {
+  width: 125px;
+  height: 15px;
+  padding: 1px;
+  border: solid 1px #cecece;
+  background-color: #ffffee;
+  font-family: Tahoma;
+  font-size: 12px;
+  color: #444444;
+  cursor: pointer;
+  text-align: center;
+  margin: 0px;
+}
+
+#fontbox {
+  width: 125px;    
+  text-align: center;
+  border: solid 1px #cecece;
+  background-color: #ffffee;
+  font-family: Tahoma;
+  font-size: 12px;
+  color: #444444;
+  cursor: pointer;  
+  margin: 0px;
+  padding: 1px;
+}
+
+.singlefont {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+#sampletext {
+  font-family: Tahoma; 
+  font-size: 14px; 
+  color: #444444; 
+  width: 500px; 
+  height: 300px;   
+  margin-bottom: 5px;
+  margin-top: 7px;
+  border: solid 1px #cecece;
+  padding: 2px;
+  outline: none;  
+}

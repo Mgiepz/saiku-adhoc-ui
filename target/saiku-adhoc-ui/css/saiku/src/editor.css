@@ -1,0 +1,134 @@
+.disabled_editor {
+    opacity: 0.3 !important;
+}
+
+#edit-align{
+	margin-top: 10px
+}
+
+#padding, #color{
+	margin-top: 5px
+}
+
+.fontPicker{
+	background: -moz-linear-gradient(center top , #FFFFFF 0%, #F0F0F0 100%) repeat scroll 0 0 transparent;
+	margin-top: 5px !important;
+	margin-left: 5px !important;
+	width: 110px !important;
+    display: inline;
+    float: left;
+}
+
+#fontbox{
+	width: 110px !important;
+}
+
+.sizeSelector{
+	margin-left: 5px !important;
+    display: inline;
+    float: left;
+}
+
+.editor ul{
+   margin-left:auto; 
+   margin-right:auto
+}
+
+.editor a.button{
+    display: block;
+    height: 12px;
+    padding: 5px;
+    width: 12px;
+    margin-top: 5px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+.editor a.button:hover {
+    border: 1px solid #CCC;
+    padding: 4px;
+}
+
+.editor ul{
+	display: inline;
+    float: left;
+    margin: 0;
+    padding-left: 0
+  }
+
+.editor li {
+    display: inline;
+    float: left;
+    padding-left: 5px;
+}
+.editor ul li.seperator {
+    border-left: 1px solid #D5D5D5;
+    margin-left: 5px;
+}
+
+.editor a.on {
+    background-color: #E0E0E0 !important;
+    border: 1px solid #CCCCCC;
+    padding: 4px !important;
+}
+
+.editor .align-left {
+    background: url('../../../images/edit-alignment-left.png') 50% 50% no-repeat;
+}
+
+.editor .align-center {
+    background: url('../../../images/edit-alignment-center.png') 50% 50% no-repeat;
+}
+
+.editor .align-right {
+    background: url('../../../images/edit-alignment-right.png') 50% 50% no-repeat;
+}
+
+.editor .align-top {
+    background: url('../../../images/edit-vertical-alignment-top.png') 50% 50% no-repeat;
+}
+
+.editor .align-middle {
+    background: url('../../../images/edit-vertical-alignment-middle.png') 50% 50% no-repeat;
+}
+
+.editor .align-bottom {
+    background: url('../../../images/edit-vertical-alignment-bottom.png') 50% 50% no-repeat;
+}
+
+.editor .padding-left {
+    background: url('../../../images/edit-padding-left.png') 50% 50% no-repeat;
+}
+
+.editor .padding-right {
+    background: url('../../../images/edit-padding-right.png') 50% 50% no-repeat;
+}
+
+.editor .padding-top {
+    background: url('../../../images/edit-padding-top.png') 50% 50% no-repeat;
+}
+
+.editor .padding-bottom {
+    background: url('../../../images/edit-padding-bottom.png') 50% 50% no-repeat;
+}
+
+.editor .background-color{
+    background: url('../../../images/edit-background-color.png') 50% 50% no-repeat;
+}
+
+.editor .text-color {
+    background: url('../../../images/edit-text-color.png') 50% 50% no-repeat;
+}
+
+.editor .fontstyle-bold  {
+    background: url('../../../images/edit-bold.png') 50% 50% no-repeat;
+}
+
+.editor .fontstyle-italic  {
+    background: url('../../../images/edit-italic.png') 50% 50% no-repeat;
+}
+
+.editor .fontstyle-udl  {
+    background: url('../../../images/edit-underline.png') 50% 50% no-repeat;
+}
+         
+
