@@ -46,7 +46,7 @@ var WorkspaceToolbar = Backbone.View.extend({
             $(args.workspace.toolbar.el).find('.button')
                 .addClass('disabled_toolbar');
             $(args.workspace.toolbar.el)
-                .find('.auto,.formula,.toggle_fields,.toggle_sidebar, .export_xls, .export_pdf, .export_csv,.cda,.prpt, .report')
+                .find('.auto,.formula,.toggle_fields,.toggle_sidebar, .export_xls, .export_pdf, .export_csv,.cda,.prpt, .view, .report')
                 .removeClass('disabled_toolbar');
         }
     },

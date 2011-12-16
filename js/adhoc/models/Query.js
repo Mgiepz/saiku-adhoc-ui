@@ -55,7 +55,7 @@ var Query = Backbone.Model.extend({
 		Application.ui.block("Rendering Report");
 
 	//this has to be the other way round
-		if($(this.el).find('.workspace_report').is(':hidden')){
+		if($('.workspace_report').is(':hidden')){
 			this.result.fetch();
 		}else{
 			this.reportresult.fetch();
