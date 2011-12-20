@@ -8,14 +8,17 @@ var InplaceEdit = Backbone.Model.extend({
         this.query.bind('report:render', this.attach_listeners);
     },
     
-    attach_listeners: function(args) {  	
-		//TODO: be more specific, only childs of report_inner
+    attach_listeners: function(args) {
+    	
+    	that = this;
+ 
         $(args.report.el).find(".saiku").click(this.clicked_element).hover(
-        function() { $(this).addClass("report-hover"); },
-        function() { $(this).removeClass("report-hover"); }
+        	//beginn hover
+        	function() {        		
+        		that.block_highlight($(this), "report-hover"); },
+        	function() { }
    		 );
-        
-        
+              
         //simulate click on last edited element    
         if(this.query.lastEditElement!=null){    
         	$(args.report.el).find("." + this.query.lastEditElement).first().click();
@@ -29,7 +32,7 @@ var InplaceEdit = Backbone.Model.extend({
     	
     	$target = $(event.target).is('span') ?
             $(event.target).parent() : $(event.target);
-    	
+
     	var clazz = $target.attr('class').split(/\s+/);
     	
     	var elementClass;
@@ -45,24 +48,49 @@ var InplaceEdit = Backbone.Model.extend({
 
  		var splits = elementClass.split('-');
 
- 		//all elements with the same class will be highlighted
- 		if($('.' + elementClass).hasClass('adhoc-highlight')){
- 			$('td').removeClass('adhoc-highlight');	
- 			this.query.workspace.edit_panel.disable();
- 		}else{
- 			$('td').removeClass('adhoc-highlight');	
- 			$('.' + elementClass).addClass('adhoc-highlight');	
- 			this.query.workspace.trigger('report:edit', {
-            	type: splits[1] , id: elementClass
-        	});
- 		}
+ 		this.query.workspace.edit_panel.disable();
  		
+ 		$('#divPseudoOverlay').remove();
+ 		
+ 		this.block_highlight($target, 'adhoc-highlight');
+ 		
+ 		this.query.workspace.trigger('report:edit', {
+            	type: splits[1] , id: elementClass
+        });
+
  		//If none is selected we dont want the selection to reappear after render
  		if(!$('.adhoc-highlight').length){
  			this.query.lastEditElement = null;
  		}		
     },
     
+    block_highlight: function(target, clazzToAdd){
+
+    	var clazz = target.attr('class').split(/\s+/);
+    	
+    	var elementClass;
+    	
+    	//find the relevant class
+    	for (var i = 0; i < clazz.length; i++) {
+                var c = clazz[i];
+                if(c.substring(0, 3) == "rpt"){
+                	elementClass=c;
+                	break;
+                }
+ 		}
+
+ 		var splits = elementClass.split('-');
+
+ 		//all elements with the same class will be highlighted
+ 		if($('.' + elementClass).hasClass(clazzToAdd)){
+ 			$('td').removeClass(clazzToAdd);	
+ 		}else{
+ 			$('td').removeClass(clazzToAdd);	
+ 			$('.' + elementClass).addClass(clazzToAdd);				
+ 		}
+
+    },
+  
     check_input: function(event) {
         if (event.which == 13) {
             this.save_writeback(event);

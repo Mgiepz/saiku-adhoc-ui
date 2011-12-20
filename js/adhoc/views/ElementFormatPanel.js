@@ -162,9 +162,6 @@ var ElementFormatPanel = Backbone.View.extend({
 			$(this.el).find('.fontstyle-udl').addClass('on');
 		}
 
-//		format.fontSize;
-//		format.fontName;
-
 		var that = this;
 
 		var inplaceEditDelegate = {
@@ -172,7 +169,18 @@ var ElementFormatPanel = Backbone.View.extend({
 					return that.json.value;
 				}
 		};
-
+		
+		
+		//TODO: provisorisch
+		$('.report_inner').click(function(evt) {
+    		if (evt.target == this) {
+        		$('.saiku').removeClass('adhoc-highlight').removeClass('report-hover');			
+    		}
+		});
+		
+		/*
+		 * Inplace edit for column headers
+		 */		
 		$('.adhoc-highlight').each(function(){
 			//Details should not be click-editable
 			if(!($(this).attr('class').indexOf('rpt-dtl') > -1)){
@@ -189,41 +197,65 @@ var ElementFormatPanel = Backbone.View.extend({
 					select_text: function(){return that.json.value;},
 					select_options: "selected:disabled"
 				});
-			}
-			
-			//Details header get a resize handle
-			if($(this).attr('class').indexOf('rpt-dth') > -1){
 				
-				var $divOverlay = $('#divOverlay');
+				//-------------------------------------------------------------------
+				$(this).mouseover(
+					function(){
+
+						var overlay = "<div id='overlay' class='grab_overlay'/>"
+						$(document.body).append(overlay);
+						var elePos = $(this).parent().position();
+						var eleTop = elePos.top;
+						var eleLeft = elePos.left;
+						var eleWidth = '12px' //$(this).width();
+						var eleHeight = $(this).parent().height(); 
+
+						$('#overlay').css({
+							display: 'block',
+							position: 'relative',
+							top: eleTop,
+							left: eleLeft,
+							width: eleWidth,
+							height: eleHeight
+						});
+                		
+
+						
+					}
+				)
 				
-				var rowPos = $(this).position();
-				var bottomTop = rowPos.top;
-				var bottomLeft = rowPos.left;
-                var bottomWidth = $(this).css('width');
-                var bottomHeight = $(this).css('height');
-                
-                $divOverlay.css({
-					position: 'absolute',
-					top: bottomTop,
-					left: bottomLeft,
-					width: bottomWidth,
-					height: bottomHeight
-				});
-                
-                $divOverlay.resizable(
+				
+				
+				
+				
+				
+				
+				//-------------------------------------------------------------------
+				
+			}	
+		});
+		
+		
+		/*
+				$('.adhoc-highlight').each(function(){
+			//Details should not be click-editable
+			if(!($(this).attr('class').indexOf('rpt-dtl') > -1)){
+				$(this).find('span').wrap('<div id="resizor"/>');
+				$('#resizor').resizable(
         				{
         				"maxHeight": 300,
         				"minHeight": 300,
         				"ghost": true,
         				"handles": 'e',
-        				"stop": function(event, ui) {alert("the column was resized");}
+        				"helper": 'drag-resizor',
+        				"stop": function(event, ui) {that.workspace.query.run();}
         				}
         				);
-				
-			}
-			
+			}	
 		});
-
+		*/
+		
+		
 
 		//we need to create a new json and only send back the
 
@@ -262,6 +294,12 @@ var ElementFormatPanel = Backbone.View.extend({
 		}
 
 		return false;
+	},
+
+	select_templates: function(event) {
+		 (new SelectTemplateModal({
+            workspace: this.workspace
+        })).open();
 	},
 
 	align_left: function(event) {

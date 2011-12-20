@@ -84,17 +84,15 @@ var BIPlugin = {
         }
         
         // Remove toolbar buttons
-        //$(workspace.toolbar.el)
-        //    .find('.save').parent().remove();
-            
-        //$(workspace.toolbar.el).find('.run').parent().removeClass('seperator');
-        
+        $(workspace.toolbar.el)
+            .find('.save').parent().remove();
+        $(workspace.toolbar.el).find('.run').parent().removeClass('seperator');
         if (Settings.MODE == "view") {
             $(workspace.toolbar.el)
                 .find(".run, .auto, .toggle_fields, .toggle_sidebar")
                 .parent().remove();
         }
-        
+      
         // Toggle save button
         workspace.bind('query:result', function(args) {
             var isAllowed = args.data.resultset && 

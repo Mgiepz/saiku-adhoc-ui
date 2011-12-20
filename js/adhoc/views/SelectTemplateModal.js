@@ -1,8 +1,8 @@
 /**
  * Dialog for column configuration
  */
-var ReportSetupModal = Modal.extend({
-    type: "reportsetup",
+var SelectTemplateModal = Modal.extend({
+    type: "selecttemplate",
     
     buttons: [
         { text: "Save", method: "save" },
@@ -11,24 +11,17 @@ var ReportSetupModal = Modal.extend({
     
     events: {
         'click a': 'call'
-        //,'change input' : 'changed',
-        //'change select' : 'changed'      
     },
     
 	changed: function(evt) {
 		var target = $(evt.currentTarget);
-		
-		//for $.find('column-thingy).each({ json.x.push($this.find('bla')) });
-		
-   		//this.json[target.attr('id')] = target.attr('value');
-      
     },    
     
     initialize: function(args) {
         // Initialize properties
         _.extend(this, args);
-        this.options.title = "Setup Report " + this.name;
-        this.message = "Fetching config...";
+        this.options.title = "Select Templates ";
+        this.message = "Fetching Templates...";
         this.show_unique = false;
         this.query = args.workspace.query;
         _.bindAll(this, "fetch_values", "populate", "finished", "changed");
@@ -50,21 +43,21 @@ var ReportSetupModal = Modal.extend({
 
     populate: function(model, response) {
 
-     	var template = _.template($("#report-setup").html())(this);
+     	var template = _.template($("#select-template").html())(this);
      	
      	$(this.el).find('.dialog_body').html(template);
-     	
-     	//$(this.el).find('#description').html(response.description);
-     	$caroussel = $('#template-carousel ul');
+
+     	$templateSelect = $('#template-select');
      	
      	$.each(response, function() {
     		var name = this.name.split('.')[0] + ".png"; 
 			var file = Settings.REST_URL + "/../resources/" + name;
-			$caroussel.append(
-				'<li><img src="' + file + '" width="75" height="75" alt="" /></li>'
+			$templateSelect.append(
+				'<option>' + file + '</option>'		
 			);
 		});
      	
+     	/*
      	$('#template-carousel').jcarousel({wrap : "circular",
      	 itemVisibleInCallback: {
             onAfterAnimation:  function(carousel, item, idx, state){
@@ -73,6 +66,9 @@ var ReportSetupModal = Modal.extend({
         }
      	
      	});
+     	*/
+     	
+     	 $templateSelect.imageSelect();
      	
      	// Show dialog
         Application.ui.unblock();

@@ -1,10 +1,17 @@
-<script type="text/x-jquery-tmpl" id="format-editor">
+<script type="text/x-jquery-tmpl" id="report-toolbar">
+<div class="report-toolbar">
+		<div id='format_toolbox'>
+		</div>
+</script>
 
-<div class='edit_panel_body'>
-	<div id='format_toolbox'>
+<script type="text/x-jquery-tmpl" id="format-editor">
 	<div id="edit-align" class="editor">
         <ul>
-            <li><a href="#align_left" 
+        	<li>
+            	<a href="#select_templates" 
+                class="i18n templates button" 
+                title="select template"></a></li>
+            <li class="seperator"><a href="#align_left" 
                 class="i18n horz align-left button" 
                 title="align left"></a></li>
             <li><a href="#align_center" 
@@ -24,22 +31,6 @@
                 class="i18n vert align-bottom button" 
                 title="align bottom"></a></li>               
 	</div>            
-	<!--div id="padding" class="editor">
-		<ul>
-            <li><a href="#padding_left" 
-                class="i18n padding-left button" 
-                title="padding left"></a></li>
-            <li><a href="#padding_right" 
-                class="i18n padding-right button" 
-                title="padding right"></a></li> 
-            <li><a href="#padding_top" 
-                class="i18n padding-top button" 
-                title="padding top"></a></li>   
-            <li><a href="#padding_bottom" 
-                class="i18n padding-bottom button" 
-                title="padding bottom"></a></li>   
-        </ul>
-	</div-->
     <div id="fontstyle" class="editor">
 		<ul>
             <li><a href="#fontstyle_bold" 
@@ -66,20 +57,14 @@
 	</div>
 	<div><div id='fontpicker' class='fontPicker'></div></div>		
 	<div id='fontsize' class='sizeSelector'></div>
-	</div>
-	</div>
-</script>
-
-<script type="text/x-jquery-tmpl" id="navigator">
-<div class="report-navigator">
-		<div class="nav-container">
+	
+	<div class="nav-container">
 		<a id="first" href="#first_page" class="first_page button" title="First Page"></a>
 		<a id="prev" href="#prev_page" class="prev_page button" title="Previous Page"></a>
 		<div id="curr_page"></div><div>/</div><div id="off_page"></div>
 		<a id="next" href="#next_page" class="next_page button" title="Next Page"></a>
 		<a id="last" href="#last_page" class="last_page button" title="Last Page"></a>
-		</div>
-		</div>
+	</div>
 </script>
 
 <script type="text/x-jquery-tmpl" id="template-filetree">

@@ -17,7 +17,7 @@ var Toolbar = Backbone.View.extend({
         'click #add_union': 'add_union',
         'click #create_prpt_output': 'create_prpt_output',
     	'click #create_table_output': 'create_table_output',
-    	'click #create_xls_output': 'create_xls_output',
+    	'click #create_xls_output': 'create_xls_output'
     },
     
     template: function() {

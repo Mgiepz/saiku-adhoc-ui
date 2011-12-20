@@ -22,7 +22,7 @@ var Report = Backbone.View.extend({
     },
     
     template: function() {
-       return _.template($("#navigator").html())();
+       return _.template($("#report-toolbar").html())();
     },
     
     
@@ -55,18 +55,19 @@ var Report = Backbone.View.extend({
         $('.report_border').width($('.report_border table').width()+30);
 
 		//Add the navigation template
-		$(this.el).prepend(this.template());
-
-		$(".report-navigator").width($(".report_border").width());
-		    
-		$(".report-navigator #curr_page").html(json.data.currentPage + 1);;		
-		$(".report-navigator #off_page").html(json.data.pageCount).click();
 		
-		$(".report-navigator #prev").click(this.prevPage);
-		$(".report-navigator #next").click(this.nextPage);
-		$(".report-navigator #first").click(this.firstPage);
-		$(".report-navigator #last").click(this.lastPage);
+		//$(this.el).prepend(this.template());
+
+		//$(".report-toolbar").width($(".report_border").width());
 		    
+		$(".nav-container #curr_page").html(json.data.currentPage + 1);;		
+		$(".nav-container #off_page").html(json.data.pageCount).click();
+		
+		$(".nav-container #prev").click(this.prevPage);
+		$(".nav-container #next").click(this.nextPage);
+		$(".nav-container #first").click(this.firstPage);
+		$(".nav-container #last").click(this.lastPage);
+
 		this.template_select = new SetupTemplate({
             workspace: this.workspace
        });
@@ -79,14 +80,14 @@ var Report = Backbone.View.extend({
     },
     
     prevPage: function(args) {
-    	var currPage = parseInt($(".report-navigator #curr_page").html());
+    	var currPage = parseInt($(".report-toolbar #curr_page").html());
     	var acceptedPage = currPage > 1 ? currPage - 1 : 1; 	
     	this.workspace.query.page = acceptedPage;    
     	this.workspace.query.run(true);
     },
         
     nextPage: function(args) {
-    	var currPage = parseInt($(".report-navigator #curr_page").html());
+    	var currPage = parseInt($(".report-toolbar #curr_page").html());
     	var totalPages = this.json.pageCount;
     	var acceptedPage = currPage < totalPages ? currPage + 1 : totalPages; 	
     	this.workspace.query.page = acceptedPage;    
@@ -94,7 +95,7 @@ var Report = Backbone.View.extend({
     },    
 
     firstPage: function(args) {
-    	var currPage = parseInt($(".report-navigator #curr_page").html());
+    	var currPage = parseInt($(".report-toolbar #curr_page").html());
     	var acceptedPage = 1; 	
     	this.workspace.query.page = acceptedPage;    
     	this.workspace.query.run(true);

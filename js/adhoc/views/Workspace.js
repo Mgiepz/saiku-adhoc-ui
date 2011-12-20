@@ -58,9 +58,6 @@ var Workspace = Backbone.View.extend({
 			});
 		}
 
-		// Create report edit panel
-		// this.report_edit = new ReportEditPanel({ workspace: this, query: this.query });
-
 		this.idCounter = 0;
 
 		//Flash cube navigation when rendered
@@ -69,18 +66,38 @@ var Workspace = Backbone.View.extend({
 	},
 	
 	adjust: function() {
-		// Adjust the height of the separator
-		$separator = $(this.el).find('.sidebar_separator');
-		$separator.height($("body").height() - 87);
-		$(this.el).find('.sidebar').height($("body").height() - 87);
-
-		// Adjust the dimensions of the results window
-		$(this.el).find('.workspace_results').css({
-			width: $(document).width() - $(this.el).find('.sidebar').width() - 30,
-			height: $(document).height() - $("#header").height() -
-			$(this.el).find('.workspace_toolbar').height() -
-			$(this.el).find('.workspace_fields').height() - 40
-		});
+		 // Adjust the height of the separator
+		console.log("body height " + $("body").height());
+		 
+        // Adjust the height of the separator
+        $separator = $(this.el).find('.sidebar_separator');
+        var heightReduction = 87;
+        if (Settings.PLUGIN == true || Settings.BIPLUGIN == true) {
+            heightReduction = 2;
+        }
+        $separator.height($("body").height() - heightReduction);
+        $(this.el).find('.sidebar').height($("body").height() - heightReduction);
+        
+        // Adjust the dimensions of the results window
+        $(this.el).find('.workspace_results').css({
+            height: $(document).height() - $("#header").height() -
+                $(this.el).find('.workspace_toolbar').height() - 
+                $(this.el).find('.workspace_fields').height() - 40
+        });
+        
+        // Adjust the dimensions of the report inner
+        $(this.el).find('.report_inner').css({
+            height: $(document).height() - $("#header").height() -
+                $(this.el).find('.workspace-report-toolbar').height() - 
+                $(this.el).find('.workspace_toolbar').height() - 
+                $(this.el).find('.workspace_fields').height() - 80
+        });        
+        
+        
+        
+        // Fire off the adjust event
+        this.trigger('workspace:adjust', { workspace: this });
+        
 	},
 	
 	caption: function() {
@@ -119,12 +136,13 @@ var Workspace = Backbone.View.extend({
 		.append($(this.table.el));
 
 		// Add results report
+		$(this.el).find('.workspace-report-toolbar').append(_.template($("#report-toolbar").html())());
 		$(this.el).find('.workspace_report_canvas').append($(this.report.el));
 
 		//TODO: add report editpanel here
 		this.edit_panel = new ElementFormatPanel({
 			workspace: this,
-			el: $(this.el).find('#edit_panel')
+			el: $(this.el).find('#format_toolbox')
 		});
 		this.edit_panel.render();
 
@@ -140,8 +158,6 @@ var Workspace = Backbone.View.extend({
 		if(Settings.START_WITH_REPORT) {
 			$(this.el).find('.workspace_results').hide();
 			$(this.el).find('.workspace_report').show();
-			$('.workspace_toolbar .view').toggleClass("table");
-			//$('.workspace_toolbar .view').addClass("table");
 		} else {
 			$(this.el).find('.workspace_results').show();
 			$(this.el).find('.workspace_report').hide();
@@ -157,30 +173,6 @@ var Workspace = Backbone.View.extend({
 
 		// Trigger clear event
 		this.trigger('workspace:clear');
-	},
-	
-	adjust: function() {
-
-		//alert("adjusting");
-
-		// Adjust the height of the separator
-		$separator = $(this.el).find('.sidebar_separator');
-		$separator.height($("body").height() - 87);
-		$(this.el).find('.sidebar').height($("body").height() - 87);
-
-		// Adjust the dimensions of the results window
-
-		/*
-		$(this.el).find('.workspace_results').css({
-		width: $(document).width() - $(this.el).find('.sidebar').width() - 30,
-		height: $(document).height() - $("#header").height() -
-		$(this.el).find('.workspace_toolbar').height() -
-		$(this.el).find('.workspace_fields').height() - 40
-		});
-		*/
-
-		// Fire off the adjust event
-		//this.trigger('workspace:adjust', { workspace: this });
 	},
 	
 	toggle_sidebar: function() {
@@ -216,6 +208,11 @@ var Workspace = Backbone.View.extend({
 		.animate({
 			backgroundColor: '#fff'
 		}, 'fast');
+
+		if(!$(this.el).find('.workspace_report').is(':hidden')) {
+			$('.workspace_toolbar .view').addClass("table");
+		}
+		
 	},
 	
 	new_query: function() {

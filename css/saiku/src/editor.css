@@ -19,6 +19,15 @@
     float: left;
 }
 
+
+.grab_overlay{
+		background: black;
+}
+
+.drag-resizor{
+	    border-right: 4px solid black;
+}
+
 #fontbox{
 	width: 110px !important;
 }

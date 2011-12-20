@@ -2,36 +2,32 @@
 <html>
 	<head>
 		<title>adhoc</title>
-
-		
-		 <!-- Blueprint CSS -->
-        <!--link rel="stylesheet" href="css/blueprint/src/reset.css" type="text/css" media="screen, projection"-->
+	
+        <!-- Blueprint CSS -->
+        <link rel="stylesheet" href="css/blueprint/src/reset.css" type="text/css" media="screen, projection">
         <link rel="stylesheet" href="css/blueprint/src/typography.css" type="text/css" media="screen, projection">
         <link rel="stylesheet" href="css/blueprint/src/forms.css" type="text/css" media="screen, projection">
         <!--[if lt IE 8]><link rel="stylesheet" href="css/blueprint/src/ie.css" type="text/css" media="screen, projection"><![endif]-->
- 		<link rel="stylesheet" href="js/jquery/dataTables/css/demo_page.css" type="text/css" media="screen, projection">    
- 		<link rel="stylesheet" href="js/jquery/dataTables/css/demo_table.css" type="text/css" media="screen, projection">    
-      
+
         <!--  jQuery CSS -->
         <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/smoothness/jquery-ui.css" type="text/css" media="all" />
         <link rel="stylesheet" type="text/css" href="js/jquery/jcarousel/skins/IE7/skin.css" />
 		<link rel="stylesheet" type="text/css" href="js/jquery/colorpicker/css/colorpicker.css" />
 		<link rel="stylesheet" type="text/css" href="js/jquery/colorpicker/css/saiku.css" />
         <link rel="stylesheet" type="text/css" href="js/jquery/treeview/jquery.treeview.css" />
-
-             
+        
+        <!--link rel="stylesheet" href="js/jquery/dataTables/css/demo_page.css" type="text/css" media="screen, projection">    
+ 		<link rel="stylesheet" href="js/jquery/dataTables/css/demo_table.css" type="text/css" media="screen, projection"-->    
+      
+     
         <!-- Saiku CSS -->
         <link rel="stylesheet" href="css/saiku/src/styles.css" type="text/css">
-        <link rel="stylesheet" href="css/saiku/src/editor.css" type="text/css">
-
+        <link rel="stylesheet" href="css/saiku/src/adhoc.css" type="text/css">
+        <!--link rel="stylesheet" href="css/saiku/src/editor.css" type="text/css"-->
         <link rel="stylesheet" href="css/saiku/src/jqueryFileTree.css" type="text/css">
 
         <link rel="shortcut icon" href="favicon.ico">
-		
-        <style>
-            #divOverlay { background-color:Silver; text-align:center;  position:absolute; z-index:10000; opacity:0.5; }
-        </style>		
-        
+		    
 	</head>
 	<body>
 
@@ -68,8 +64,11 @@
 		<script type="text/javascript" src="js/jquery/jcarousel/lib/jquery.jcarousel.min.js"></script>
 		<script type="text/javascript" src="js/jquery/jquery.cycleClass.js"></script>
 		<script type="text/javascript" src="js/jquery/Fontpicker.js"></script>
+		<script type="text/javascript" src="js/jquery/ImageSelect.js"></script>
 		<script type="text/javascript" src="js/jquery/colorpicker/js/colorpicker.js"></script>
 		<script type="text/javascript" src="js/jquery/treeview/jquery.treeview.js"></script>
+
+		<script type="text/javascript" src="js/jquery/Colsize.js"></script>
 
 		<script type="text/javascript" src="js/jquery/jqueryFiletree.js"></script>
 		
@@ -96,6 +95,7 @@
 		<script src="js/adhoc/views/SelectionsModal.js"></script>
 		<script src="js/adhoc/views/ColumnConfigModal.js"></script>
 		<script src="js/adhoc/views/SetupTemplate.js"></script>
+		<script src="js/adhoc/views/SelectTemplateModal.js"></script>
 		<script src="js/adhoc/views/Report.js"></script>
 		<script src="js/adhoc/views/MdModelList.js"></script>
 		<script src="js/adhoc/Settings.js"></script>
@@ -171,7 +171,7 @@
                     </ul>
                 </div>
                 <div class="clear"></div>
-            </div-->
+            </div>
         </div>
         </script>
         
@@ -182,49 +182,43 @@
        <script type="text/x-jquery-tmpl" id="template-edit-panel-details-header">     
                 <div>Details Header Editor</div>
         </script>
-
-		<script type="text/x-jquery-tmpl" id="template-workspace">
-			<div class="workspace">
-			<div class="workspace_inner">
-			<div class="workspace_toolbar"></div>
-			<div class="workspace_results"></div>
-			<div class="workspace_report">
-				<div class="workspace_report_sidebar">
-				<div class="workspace_report_template">
-					<h3 class="top i18n">Report Template</h3>
-					<div id="template-carousel" class="jcarousel-skin-ie7" style="text-align:center">
-         			<ul>
-         			</ul>
-  				</div>
-				</div>	
-				<div class="workspace_report_editor">
-					<h3 class="top i18n">Edit Report Element</h3>
-					<div id="edit_panel"></div>
+        
+   <script type="text/x-jquery-tmpl" id="template-workspace">
+	<div class="workspace">
+	<div class="workspace_inner">
+	<div class="workspace_toolbar"></div>
+	<div class="workspace_results"></div>
+	<div class="workspace_report">
+		<div class="workspace-report-toolbar"></div>
+		<!--div class="workspace_report_sidebar">
+			<div class="workspace_report_template">
+				<h3 class="top i18n">Report Template</h3>
+				<div id="template-carousel" class="jcarousel-skin-ie7" style="text-align:center">
+					<ul></ul>
 				</div>
-				</div>
-				<div class="workspace_report_canvas" style="left:auto; right:auto">
-			</div>			
 			</div>
+			<div class="workspace_report_editor">
+			<h3 class="top i18n">Edit Report Element</h3>
+			<div id="edit_panel"></div>
 			</div>
-			</div>		
-			<div class="sidebar">
-			<h3 class="top i18n">Models</h3>
-			<div class="sidebar_inner">
-			<%= model_navigation %>
-			</div>
-			<h3 class="i18n">Categories</h3>
-			<div class="sidebar_inner category_tree"></div>
-			<!--h3 class="i18n">User Filters</h3>
-			<div class="sidebar_inner resultlist_tree"></div-->
-			</div>
-			
-			<div class="sidebar_separator"></div>
-			<div class="clear"></div>
-
-        <div id="divOverlay" style=""><p>This is the overlay div.</p><p id="info"></p></div>
-
-		</script>
-		
+		</div-->
+		<div class="workspace_report_canvas"></div>
+	</div>
+	</div>
+	</div>	
+	
+	<div class="sidebar">
+	<h3 class="top i18n">Models</h3>
+	<div class="sidebar_inner">
+		<%= model_navigation %>
+	</div>
+	<h3 class="i18n">Categories</h3>
+	<div class="sidebar_inner category_tree"></div>
+	</div>	
+	<div class="sidebar_separator"></div>
+	<div class="clear"></div>
+	
+	</script>
 		<script type="text/x-jquery-tmpl" id="template-workspace-toolbar">
         <ul> 
         	<li><a href="#toggle_report" 
@@ -345,17 +339,9 @@
             </div>     
         </script>
         
-        <script type="text/x-jquery-tmpl" id="report-setup">
-        	<div style="text-align:center">
-         		<div id="template-carousel" class="jcarousel-skin-ie7" style="text-align:center">
-         			<ul>
-         			</ul>
-  				</div>
-  				<div id="limit"> 
-            	Query Limit:<br/>
-            	<input id="limit_input" disabled>
-                </input>
-            </div>    
+        <script type="text/x-jquery-tmpl" id="select-template">
+        	<div id='template-selection'>  
+        		 <select id='template-select'/>
             </div>     
         </script>
 	</body>

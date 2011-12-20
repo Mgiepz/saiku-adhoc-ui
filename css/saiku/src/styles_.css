@@ -49,6 +49,10 @@ html, body {
 	height: 700px;	
 }
 
+.resize_box{
+	  background-image:url(../../../images/highlight.png) !important;
+}
+
 /** Report **/
 .style-0 {
    margin-left:auto; 
@@ -65,6 +69,12 @@ html, body {
     float: right;
     text-align: right;
     width: 40%;
+}
+
+.filetree .highlighted{
+	font-weight: bold;
+	color: #2A6085;
+	/*background: #DDDDDD*/
 }
 
 #contents thead ,.report-navigator{
@@ -87,14 +97,17 @@ html, body {
 }
 
 .report-navigator .nav-container{
-   width: 200px;
-   margin-left: auto;
-   margin-right	: auto;
+   margin: auto;
 }
 
-.report-navigator div, .report-navigator a{
-	float: left;
-    /*display: inline;*/
+.report-navigator .nav-container a{
+   float: left;
+   display: inline;
+}
+
+.report-navigator .nav-container div{
+   float: left;
+   display: inline;
 }
 
 .report-navigator a.button{
@@ -223,7 +236,13 @@ textarea.formula{
  }
 
 .adhoc-highlight{
-	background-image:url(../../../images/highlight.png);
+	background-image:url(../../../images/highlight.png) !important;
+}
+
+.report-hover{
+	background-image:url(../../../images/highlight.png) !important; 
+	opacity: 0.5;
+	z-index: 9999;
 }
 
 /** Toolbar */
@@ -624,6 +643,11 @@ textarea.formula{
     /*overflow: auto;*/
 }
 
+#container_id{
+	overflow: auto;
+    height: 200px;
+}
+
 /** Field List */
 
 .workspace_fields {
@@ -703,10 +727,12 @@ textarea.formula{
     min-width: 70px;
     text-align: center;
 }
+
 .ui-sortable-helper a {
     cursor: move !important;
 }
-.ui-draggable-dragging {
+
+li.ui-draggable-dragging{
     display: inline !important;
     height: 15px !important;
     line-height: 15px !important;
@@ -1097,6 +1123,23 @@ table th.string {
 	display: none;
 }
 
+}
+.dialog_columnconfig .dialog_body {
+    padding-left: 5px;
+    float: left;
+}
+/*
+.dialog_selections .dialog_body .selection_buttons {
+    float: left;
+    padding-left: 25px;
+    padding-top: 115px;
+    text-align: center;
+    vertical-align: middle;
+}
+*/
+
+
+
 .editor label.button{
     display: block;
     height: 12px;
@@ -1340,6 +1383,9 @@ table th.string {
 .workspace_toolbar .export_csv {
     background-position: -455px 7px;
 }
+.workspace_toolbar .export_pdf {
+    background-position: -390px 7px;
+}
 .workspace_toolbar .export_xls {
     background-position: -847px 7px;
 }
@@ -1359,9 +1405,15 @@ table th.string {
   /* this isn't in the sprite */
 }
 
-.workspace_toolbar .report {
-    background: url('../../../images/src/report.png') 50% 50% no-repeat;
+.workspace_toolbar .view {
+    background: url('../../../images/src/report-view.png') 50% 50% no-repeat;
 }
+
+.workspace_toolbar .view.table {
+    background: url('../../../images/src/table-view.png') 50% 50% no-repeat !important;
+}
+
+
 .workspace_toolbar .union {
     background: url('../../../images/src/union.png') 50% 50% no-repeat;
 }
