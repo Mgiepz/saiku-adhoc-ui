@@ -68,10 +68,6 @@ var Report = Backbone.View.extend({
 		$(".nav-container #first").click(this.firstPage);
 		$(".nav-container #last").click(this.lastPage);
 
-		this.template_select = new SetupTemplate({
-            workspace: this.workspace
-       });
-
         this.workspace.query.trigger('report:render', {
             workspace: this.workspace,
             report: this

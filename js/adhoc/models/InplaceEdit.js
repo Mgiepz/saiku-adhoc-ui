@@ -50,8 +50,8 @@ var InplaceEdit = Backbone.Model.extend({
 
  		this.query.workspace.edit_panel.disable();
  		
- 		$('#divPseudoOverlay').remove();
- 		
+ 		$('#dragzone').remove();
+		
  		this.block_highlight($target, 'adhoc-highlight');
  		
  		this.query.workspace.trigger('report:edit', {

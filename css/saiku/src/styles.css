@@ -550,7 +550,10 @@ html, body {
 .ui-sortable-helper a {
     cursor: move !important;
 }
-.ui-draggable-dragging {
+
+
+/** more specific here */
+li.ui-draggable-dragging {
     display: inline !important;
     height: 15px !important;
     line-height: 15px !important;

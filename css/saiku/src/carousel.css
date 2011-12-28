@@ -1,0 +1,91 @@
+#template-carousel .carousel  {
+padding: 10px 0 0 0;
+margin: 0 0 20px 10px;
+position: relative;
+}
+/*
+#template-carousel .digg {
+position: absolute;
+left: 610px;
+top: 110px;
+}
+*/
+#template-carousel .main {
+margin-left: 40px;
+}
+
+#template-carousel .demo em {
+color: #FF3300;
+font-weight: bold;
+font-size: 60%;
+font-style: normal;
+}
+#template-carousel .carousel button { /*Don't remove this. we still use this for individual demos. only the front pages use images as of now*/
+float: left;
+}
+#template-carousel .carousel a.prev, #template-carousel .carousel a.next {
+display: block;
+float: left;
+width: 30px;
+height: 143px;
+text-decoration: none;
+background-color: gray;
+/*background: url("/image/imageNavLeft.gif") left 60px no-repeat;*/
+}
+#template-carousel .carousel a.next {
+/*background: url("/image/imageNavRight.gif") right 60px no-repeat;*/
+}
+#template-carousel .carousel a.next:hover {
+background-color: black;
+/*background-image: url("/image/imageNavRightHover.gif");*/
+}
+#template-carousel .carousel a.prev:hover {
+background-color: black;
+/*background-image: url("/image/imageNavLeftHover.gif");*/
+}
+#template-carousel .carousel a:hover, #template-carousel .carousel a:active {
+border: none;
+outline: none;
+}
+#template-carousel .carousel .jCarouselLite {
+border: 1px solid black;
+float: left;
+background-color: #dfdfdf;
+
+/* Needed for rendering without flicker */
+position: relative;
+visibility: hidden;
+left: -5000px;
+}
+#template-carousel .carousel ul {
+margin: 0;
+}
+#template-carousel .carousel li img,
+#template-carousel .carousel li p {
+background-color: #fff;
+width: 150px;
+height: 118px;
+margin: 10px;
+}
+
+#template-carousel .widget img {
+cursor: pointer;
+}
+#template-carousel .mid {
+margin-left: 80px;
+width: 400px;
+height: 300px;
+}
+#template-carousel .vertical {
+margin-left: 170px;
+}
+#template-carousel .vertical .jCarouselLite {   /* so that in IE 6, the carousel div doesnt expand to fill the space */
+width: 170px;
+}
+#template-carousel .imageSlider li img,
+#template-carousel .imageSlider li p,
+#template-carousel .imageSliderExt li img ,
+#template-carousel .imageSliderExt li p {
+width: 400px;
+height: 300px;
+}

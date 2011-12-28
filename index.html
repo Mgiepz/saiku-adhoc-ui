@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="css/blueprint/src/reset.css" type="text/css" media="screen, projection">
         <link rel="stylesheet" href="css/blueprint/src/typography.css" type="text/css" media="screen, projection">
         <link rel="stylesheet" href="css/blueprint/src/forms.css" type="text/css" media="screen, projection">
+       
         <!--[if lt IE 8]><link rel="stylesheet" href="css/blueprint/src/ie.css" type="text/css" media="screen, projection"><![endif]-->
 
         <!--  jQuery CSS -->
@@ -23,7 +24,7 @@
         <!-- Saiku CSS -->
         <link rel="stylesheet" href="css/saiku/src/styles.css" type="text/css">
         <link rel="stylesheet" href="css/saiku/src/adhoc.css" type="text/css">
-        <!--link rel="stylesheet" href="css/saiku/src/editor.css" type="text/css"-->
+        <!--link rel="stylesheet" href="css/saiku/src/carousel.css" type="text/css"-->
         <link rel="stylesheet" href="css/saiku/src/jqueryFileTree.css" type="text/css">
 
         <link rel="shortcut icon" href="favicon.ico">
@@ -42,6 +43,8 @@
 				<span class="processing_message">Loading...</span>
 			</div>
 		</div>
+
+<div id="resizer" class="hide" style="width: 1px; height: 592px; left: 692px; top: 0px;"></div>
 
 		<!--  jQuery, jQuery UI -->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
@@ -64,6 +67,7 @@
 		<script type="text/javascript" src="js/jquery/jcarousel/lib/jquery.jcarousel.min.js"></script>
 		<script type="text/javascript" src="js/jquery/jquery.cycleClass.js"></script>
 		<script type="text/javascript" src="js/jquery/Fontpicker.js"></script>
+		<!--script type="text/javascript" src="js/jquery/Carousel.js"></script-->
 		<script type="text/javascript" src="js/jquery/ImageSelect.js"></script>
 		<script type="text/javascript" src="js/jquery/colorpicker/js/colorpicker.js"></script>
 		<script type="text/javascript" src="js/jquery/treeview/jquery.treeview.js"></script>
@@ -94,8 +98,8 @@
 		<script src="js/adhoc/views/ExportFileModal.js"></script>
 		<script src="js/adhoc/views/SelectionsModal.js"></script>
 		<script src="js/adhoc/views/ColumnConfigModal.js"></script>
-		<script src="js/adhoc/views/SetupTemplate.js"></script>
-		<script src="js/adhoc/views/SelectTemplateModal.js"></script>
+		<!--script src="js/adhoc/views/SetupTemplate.js"></script-->
+		<script src="js/adhoc/views/TemplatesModal.js"></script>
 		<script src="js/adhoc/views/Report.js"></script>
 		<script src="js/adhoc/views/MdModelList.js"></script>
 		<script src="js/adhoc/Settings.js"></script>
@@ -316,7 +320,7 @@
             </div>
             <div id="formula" class="hide"> 
             	Formula:<br/>
-            	 <textarea class="formula" style="resize: none;" name="formula" cols="4" rows="5"></textarea>
+            	 <textarea class="formula" style="resize: none;" name="formula" cols="4" rows="2"></textarea>
             </div>               
             <div id="format"> 
             	Format:<br/>

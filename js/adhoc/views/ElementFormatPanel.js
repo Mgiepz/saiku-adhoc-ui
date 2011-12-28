@@ -197,66 +197,46 @@ var ElementFormatPanel = Backbone.View.extend({
 					select_text: function(){return that.json.value;},
 					select_options: "selected:disabled"
 				});
-				
-				//-------------------------------------------------------------------
-				$(this).mouseover(
-					function(){
 
-						var overlay = "<div id='overlay' class='grab_overlay'/>"
-						$(document.body).append(overlay);
-						var elePos = $(this).parent().position();
-						var eleTop = elePos.top;
-						var eleLeft = elePos.left;
-						var eleWidth = '12px' //$(this).width();
-						var eleHeight = $(this).parent().height(); 
+					//create the draggable zone
+					$(this).find('span').wrap('<div class="head_cat"/>');
+					$(this).append('<div id="dragzone" class="wxl_resize wxl_resize_horizontal"/>');
+		
+					$(this).parent().addClass('resizable_row');
+		
+					var borderPosition = $('.report_border').position();	
+					var borderHeight = $('.report_border').height();
+					
+					var borderTop = borderPosition.top;
 
-						$('#overlay').css({
-							display: 'block',
-							position: 'relative',
-							top: eleTop,
-							left: eleLeft,
-							width: eleWidth,
-							height: eleHeight
-						});
-                		
+					$('#dragzone').draggable({
+						helper : function() {
+							$helper = $('#resizer').addClass('resizer').css({
+								top: borderTop,
+								height: borderHeight}
+							);
+							return $helper.clone().removeAttr( "id" ).removeClass("hide");
+						} ,
+						//TODO: find a better containment
+						containment: '.resizable_row',
+						axis: 'x',
+						stop : function(event,ui) {
+							var $ele = $('.resizable_row');
+							var containmentWidth = $ele.width();
+							
+							var delta = ui.position.left - ui.originalPosition.left;
+							var one = 100 / containmentWidth;
+							var prcChange = one * delta;
+							var lastRealWidth = that.json.format.width;
+							var newRealWidth = lastRealWidth + prcChange;
 
-						
-					}
-				)
-				
-				
-				
-				
-				
-				
-				
-				//-------------------------------------------------------------------
-				
+							that.json.format.width = newRealWidth;
+							that.save(that.json);
+						}
+					});				
 			}	
 		});
-		
-		
-		/*
-				$('.adhoc-highlight').each(function(){
-			//Details should not be click-editable
-			if(!($(this).attr('class').indexOf('rpt-dtl') > -1)){
-				$(this).find('span').wrap('<div id="resizor"/>');
-				$('#resizor').resizable(
-        				{
-        				"maxHeight": 300,
-        				"minHeight": 300,
-        				"ghost": true,
-        				"handles": 'e',
-        				"helper": 'drag-resizor',
-        				"stop": function(event, ui) {that.workspace.query.run();}
-        				}
-        				);
-			}	
-		});
-		*/
-		
-		
-
+	
 		//we need to create a new json and only send back the
 
 	},
@@ -297,7 +277,7 @@ var ElementFormatPanel = Backbone.View.extend({
 	},
 
 	select_templates: function(event) {
-		 (new SelectTemplateModal({
+		 (new TemplatesModal({
             workspace: this.workspace
         })).open();
 	},

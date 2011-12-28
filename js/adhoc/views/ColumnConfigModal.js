@@ -153,9 +153,11 @@ var ColumnConfigModal = Modal.extend({
             .addClass('.calculated')
             .attr("id",this.json.uid)
             .removeClass('hide');
+          
+            var href = '#CATEGORY/' + this.json.category + '/COLUMN/' + this.json.name;
             
             $clone.find('a[title="calc_column"]').attr("title",this.json.name).html(this.json.name)
-            .attr("href","abc");
+            .attr("href",href);
  
             $clone.appendTo($selections);		 	
    },

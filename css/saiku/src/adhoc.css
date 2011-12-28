@@ -371,7 +371,9 @@
 .dialog_export .dialog_icon {
 	display: none;
 }
-
+.dialog_templates .dialog_icon {
+    display: none;
+}
 .dialog_columnconfig .dialog_icon {
 	display: none;
 }
@@ -379,5 +381,62 @@
 }
 .dialog_columnconfig .dialog_body {
     padding-left: 5px;
-    float: left;
+   float: left;
 }
+.dialog_templates .dialog_body {
+    margin: auto !important
+}
+
+#template-carousel{
+	 margin: auto !important
+}
+
+.grab_overlay{
+		background: black;
+}
+/*
+div.wxl_resize_horizontal {
+    bottom: 0;
+    cursor: ew-resize;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0 !important;
+    width: 3px;
+}
+*/
+
+div.rowlimit{
+	/*margin-top: 5px;*/
+	padding: 8px;
+	height: 16px
+}
+
+div.resizer {
+    background-color: black;
+    position: absolute;
+    z-index: 1000;
+    bottom: 0;
+    cursor: e-resize;
+    height: 100%;
+    top: 0;
+    width: 1px;
+}
+
+/* Border ist noch drin (zur Veranschaulichung)!!! */
+div.wxl_resize_horizontal {
+    cursor: ew-resize;
+    width: 5px;
+    height:20pt;
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: 0px;
+}
+
+div.head_cat {
+ float:left;   
+}
+textarea.formula{
+	height: 100px !important;
+    padding: 5px;
+    width: 250px !important;

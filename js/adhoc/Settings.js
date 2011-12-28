@@ -75,18 +75,18 @@ var defaultCalcColumn =
 "elementFormat":
 	{"horizontalAlignment":"LEFT",
 	"verticalAlignment":"CENTER",
-	"fontName":"Arial",
-	"fontColor":"#662b1b",
+	"fontName":null,
+	"fontColor":null,
 	"backgroundColor":null,
-	"fontSize":10
+	"fontSize":null
 	},
 "columnHeaderFormat":
 	{"horizontalAlignment":"LEFT",
 	"verticalAlignment":"CENTER",
-	"fontName":"Arial",
-	"fontColor":"#662b1b",
+	"fontName":null,
+	"fontColor":null,
 	"backgroundColor":null,
-	"fontSize":10
+	"fontSize":null
 	},
 "aggTypes":["NONE"],
 "selectedAggType":"NONE",
