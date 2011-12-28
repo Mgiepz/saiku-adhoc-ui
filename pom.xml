@@ -51,17 +51,9 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
 	<includes>
 
 	<include>classes/Settings.js</include>
-	<include>classes/models/Category.js</include>
-	<include>classes/models/Column.js</include>
-	<include>classes/models/CompoundQuery.js</include>
-	<include>classes/models/Condition.js</include>
-	<include>classes/models/Crossjoin.js</include>
-	<include>classes/models/Domain.js</include>
 	<include>classes/models/FileTree.js</include>
 	<include>classes/models/InplaceEdit.js</include>
 	<include>classes/models/MdModel.js</include>
-	<include>classes/models/Operator.js</include>
-	<include>classes/models/Order.js</include>
 	<include>classes/models/Properties.js</include>
 	<include>classes/models/Query.js</include>
 	<include>classes/models/QueryAction.js</include>
@@ -70,8 +62,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
 	<include>classes/models/Result.js</include>
 	<include>classes/models/ResultList.js</include>
 	<include>classes/models/Session.js</include>
-	<include>classes/models/Test.js</include>
-	<include>classes/models/Union.js</include>
 	<include>classes/views/ColumnConfigModal.js</include>
 	<include>classes/views/DataTable.js</include>
 	<include>classes/views/ElementFormatPanel.js</include>
@@ -80,11 +70,9 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
 	<include>classes/views/MdModelList.js</include>
 	<include>classes/views/Modal.js</include>
 	<include>classes/views/Report.js</include>
-	<include>classes/views/ReportEditPanel.js</include>
 	<include>classes/views/SelectionDropzone.js</include>
 	<include>classes/views/SelectionsModal.js</include>
-	<include>classes/views/SetupReportModal.js</include>
-	<include>classes/views/SetupTemplate.js</include>
+	<include>classes/views/TemplatesModal.js</include>
 	<include>classes/views/Tab.js</include>
 	<include>classes/views/Table.js</include>
 	<include>classes/views/Tabs.js</include>
