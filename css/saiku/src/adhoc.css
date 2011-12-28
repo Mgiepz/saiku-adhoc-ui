@@ -94,6 +94,34 @@
     color: #2a6085 !important;
 }
 
+.d_dimension span.sort.up {
+	/*background-position: -264px 2px;*/
+	background: url(../../../images/sort_up.png) no-repeat;
+    height: 16px;
+    width: 16px;
+    float: right;
+    cursor: pointer;
+}
+
+.d_dimension span.sort.down {
+	/*background-position: -264px 2px;*/
+	background: url(../../../images/sort_down.png) no-repeat;
+    height: 16px;
+    width: 16px;
+    float: right;
+    cursor: pointer;
+}
+
+.d_dimension span.sort.none {
+	/*background-position: -264px 2px;*/
+	background: url(../../../images/sort_none.png) no-repeat;
+    height: 16px;
+    width: 16px;
+    float: right;
+    cursor: pointer;
+}
+
+
 /*
  * Report Toolbar with navigation and edit components
  */
