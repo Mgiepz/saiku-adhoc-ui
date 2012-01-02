@@ -28,10 +28,18 @@ var InplaceEdit = Backbone.Model.extend({
     
     clicked_element: function(event) {
     	
-    	$target = $(event.target);
+    	var $target;
     	
-    	$target = $(event.target).is('span') ?
-            $(event.target).parent() : $(event.target);
+    	if($(event.target).hasClass('saiku')){
+    		$target = $(event.target); 
+    	}else{
+    		$target = $(event.target).parent('.saiku'); 
+    	};
+    	
+    	//$target = $(event.target).is('span') ?
+        //    $(event.target).parent() : $(event.target);
+		if(!$target) return false; 
+
 
     	var clazz = $target.attr('class').split(/\s+/);
     	
@@ -48,7 +56,7 @@ var InplaceEdit = Backbone.Model.extend({
 
  		var splits = elementClass.split('-');
 
- 		this.query.workspace.edit_panel.disable();
+ 		this.query.workspace.edit_panel.disable_buttons();
  		
  		$('#dragzone').remove();
 		

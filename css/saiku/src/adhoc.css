@@ -26,6 +26,10 @@
     background: url('../../../images/src/prpt.png') 50% 50% no-repeat;
 }
 
+.rowlimit option{
+	text-align: right	
+}
+
 /*
  * Model Navigation Tree
  */
@@ -189,6 +193,8 @@
 	background: url(../../../images/page-first.png) no-repeat;
     height: 16px;
     width: 16px;
+        margin-left: 2px;
+    margin-right: 2px;
     float: right;
     cursor: pointer;
 }
@@ -198,6 +204,8 @@
 	background: url(../../../images/page-last.png) no-repeat;
     height: 16px;
     width: 16px;
+        margin-left: 2px;
+    margin-right: 2px;
     float: right;
     cursor: pointer;
 }
@@ -207,6 +215,8 @@
 	background: url(../../../images/page-previous.png) no-repeat;
     height: 16px;
     width: 16px;
+        margin-left: 2px;
+    margin-right: 2px;
     float: right;
     cursor: pointer;
 }
@@ -216,6 +226,8 @@
 	background: url(../../../images/page-next.png) no-repeat;
     height: 16px;
     width: 16px;
+        margin-left: 2px;
+    margin-right: 2px;
     float: right;
     cursor: pointer;
 }
@@ -263,11 +275,19 @@
 }
 */
 
+.fontpick_container{
+	background: -moz-linear-gradient(center top , #F0F0F0 0%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+	margin-left: 15px !important;
+	width: 150px !important;
+	display: inline;
+    float: left;
+}
+
 .fontPicker{
-	background: -moz-linear-gradient(center top , #FFFFFF 0%, #F0F0F0 100%) repeat scroll 0 0 transparent;
-	/*margin-top: 5px !important;*/
-	margin-left: 5px !important;
-	margin-bottom: 5px !important;
+	/*background: -moz-linear-gradient(center top , #FFFFFF 0%, #F0F0F0 100%) repeat scroll 0 0 transparent;*/
+	margin-top: 2px !important;
+	margin-left: 15px !important;
+	margin-bottom: 2px !important;/
 	width: 110px !important;
     display: inline;
     float: left;
@@ -279,6 +299,7 @@
 
 #fontbox{
 	width: 110px !important;
+	/*background: -moz-linear-gradient(center top , #FFFFFF 0%, #F0F0F0 100%) repeat scroll 0 0 transparent;*/	
 }
 
 .sizeSelector{
@@ -468,3 +489,37 @@ textarea.formula{
 	height: 100px !important;
     padding: 5px;
     width: 250px !important;
+}
+
+/*
+ * Fontselector
+ * 
+*/
+ul.fontselector {
+  background: white;
+  border: 1px solid #ccc;
+  border-top: 0;
+  font-size: 14px;
+  float: left;
+  list-style: none;
+  margin: 0;
+  padding:0;
+  line-height: 1.2;
+  z-index:    10;
+  position:   absolute;
+}
+ul.fontselector li {
+  margin:   0;
+  padding:  0;
+  list-style: none;
+}
+ul.fontselector a {
+  display:    block;
+  padding:    3px;
+  color:      black;
+  text-decoration: none;
+}
+ul.fontselector a:hover {
+  background: #ddd;
+  cursor:     pointer;
+}

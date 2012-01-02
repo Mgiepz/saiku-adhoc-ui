@@ -39,12 +39,13 @@ var FontPicker = {
 		var fontPicker = $('#' + options.id);		
 		this.element.parent().append('<input type="hidden" id="' + options.name + '" />');
 		if (!fontPicker.length && !options.disabled) {
-			fontPicker = $('<div id="'+options.id+'" ></div>').appendTo(document.body).hide();
+			fontPicker = $('<div id="'+options.id+'"></div>').appendTo(document.body).hide();
 
 			/* add individual font divs to fontbox */
 			$.each(this.fonts, function(i, item) {
 				
-				fontPicker.append('<div class="singlefont" onmouseover="this.style.backgroundColor=\''+options.hoverColor
+				fontPicker.append('<div class="singlefont"' 
+				+ 'style="background-color:' + options.bgColor + '" onmouseover="this.style.backgroundColor=\''+options.hoverColor
 				+'\'" onmouseout="this.style.backgroundColor=\''+options.bgColor+'\'" style="font-family: '+item+';" value="' + item + '"> ' + item.split(',')[0] + '</div>');
 			});
 			
@@ -60,7 +61,7 @@ var FontPicker = {
     if (!options.disabled) {
 			this.element.click(function () {
 				// toggle the font picker 
-				if (fontPicker.is(':hidden'))
+				if (fontPicker.is(':hidden')&&!options.disabled)
 				{
 					var $this = $(this);
 					fontPicker.css({

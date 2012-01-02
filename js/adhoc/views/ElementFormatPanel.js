@@ -1,4 +1,4 @@
-/**
+/*
  * The report format editor
  */
 var ElementFormatPanel = Backbone.View.extend({
@@ -15,13 +15,18 @@ var ElementFormatPanel = Backbone.View.extend({
 		this.workspace = args.workspace;
 
 		this.query = args.workspace.query;
+		
+		//this.workspace.query.bind('report:render', this.enable_template_button);
+		this.workspace.bind('query:report', this.enable_template_button);
 
 		_.extend(this, args);
 		_.extend(this, Backbone.Events);
 
-		_.bindAll(this, "render","reflect_formatting","fetch_values","save","call",
-				"align_left","align_center","align_right","textcolor_callback","size_select"
+		_.bindAll(this, "render","reflect_formatting","fetch_values","save","call", "disable_buttons", "enable_buttons",
+				"align_left","align_center","align_right","textcolor_callback","size_select","enable_template_button"
 		);
+
+
 
 	},
 
@@ -55,22 +60,20 @@ var ElementFormatPanel = Backbone.View.extend({
 		this.save(this.json);
 	},
 
+	/*
 	disable: function(){
 		$(this.el).addClass('disabled_editor');
 		$(this.el).find('select').attr('disabled',true);
 	},
+	*/
 
 	render: function() {
 
 		$(this.el).html(this.template());
 
-		$(this.el).addClass('disabled_editor');
+		$(this.el).find('.fontPicker').fontPicker({bgColor: '#ffffee'});
 
-		$(this.el).find('.fontPicker').fontPicker();
-
-		$(this.el).find('#fontPickerInput').change(
-				this.font_callback(this)
-		)
+		$(this.el).find('#fontPickerInput').change(this.font_callback(this));
 
 		$(this.el).find('.text-color').ColorPicker({
 			color: '#0000ff',
@@ -83,8 +86,6 @@ var ElementFormatPanel = Backbone.View.extend({
 				return false;
 			},
 			onSubmit: this.textcolor_callback(this)
-
-
 		});
 
 		$(this.el).find('.background-color').ColorPicker({
@@ -122,25 +123,35 @@ var ElementFormatPanel = Backbone.View.extend({
 				<option value="32">32</option> \
 		</select>');
 
+		this.disable_buttons();
 
 		return this;
 	},
+	
+	disable_buttons: function(){
+		$(this.el).find('.button').not('.templates').removeClass('on').addClass('disabled_editor');
+		$(this.el).find('select').attr('disabled', 'disabled');
+		$(this.el).find('.fontPicker').fontPicker('option', 'disabled', true);
+	},
+
+
+	enable_template_button: function(){
+		$(this.el).find('.button.templates').removeClass('disabled_editor');
+	},
+
+	enable_buttons: function(){
+		$(this.el).find('.fontPicker').fontPicker('option', 'disabled', false);
+		$(this.el).find('select').removeAttr('disabled');
+		$(this.el).find('.button').removeClass('disabled_editor');		
+	},
+
 
 	reflect_formatting: function(model, response) {
-
 
 		this.json = response;
 		var format = this.json.format;
 
-//		reset elements
-//		TODO: create an element iterator
-		$(this.el).removeClass('disabled_editor');
-		$(this.el).find('select').removeAttr('disabled');
-		$(this.el).find('.horz').removeClass('on');
-		$(this.el).find('.vert').removeClass('on');
-		$(this.el).find('.fontstyle-bold').removeClass('on');
-		$(this.el).find('.fontstyle-italic').removeClass('on');
-		$(this.el).find('.fontstyle-udl').removeClass('on');
+		this.enable_buttons();
 
 		var horzAlignment = format.horizontalAlignment.toLowerCase();
 		$(this.el).find('.horz.align-' + horzAlignment).addClass('on');
@@ -169,12 +180,11 @@ var ElementFormatPanel = Backbone.View.extend({
 					return that.json.value;
 				}
 		};
-		
-		
-		//TODO: provisorisch
+
 		$('.report_inner').click(function(evt) {
     		if (evt.target == this) {
-        		$('.saiku').removeClass('adhoc-highlight').removeClass('report-hover');			
+        		$('.saiku').removeClass('adhoc-highlight').removeClass('report-hover');		
+        		that.disable_buttons();	
     		}
 		});
 		
@@ -198,43 +208,50 @@ var ElementFormatPanel = Backbone.View.extend({
 					select_options: "selected:disabled"
 				});
 
-					//create the draggable zone
-					$(this).find('span').wrap('<div class="head_cat"/>');
-					$(this).append('<div id="dragzone" class="wxl_resize wxl_resize_horizontal"/>');
-		
-					$(this).parent().addClass('resizable_row');
-		
-					var borderPosition = $('.report_border').position();	
-					var borderHeight = $('.report_border').height();
-					
-					var borderTop = borderPosition.top;
 
-					$('#dragzone').draggable({
-						helper : function() {
-							$helper = $('#resizer').addClass('resizer').css({
-								top: borderTop,
-								height: borderHeight}
-							);
-							return $helper.clone().removeAttr( "id" ).removeClass("hide");
-						} ,
-						//TODO: find a better containment
-						containment: '.resizable_row',
-						axis: 'x',
-						stop : function(event,ui) {
-							var $ele = $('.resizable_row');
-							var containmentWidth = $ele.width();
-							
-							var delta = ui.position.left - ui.originalPosition.left;
-							var one = 100 / containmentWidth;
-							var prcChange = one * delta;
-							var lastRealWidth = that.json.format.width;
-							var newRealWidth = lastRealWidth + prcChange;
+		if(Settings.DRAG_RESIZE) {
 
-							that.json.format.width = newRealWidth;
-							that.save(that.json);
-						}
-					});				
-			}	
+		//create the draggable zone
+		$(this).find('span').wrap('<div class="head_cat"/>');
+		$(this).append('<div id="dragzone" class="wxl_resize wxl_resize_horizontal"/>');
+
+		$(this).parent().addClass('resizable_row');
+
+		var borderPosition = $('.report_border').position();
+		var borderHeight = $('.report_border').height();
+
+		var borderTop = borderPosition.top;
+
+		$('#dragzone').draggable({
+			helper : function() {
+				$helper = $('#resizer').addClass('resizer').css({
+					top: borderTop,
+					height: borderHeight
+				}
+				);
+				return $helper.clone().removeAttr( "id" ).removeClass("hide");
+			} ,
+			//TODO: find a better containment
+			containment: '.resizable_row',
+			axis: 'x',
+			stop : function(event,ui) {
+				var $ele = $('.resizable_row');
+				var containmentWidth = $ele.width();
+
+				var delta = ui.position.left - ui.originalPosition.left;
+				var one = 100 / containmentWidth;
+				var prcChange = one * delta;
+				var lastRealWidth = that.json.format.width;
+				var newRealWidth = lastRealWidth + prcChange;
+
+				that.json.format.width = newRealWidth;
+				that.save(that.json);
+			}
+		});
+			}
+
+		}
+			
 		});
 	
 		//we need to create a new json and only send back the
@@ -269,7 +286,7 @@ var ElementFormatPanel = Backbone.View.extend({
 		var callback = event.target.hash.replace('#', '');
 
 		//Attempt to call callback
-		if (! $(event.target).hasClass('disabled_toolbar') && this[callback]) {
+		if (! $(event.target).hasClass('disabled_editor') && this[callback]) {
 			this[callback](event);
 		}
 
