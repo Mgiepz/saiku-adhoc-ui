@@ -9,7 +9,7 @@ var Settings = {
     BIPLUGIN: true,
     HIDE_ERRORS: false,
     START_WITH_REPORT: true,
-    DRAG_RESIZE: true,
+    DRAG_RESIZE: false,
     QUERY_PROPERTIES: {
         'saiku.adhoc.query.automatic_execution': 'true'
     },
