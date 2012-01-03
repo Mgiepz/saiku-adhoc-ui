@@ -793,6 +793,11 @@ li.ui-draggable-dragging {
 .dialog_login .dialog_icon {
     background-position: -666px 15px;
 }
+
+/*
+ * TODO: we must distinguish between different selection dialogs here
+
+
 .dialog_selections {
 	min-width: 500px !important;
 }
@@ -828,6 +833,49 @@ li.ui-draggable-dragging {
     width: 150px;
     text-align: left;
 }
+ */
+
+.dialog_selections {
+	min-width: 500px !important;
+}
+.dialog_selections .dialog_icon {
+	display: none;
+}
+.dialog_selections .dialog_body {
+    height: 330px;
+}
+.dialog_selections .dialog_body .available_selections {
+    padding-left: 5px;
+    float: left;
+}
+.dialog_selections .dialog_body .selection_buttons {
+    float: left;
+    padding-left: 25px;
+    padding-top: 115px;
+    text-align: center;
+    vertical-align: middle;
+}
+.dialog_selections .dialog_body .used_selections {
+    padding-right: 5px;
+    float: right;
+}
+
+.dialog_selections .dialog_body .datepick {
+	margin-left: 25px;
+    width: 220px;
+    float: left;
+}
+
+.dialog_selections .dialog_body .used_selections select,
+.dialog_selections .dialog_body .available_selections select {
+    height: 270px;
+    width: 200px;
+    font-size: 11px;
+    overflow-x: scroll;
+}
+
+
+
 
 .dialog_drillthroughview .dialog_icon {
     display: none;

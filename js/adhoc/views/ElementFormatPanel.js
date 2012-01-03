@@ -203,8 +203,11 @@ var ElementFormatPanel = Backbone.View.extend({
 					},
 					delegate: inplaceEditDelegate,
 					show_buttons: true,
+					save_button: '<button class="inplace_save"><img src="images/src/accept.png"></button>',
+					cancel_button: '', //<button class="inplace_cancel"><img src="images/src/cancel.png"></button>', 					
 					default_text: function(){return that.json.value;},
 					select_text: function(){return that.json.value;},
+					save_if_nothing_changed: true,
 					select_options: "selected:disabled"
 				});
 

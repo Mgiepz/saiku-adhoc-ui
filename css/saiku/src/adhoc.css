@@ -258,6 +258,11 @@
 	z-index: 9999;
 }
 
+.report-hover.editInPlace-active{
+	background-image: none !important; 
+	opacity: 1 !important;
+}
+
 /*
  * Editor Toolbox
  */
