@@ -46,7 +46,7 @@ var TemplatesModal = Modal.extend({
      	$.each(response, function() {
     		var name = this.name.split('.')[0]; 
 
-			var file = Settings.REST_URL + Settings.RESOURCE_LOCATION + name;
+			var file = Settings.REST_URL + "/../resources/" + name;
 			$caroussel.append(
 				'<li id="'+ name +'" style="overflow: hidden; float: left; width: 170px; height: 145px;"><img src="' 
 				+ file + '.png" width="75" height="75" alt="" /></li>'

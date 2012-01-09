@@ -190,7 +190,7 @@
 
 .report-toolbar .first_page{
 	/*background-position: -264px 2px;*/
-	background: url(../../../images/page-first.png) no-repeat;
+	background: url(../../../images/resultset_first.png) no-repeat;
     height: 16px;
     width: 16px;
         margin-left: 2px;
@@ -201,7 +201,7 @@
 
 .report-toolbar .last_page{
 	/*background-position: -264px 2px;*/
-	background: url(../../../images/page-last.png) no-repeat;
+	background: url(../../../images/resultset_last.png) no-repeat;
     height: 16px;
     width: 16px;
         margin-left: 2px;
@@ -212,7 +212,7 @@
 
 .report-toolbar .prev_page{
 	/*background-position: -264px 2px;*/
-	background: url(../../../images/page-previous.png) no-repeat;
+	background: url(../../../images/resultset_previous.png) no-repeat;
     height: 16px;
     width: 16px;
         margin-left: 2px;
@@ -223,7 +223,7 @@
 
 .report-toolbar .next_page{
 	/*background-position: -264px 2px;*/
-	background: url(../../../images/page-next.png) no-repeat;
+	background: url(../../../images/resultset_next.png) no-repeat;
     height: 16px;
     width: 16px;
         margin-left: 2px;
@@ -240,7 +240,7 @@
    -webkit-box-shadow: 5px 5px 5px #ccc;
    box-shadow: 5px 5px 5px #ccc;
    border: 1px solid #CCCCCC;
-   zoom: 50%
+   /*zoom: 50%*/
 }
 
 .report_border table{
@@ -431,6 +431,10 @@
 .dialog_columnconfig .dialog_icon {
 	display: none;
 }
+.dialog_error .dialog_icon {
+    background-position: -666px 15px;
+}
+
 
 }
 .dialog_columnconfig .dialog_body {

@@ -171,6 +171,9 @@ var Workspace = Backbone.View.extend({
 		$(this.el).find('.workspace_results table,.connectable')
 		.html('');
 
+		$(this.el).find('.workspace_report .report_inner')
+		.html('');
+
 		// Trigger clear event
 		this.trigger('workspace:clear');
 	},

@@ -54,12 +54,21 @@ var Query = Backbone.Model.extend({
 
 		Application.ui.block("Rendering Report");
 
-	//this has to be the other way round
-		if($('.workspace_report').is(':hidden')){
-			this.result.fetch();
+		if(!this.reportPerspective){
+			this.result.fetch( {error: 
+				function(model, response){
+					this.error = new ClientError({ query: this, message: response.responseText, el: $('.error')});
+					this.error.render();
+					Application.ui.unblock();
+				}});
 		}else{
-			this.reportresult.fetch();
-}
+			this.reportresult.fetch( {error: 
+				function(model, response){
+					this.error = new ClientError({ query: this, message: response.responseText, el: $('.error')});
+					this.error.render();
+					Application.ui.unblock();
+				}});
+		}
 
    },
     

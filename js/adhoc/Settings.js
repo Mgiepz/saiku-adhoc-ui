@@ -5,7 +5,6 @@ var Settings = {
     VERSION: "AdhocReporting 0.0 SNAPSHOT",
     BASE_URL: "http://localhost:8080/pentaho/content",
     REST_MOUNT_POINT: "/saiku-adhoc/rest",
-    RESOURCE_LOCATION: "/../resources/",
     MODELS_PREFETCH: true,
     BIPLUGIN: true,
     HIDE_ERRORS: false,
@@ -20,7 +19,6 @@ var Settings = {
     //LOCALSTORAGE_EXPIRATION: 10 * 60 * 60 * 1000 /* 10 hours, in ms */
     LOCALSTORAGE_EXPIRATION: 0 * 60 * 60 * 1000 /* 10 hours, in ms */
 };
-
 
 /**
  * Extend settings with query parameters

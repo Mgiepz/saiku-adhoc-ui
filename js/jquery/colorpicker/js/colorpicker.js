@@ -203,6 +203,10 @@
 			},
 			show = function (ev) {
 				var cal = $('#' + $(this).data('colorpickerId'));
+				
+				//disable it
+				if(cal.hasClass('disabled_editor')) return false;
+				
 				cal.data('colorpicker').onBeforeShow.apply(this, [cal.get(0)]);
 				var pos = $(this).offset();
 				var viewPort = getViewport();

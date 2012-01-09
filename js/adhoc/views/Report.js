@@ -38,9 +38,23 @@ var Report = Backbone.View.extend({
     },
     
     
-    render: function(html) {
+    render: function(json) {
 
-        _.delay(this.process_data, 0, html);
+/*
+        if (json.data.error != null) {
+            return this.error(json);
+        }
+*/
+      
+        // Check to see if there is data
+        if (json.data && json.data.data.length === 0) {
+            return this.no_results(json);
+        }
+        
+        // Clear the contents of the table
+        //$(this.el).html('<tr><td>Rendering ' + args.data.width + ' columns and ' + args.data.height + ' rows...</td></tr>');
+
+        _.delay(this.process_data, 0, json);
         
     },
     
@@ -105,12 +119,11 @@ var Report = Backbone.View.extend({
     },
     
     no_results: function(args) {
-        $(args.workspace.el).find('.workspace_results table')
+        $(this.el).html
             .html('<tr><td>No Report</td></tr>');
     },
     
     error: function(args) {
-        $(args.workspace.el).find('.workspace_results table')
-            .html('<tr><td>' + args.data[0][0].value + '</td></tr>');
+        $(this.el).html('<tr><td>' + args.data.error + '</td></tr>');
     }
 });

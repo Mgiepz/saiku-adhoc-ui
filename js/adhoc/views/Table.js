@@ -21,9 +21,9 @@ var Table = Backbone.View.extend({
 	  var data = json.data;
 	  
 		// Check if there is data
-    	if (data == null) {
+    if (data == null) {
            return this.no_results(json);
-     	}
+     }
     
       var tableContents = data.resultset;
       var columnNames = [];

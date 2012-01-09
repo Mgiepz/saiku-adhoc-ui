@@ -85,7 +85,7 @@ var ElementFormatPanel = Backbone.View.extend({
 				$(colpkr).fadeOut(500);
 				return false;
 			},
-			onSubmit: this.textcolor_callback(this)
+			onSubmit: this.bgcolor_callback(this)
 		});
 
 		$(this.el).find('.background-color').ColorPicker({

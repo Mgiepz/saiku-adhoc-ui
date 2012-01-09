@@ -29,9 +29,10 @@ var puc = {
                     path: path,
                     action: filename,
                     overwrite: overwrite
-                })).save({ success: function() {
+                })).save({ error: function() {
                     puc.refresh_repo();
-                }});
+                }
+                });
             }
         });
     }
@@ -95,11 +96,11 @@ var BIPlugin = {
       
         // Toggle save button       
         workspace.bind('query:report', function(args) {
-            var isAllowed = args.data.data && 
+            var isAllowed = args.data && args.data.error == null &&
                 args.data.data.length > 0;
             puc.allowSave(isAllowed);
         });
-        
+
         workspace.bind('query:result', function(args) {
             var isAllowed = args.data.resultset && 
                 args.data.resultset.length > 0;
