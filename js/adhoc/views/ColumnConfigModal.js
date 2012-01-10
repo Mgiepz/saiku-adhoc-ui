@@ -90,7 +90,9 @@ var ColumnConfigModal = Modal.extend({
  		} 
 
 		$(this.el).find('#aggregation select').val(this.json.selectedAggType);
-
+		
+		$(this.el).find('#show_unique').attr('checked', this.json.hideRepeating);
+ 
         for (var value in AggTypes) {
               $("<option />").text(AggTypes[value]).val(value)
                 .appendTo($(this.el).find('#summary select'));    			

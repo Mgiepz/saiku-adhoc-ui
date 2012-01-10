@@ -81,8 +81,8 @@ var defaultCalcColumn =
 	"fontSize":null
 	},
 "columnHeaderFormat":
-	{"horizontalAlignment":"LEFT",
-	"verticalAlignment":"CENTER",
+	{"horizontalAlignment":null,
+	"verticalAlignment":null,
 	"fontName":null,
 	"fontColor":null,
 	"backgroundColor":null,

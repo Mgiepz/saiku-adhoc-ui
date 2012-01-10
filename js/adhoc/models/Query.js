@@ -54,18 +54,22 @@ var Query = Backbone.Model.extend({
 
 		Application.ui.block("Rendering Report");
 
+		var self = this;
+
 		if(!this.reportPerspective){
 			this.result.fetch( {error: 
 				function(model, response){
-					this.error = new ClientError({ query: this, message: response.responseText, el: $('.error')});
-					this.error.render();
+					self.error = new ClientError({ query: self, message: response.responseText, el: $('.error')});
+					self.workspace.reset_canvas();
+					self.error.render();					
 					Application.ui.unblock();
 				}});
 		}else{
 			this.reportresult.fetch( {error: 
 				function(model, response){
-					this.error = new ClientError({ query: this, message: response.responseText, el: $('.error')});
-					this.error.render();
+					self.error = new ClientError({ query: self, message: response.responseText, el: $('.report_inner')});
+					self.workspace.reset_canvas();
+					self.error.render();
 					Application.ui.unblock();
 				}});
 		}

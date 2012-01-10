@@ -177,6 +177,17 @@ var Workspace = Backbone.View.extend({
 		// Trigger clear event
 		this.trigger('workspace:clear');
 	},
+
+	reset_canvas: function() {
+		// Prepare the workspace for a new query
+		$(this.el).find('.workspace_results table')
+		.html('');
+
+		$(this.el).find('.workspace_report .report_inner')
+		.html('');
+
+	},
+
 	
 	toggle_sidebar: function() {
 		// Toggle sidebar
