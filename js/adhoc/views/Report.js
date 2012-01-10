@@ -58,10 +58,19 @@ var Report = Backbone.View.extend({
 		$(".nav-container #off_page").html(json.data.pageCount);
 		
 		//each click must only be bound once
+		$(".nav-container").children().unbind();
+		/*
 		$(".nav-container #prev").one('click', this.prevPage);
 		$(".nav-container #next").one('click', this.nextPage);
 		$(".nav-container #first").one('click', this.firstPage);
 		$(".nav-container #last").one('click', this.lastPage);
+		*/
+
+$(".nav-container #prev").click(this.prevPage);
+		$(".nav-container #next").click(this.nextPage);
+		$(".nav-container #first").click(this.firstPage);
+		$(".nav-container #last").click(this.lastPage);
+
 
         this.workspace.query.trigger('report:render', {
             workspace: this.workspace,

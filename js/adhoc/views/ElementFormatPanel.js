@@ -22,7 +22,7 @@ var ElementFormatPanel = Backbone.View.extend({
 		_.extend(this, Backbone.Events);
 
 		_.bindAll(this, "render","reflect_formatting","fetch_values","save","call", "disable_buttons", "enable_buttons",
-				"align_left","align_center","align_right","textcolor_callback","size_select","enable_template_button"
+				"align_left","align_center","align_right","textcolor_callback","size_select","enable_template_button"			
 		);
 
 
@@ -180,7 +180,7 @@ var ElementFormatPanel = Backbone.View.extend({
 				}
 		};
 
-		$('.report_inner').click(function(evt) {
+		$('.report_inner').one('click', function(evt) {
     		if (evt.target == this) {
         		$('.saiku').removeClass('adhoc-highlight').removeClass('report-hover');		
         		that.disable_buttons();	
@@ -278,6 +278,10 @@ var ElementFormatPanel = Backbone.View.extend({
 
 		return false;
 	},
+	
+	finished: function() {
+		this.query.run();
+	},
 
 	call: function(event) {
 		//Determine callback
@@ -361,6 +365,6 @@ var ElementFormatPanel = Backbone.View.extend({
 			this.json.format.fontUnderlined = false;
 		}
 		this.save(this.json);
-	},
+	}
 	
 });
