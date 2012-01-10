@@ -15,8 +15,7 @@ var ElementFormatPanel = Backbone.View.extend({
 		this.workspace = args.workspace;
 
 		this.query = args.workspace.query;
-		
-		//this.workspace.query.bind('report:render', this.enable_template_button);
+
 		this.workspace.bind('query:report', this.enable_template_button);
 
 		_.extend(this, args);
@@ -280,10 +279,6 @@ var ElementFormatPanel = Backbone.View.extend({
 		return false;
 	},
 
-	finished: function() {
-		this.query.run();
-	},
-
 	call: function(event) {
 		//Determine callback
 		var callback = event.target.hash.replace('#', '');
@@ -366,6 +361,6 @@ var ElementFormatPanel = Backbone.View.extend({
 			this.json.format.fontUnderlined = false;
 		}
 		this.save(this.json);
-	}
-
+	},
+	
 });

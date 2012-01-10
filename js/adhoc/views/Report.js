@@ -13,11 +13,6 @@ var Report = Backbone.View.extend({
         this.workspace.bind('query:report', this.render);
                 
        	this.workspace.bind('report:edit', this.show_editor);
-       	
-        //this.workspace.bind('report:render', this.attach_listeners);
-        
-       // this.edit_panel = new EditPanelDetails();
-        
         
     },
     
@@ -40,19 +35,10 @@ var Report = Backbone.View.extend({
     
     render: function(json) {
 
-/*
-        if (json.data.error != null) {
-            return this.error(json);
-        }
-*/
-      
         // Check to see if there is data
         if (json.data && json.data.data.length === 0) {
             return this.no_results(json);
         }
-        
-        // Clear the contents of the table
-        //$(this.el).html('<tr><td>Rendering ' + args.data.width + ' columns and ' + args.data.height + ' rows...</td></tr>');
 
         _.delay(this.process_data, 0, json);
         
@@ -67,20 +53,15 @@ var Report = Backbone.View.extend({
     	$(this.el).empty();
         $(this.el).html(html).wrapInner('<div class="report_border" />');
         $('.report_border').width($('.report_border table').width()+30);
-
-		//Add the navigation template
-		
-		//$(this.el).prepend(this.template());
-
-		//$(".report-toolbar").width($(".report_border").width());
-		    
+	    
 		$(".nav-container #curr_page").html(json.data.currentPage + 1);;		
-		$(".nav-container #off_page").html(json.data.pageCount).click();
+		$(".nav-container #off_page").html(json.data.pageCount);
 		
-		$(".nav-container #prev").click(this.prevPage);
-		$(".nav-container #next").click(this.nextPage);
-		$(".nav-container #first").click(this.firstPage);
-		$(".nav-container #last").click(this.lastPage);
+		//each click must only be bound once
+		$(".nav-container #prev").one('click', this.prevPage);
+		$(".nav-container #next").one('click', this.nextPage);
+		$(".nav-container #first").one('click', this.firstPage);
+		$(".nav-container #last").one('click', this.lastPage);
 
         this.workspace.query.trigger('report:render', {
             workspace: this.workspace,
