@@ -18,6 +18,9 @@ var puc = {
     },
     
     save_to_solution: function(filename, solution, path, type, overwrite) {
+    	
+    	var self = this;
+    	
         var query = Application.tabs._tabs[0].content.query;
         query.action.get("/json", {
             success: function(model, response) {
@@ -29,9 +32,13 @@ var puc = {
                     path: path,
                     action: filename,
                     overwrite: overwrite
-                })).save({ error: function() {
-                    puc.refresh_repo();
-                }
+                })).save({ 
+                	success: function() { 
+                		console.log("success");
+                		puc.refresh_repo();},
+                	error: function() { 
+                		console.log("error");
+                		puc.refresh_repo();}
                 });
             }
         });
