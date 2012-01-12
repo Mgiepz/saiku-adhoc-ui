@@ -32,12 +32,8 @@ var puc = {
                     path: path,
                     action: filename,
                     overwrite: overwrite
-                })).save({ 
+                })).save({},{ 
                 	success: function() { 
-                		console.log("success");
-                		puc.refresh_repo();},
-                	error: function() { 
-                		console.log("error");
                 		puc.refresh_repo();}
                 });
             }

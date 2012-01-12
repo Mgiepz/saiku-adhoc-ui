@@ -183,6 +183,7 @@ var ElementFormatPanel = Backbone.View.extend({
 		$('.report_inner').one('click', function(evt) {
     		if (evt.target == this) {
         		$('.saiku').removeClass('adhoc-highlight').removeClass('report-hover');		
+        		$(this).find('#dragzone').fadeOut('slow').remove();
         		that.disable_buttons();	
     		}
 		});
@@ -211,50 +212,52 @@ var ElementFormatPanel = Backbone.View.extend({
 				});
 
 
-		if(Settings.DRAG_RESIZE) {
+				if(Settings.DRAG_RESIZE && $(this).attr('class').indexOf('dth') > -1) {
 
-		//create the draggable zone
-		$(this).find('span').wrap('<div class="head_cat"/>');
-		$(this).append('<div id="dragzone" class="wxl_resize wxl_resize_horizontal"/>');
+					//create the draggable zone
+					$(this).find('span').wrap('<div class="head_cat"/>');
+					$(this).append('<div id="dragzone" class="wxl_resize wxl_resize_horizontal"/>').hide().fadeIn('slow');
 
-		$(this).parent().addClass('resizable_row');
+					$(this).parent().addClass('resizable_row');
 
-		var borderPosition = $('.report_border').position();
-		var borderHeight = $('.report_border').height();
+					var borderPosition = $('.report_border').position();
+					var borderHeight = $('.report_border').height();
 
-		var borderTop = borderPosition.top;
+					var borderTop = borderPosition.top;
 
-		$('#dragzone').draggable({
-			helper : function() {
-				$helper = $('#resizer').addClass('resizer').css({
-					top: borderTop,
-					height: borderHeight
+					$('#dragzone').draggable({
+						helper : function() {
+							$helper = $('#resizer').addClass('resizer').css({
+								top: borderTop,
+								height: borderHeight
+							}
+							);
+							return $helper.clone().removeAttr( "id" ).removeClass("hide");
+						} ,
+						//TODO: find a better containment
+						containment: '.resizable_row',
+						axis: 'x',
+						stop : function(event,ui) {
+							var $ele = $('.resizable_row');
+							var containmentWidth = $ele.width();
+
+							var delta = ui.position.left - ui.originalPosition.left;
+							var one = 100 / containmentWidth;
+							var prcChange = one * delta;
+							var lastRealWidth = that.json.format.width;
+							var newRealWidth = lastRealWidth + prcChange;
+
+							that.json.format.width = newRealWidth;
+							that.save(that.json);
+						}
+					});
 				}
-				);
-				return $helper.clone().removeAttr( "id" ).removeClass("hide");
-			} ,
-			//TODO: find a better containment
-			containment: '.resizable_row',
-			axis: 'x',
-			stop : function(event,ui) {
-				var $ele = $('.resizable_row');
-				var containmentWidth = $ele.width();
 
-				var delta = ui.position.left - ui.originalPosition.left;
-				var one = 100 / containmentWidth;
-				var prcChange = one * delta;
-				var lastRealWidth = that.json.format.width;
-				var newRealWidth = lastRealWidth + prcChange;
+				}
 
-				that.json.format.width = newRealWidth;
-				that.save(that.json);
-			}
-		});
-			}
-
-		}
-			
-		});
+				}
+		
+		);
 	
 		//we need to create a new json and only send back the
 

@@ -296,6 +296,7 @@ var Workspace = Backbone.View.extend({
 		this.populate_selections();
 
 	},
+	
 	populate_selections: function() {
 
 		//I only get past here once
@@ -327,6 +328,9 @@ var Workspace = Backbone.View.extend({
 					var $clone = $logicalColumn.clone()
 					.addClass('d_dimension')
 					.appendTo($selections);
+
+					$("<span />").addClass('sort').addClass(column.sort.toLowerCase()).prependTo($clone);
+					
 				}
 			}
 
@@ -344,6 +348,8 @@ var Workspace = Backbone.View.extend({
 					var $clone = $logicalColumn.clone()
 					.addClass('d_dimension')
 					.appendTo($groups);
+					
+					$("<span />").addClass('sort').prependTo($clone);
 				}
 			}
 
@@ -361,6 +367,8 @@ var Workspace = Backbone.View.extend({
 					var $clone = $logicalColumn.clone()
 					.addClass('d_dimension')
 					.appendTo($filters);
+					
+					$("<span />").addClass('sprite').prependTo($clone);
 				}
 			}
 
