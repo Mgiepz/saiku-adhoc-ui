@@ -374,6 +374,8 @@ var Workspace = Backbone.View.extend({
 
 			this.query.run();
 
+		}
+		
 			// Make sure appropriate workspace buttons are enabled
 			this.trigger('query:new', {
 				workspace: this
@@ -381,8 +383,6 @@ var Workspace = Backbone.View.extend({
 
 			// Update caption when saved
 			this.query.bind('query:save', this.update_caption);
-
-		}
 	},
 	
 	update_caption: function() {
