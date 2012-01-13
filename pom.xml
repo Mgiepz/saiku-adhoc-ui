@@ -62,8 +62,8 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
 	<include>classes/models/Result.js</include>
 	<include>classes/models/ResultList.js</include>
 	<include>classes/models/Session.js</include>
+	<include>classes/models/ClientError.js</include>	
 	<include>classes/views/ColumnConfigModal.js</include>
-	<include>classes/views/DataTable.js</include>
 	<include>classes/views/ElementFormatPanel.js</include>
 	<include>classes/views/ExportFileModal.js</include>
 	<include>classes/views/FilterDropzone.js</include>
