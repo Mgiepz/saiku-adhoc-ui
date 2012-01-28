@@ -126,7 +126,9 @@ var ColumnConfigModal = Modal.extend({
     	
     	//this.json.elementFormat.horizontalAlignment = $(this.el).find('#alignment select').val();   
     	
- 		if(this.json.uid == null) this.json.uid = this.workspace.uniqueId('rpt-dtl-');
+ 		//if(this.json.uid == null) this.json.uid = this.workspace.uniqueId('rpt-dtl-');
+    	if(this.json.uid == null) this.json.uid = this.workspace.uniqueId('uid-');
+    	
     	
         // Notify user that updates are in progress
         var $loading = $("<div>Saving...</div>");
@@ -164,12 +166,14 @@ var ColumnConfigModal = Modal.extend({
             $clone.appendTo($selections);		 	
    },
     
-    finished: function() {
+    finished: function(response) {
     	
       	if(this.category == 'CALCULATED' && this.column == 'NEW'){
       		this.add_calculated_column();
         }
         
+		$('li#' + response.uid ).find('.dimension').html(response.displayName);
+
         $(this.el).dialog('destroy').remove();
         this.query.run();
     }

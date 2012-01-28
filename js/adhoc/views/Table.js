@@ -36,7 +36,7 @@ var Table = Backbone.View.extend({
       $(this.el).html( '<table cellpadding="0" cellspacing="0" border="0" class="display" id="contents"></table>' );
 
 					
-      $('#contents').dataTable({
+      var oTable = $('#contents').dataTable({
       "aaData": tableContents, 
       "aoColumns": columnNames,
       "bAutoWidth": true,
@@ -45,8 +45,11 @@ var Table = Backbone.View.extend({
       "bFilter": false,
 	  "bSort": false,
       "bJQueryUI": false,
-      "sPaginationType": "full_numbers"
+      "sPaginationType": "full_numbers",
+      "sDom": '<"top"pt>rt<"bottom"fl><"clear">'
       });
+     
+      oTable.fnAdjustColumnSizing();
      
     },
     

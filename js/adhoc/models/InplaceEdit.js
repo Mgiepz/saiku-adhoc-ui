@@ -14,7 +14,10 @@ var InplaceEdit = Backbone.Model.extend({
  
         $(args.report.el).find(".saiku").click(this.clicked_element).hover(
         	//beginn hover
-        	function() {        		
+        	function() {    	
+    			if($('.resizer.ui-draggable-dragging').length){
+    				return true;
+    			}        		
         		that.block_highlight($(this), "report-hover"); },
         	function() { }
    		 );
@@ -27,9 +30,9 @@ var InplaceEdit = Backbone.Model.extend({
     },
     
     clicked_element: function(event) {
-    	
+
     	var $target;
-    	
+	
     	if($(event.target).hasClass('saiku')){
     		$target = $(event.target); 
     	}else{
@@ -98,7 +101,7 @@ var InplaceEdit = Backbone.Model.extend({
  		}
 
     },
-  
+  /*
     check_input: function(event) {
         if (event.which == 13) {
             this.save_writeback(event);
@@ -108,16 +111,19 @@ var InplaceEdit = Backbone.Model.extend({
          
         return false;
     },
-    
+   
     save_writeback: function(event) {
         var $input = $(event.target).closest('input');
         this.set({
             value: $input.val(),
             position: $input.parent().attr('rel')
         });
+        alert("saving");
         this.save();
+        
         var value = $input.val();
         $input.parent().text(value);
+   
     },
     
     cancel_writeback: function(event) {
@@ -133,4 +139,5 @@ var InplaceEdit = Backbone.Model.extend({
         return this.query.url() + "/edit/" + this.get('position') + 
             "/" + this.get('value'); 
     }
+    */
 });

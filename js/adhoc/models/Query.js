@@ -83,23 +83,21 @@ var Query = Backbone.Model.extend({
         if ($target_el.hasClass('columns')) target = "COLUMNS";
         if ($target_el.hasClass('group')) target = "GROUP";
         if ($target_el.hasClass('filter')) target = "FILTER";
-
-        var index = $target_el.find('li.ui-draggable').index(
-                $target_el.find('a[href="#' + dimension + '"]').parent() );
-        
+  
         var url = "/" + target + "/" + dimension + "/POSITION/" + index;
 
-       // var $element = $target_el.find('li.ui-draggable');
-        
-        var uid = $target_el.find('a[href="#' + dimension + '"]').parent().attr('id');
-        
+        var uid = $($target_el.find('li').get(index)).attr('id');
+
         this.action.post(url, {
         	data: {
                 position: index,
                 uid: uid
             },
-            success: function() {
-            		 if (this.query.properties
+            success: function(response) {
+            	
+            	$('li#' + response.uid ).find('.dimension').html(response.displayName);
+
+            	if (this.query.properties
                     .properties['saiku.adhoc.query.automatic_execution'] === 'true' && target != 'FILTER') {
                     this.query.run();
                 }

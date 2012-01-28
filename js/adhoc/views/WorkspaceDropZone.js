@@ -80,6 +80,8 @@ var WorkspaceDropZone = Backbone.View.extend({
         } else {
             ui.item.addClass('d_measure');
         }
+        
+        ui.item.css({fontWeight: "normal"});
 
         // Notify the model of the change
         var dimension = ui.item.find('a').attr('href').replace('#', '');

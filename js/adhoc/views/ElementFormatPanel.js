@@ -25,8 +25,6 @@ var ElementFormatPanel = Backbone.View.extend({
 				"align_left","align_center","align_right","textcolor_callback","size_select","enable_template_button"			
 		);
 
-
-
 	},
 
 	template: function() {
@@ -59,18 +57,11 @@ var ElementFormatPanel = Backbone.View.extend({
 		this.save(this.json);
 	},
 
-	/*
-	disable: function(){
-		$(this.el).addClass('disabled_editor');
-		$(this.el).find('select').attr('disabled',true);
-	},
-	*/
-
 	render: function() {
 
 		$(this.el).html(this.template());
 
-		$(this.el).find('.fontPicker').fontPicker({bgColor: '#ffffee'});
+		this.oFontpicker = $(this.el).find('.fontPicker').fontPicker({bgColor: '#ffffee'});
 
 		$(this.el).find('#fontPickerInput').change(this.font_callback(this));
 
@@ -84,7 +75,7 @@ var ElementFormatPanel = Backbone.View.extend({
 				$(colpkr).fadeOut(500);
 				return false;
 			},
-			onSubmit: this.bgcolor_callback(this)
+			onSubmit: this.textcolor_callback(this)
 		});
 
 		$(this.el).find('.background-color').ColorPicker({
@@ -149,6 +140,10 @@ var ElementFormatPanel = Backbone.View.extend({
 
 		this.json = response;
 		var format = this.json.format;
+		
+		
+		//if we get a uid in the response we have to set the name
+		if(this.json.uid) $('li#' +this.json.uid ).find('.dimension').html(this.json.value);
 
 		this.enable_buttons();
 
@@ -160,7 +155,9 @@ var ElementFormatPanel = Backbone.View.extend({
 
 		$(this.el).find('.sizeSelector select').val(format.fontSize);
 
-		$(this.el).find('#fontPickerInput').val(format.fontName);
+		//this.oFontpicker.fontFamily(format.fontName);
+		$(this.el).find('.fontPicker').fontPicker('option', 'defaultFont', format.fontName);
+		//$(this.el).find('.fontPicker').fontFamily(format.fontName);
 
 		if(format.fontBold){
 			$(this.el).find('.fontstyle-bold').addClass('on');
@@ -204,7 +201,7 @@ var ElementFormatPanel = Backbone.View.extend({
 					delegate: inplaceEditDelegate,
 					show_buttons: true,
 					save_button: '<button class="inplace_save"><img src="images/src/accept.png"></button>',
-					cancel_button: '', //<button class="inplace_cancel"><img src="images/src/cancel.png"></button>', 					
+					cancel_button: '',		
 					default_text: function(){return that.json.value;},
 					select_text: function(){return that.json.value;},
 					save_if_nothing_changed: true,
@@ -212,54 +209,11 @@ var ElementFormatPanel = Backbone.View.extend({
 				});
 
 
-				if(Settings.DRAG_RESIZE && $(this).attr('class').indexOf('dth') > -1) {
-
-					//create the draggable zone
-					$(this).find('span').wrap('<div class="head_cat"/>');
-					$(this).append('<div id="dragzone" class="wxl_resize wxl_resize_horizontal"/>').hide().fadeIn('slow');
-
-					$(this).parent().addClass('resizable_row');
-
-					var borderPosition = $('.report_border').position();
-					var borderHeight = $('.report_border').height();
-
-					var borderTop = borderPosition.top;
-
-					$('#dragzone').draggable({
-						helper : function() {
-							$helper = $('#resizer').addClass('resizer').css({
-								top: borderTop,
-								height: borderHeight
-							}
-							);
-							return $helper.clone().removeAttr( "id" ).removeClass("hide");
-						} ,
-						//TODO: find a better containment
-						containment: '.resizable_row',
-						axis: 'x',
-						stop : function(event,ui) {
-							var $ele = $('.resizable_row');
-							var containmentWidth = $ele.width();
-
-							var delta = ui.position.left - ui.originalPosition.left;
-							var one = 100 / containmentWidth;
-							var prcChange = one * delta;
-							var lastRealWidth = that.json.format.width;
-							var newRealWidth = lastRealWidth + prcChange;
-
-							that.json.format.width = newRealWidth;
-							that.save(that.json);
-						}
-					});
-				}
-
 				}
 
 				}
 		
 		);
-	
-		//we need to create a new json and only send back the
 
 	},
 
@@ -282,7 +236,8 @@ var ElementFormatPanel = Backbone.View.extend({
 		return false;
 	},
 	
-	finished: function() {
+	finished: function(response) {	
+		if(response) $('li#' + response.uid ).find('.dimension').html(response.displayName); 
 		this.query.run();
 	},
 

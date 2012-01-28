@@ -59,3 +59,10 @@ $(document).ready(function() {
 });
 */
  
+
+/*
+ * Constants
+ */
+var WORKSPACE_STATE_ERROR = 0;
+var WORKSPACE_STATE_TABLE = 1;
+var WORKSPACE_STATE_REPORT = 2;

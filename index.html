@@ -12,7 +12,7 @@
 
         <!--  jQuery CSS -->
         <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/smoothness/jquery-ui.css" type="text/css" media="all" />
-        <link rel="stylesheet" type="text/css" href="js/jquery/jcarousel/skins/IE7/skin.css" />
+        <link rel="stylesheet" type="text/css" href="js/jquery/jcarousel/skins/ie7/skin.css" />
 		<link rel="stylesheet" type="text/css" href="js/jquery/colorpicker/css/colorpicker.css" />
 		<link rel="stylesheet" type="text/css" href="js/jquery/colorpicker/css/saiku.css" />
         <link rel="stylesheet" type="text/css" href="js/jquery/treeview/jquery.treeview.css" />
@@ -73,6 +73,7 @@
 		<script type="text/javascript" src="js/jquery/ImageSelect.js"></script>
 		<script type="text/javascript" src="js/jquery/colorpicker/js/colorpicker.js"></script>
 		<script type="text/javascript" src="js/jquery/treeview/jquery.treeview.js"></script>
+		<script type="text/javascript" src="js/jquery/state-machine.js"></script-->
 
 		<script type="text/javascript" src="js/jquery/Colsize.js"></script>
 
@@ -89,8 +90,10 @@
 		<script src="js/adhoc/models/ReportResult.js"></script>
 		<script src="js/adhoc/models/InplaceEdit.js"></script>
 		<script src="js/adhoc/models/Repository.js"></script>
+		<!--script src="js/adhoc/models/StateMachine.js"></script-->
 		<!--script src="js/adhoc/models/FileTree.js"></script-->
 		<script src="js/adhoc/views/Workspace.js"></script>
+		<script src="js/adhoc/views/WorkspaceFsmConfig.js"></script>
 		<script src="js/adhoc/views/WorkspaceDropZone.js"></script>
 		<script src="js/adhoc/views/ElementFormatPanel.js"></script>
 		<script src="js/adhoc/views/WorkspaceToolbar.js"></script>
@@ -104,6 +107,7 @@
 		<script src="js/adhoc/views/TemplatesModal.js"></script>
 		<script src="js/adhoc/views/Report.js"></script>
 		<script src="js/adhoc/views/MdModelList.js"></script>
+		<script src="js/adhoc/views/DragResize.js"></script>
 		<script src="js/adhoc/Settings.js"></script>
 		<script src="js/adhoc/Application.js"></script>
 		<script src="js/adhoc/routers/QueryRouter.js"></script>
@@ -199,8 +203,8 @@
 					<div class="workspace-report-toolbar"></div>
 					<div class="workspace_report_canvas"></div>
 				</div>
+				<div class="workspace_error"></div>
 			</div>
-			<div class="error"></div>
 		</div>
 	</div>	
 	

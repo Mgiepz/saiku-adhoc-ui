@@ -26,7 +26,7 @@ hgroup, nav, section {
   font-style: inherit;
   font-size: 100%;
   font-family: inherit;
-  vertical-align: baseline;
+  /*vertical-align: baseline;*/
 }
 
 /* This helps to make newer HTML5 elements behave like DIVs in older browers */ 
@@ -53,7 +53,7 @@ caption, th, td {
 	float:none !important; 
 }
 table, th, td { 
-	vertical-align: middle; 
+	/*vertical-align: middle;*/
 }
 
 /* Remove possible quote marks (") from <q>, <blockquote>. */

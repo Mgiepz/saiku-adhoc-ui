@@ -37,7 +37,15 @@ var Workspace = Backbone.View.extend({
 		this.drop_zones = new WorkspaceDropZone({
 			workspace: this
 		});
+		
 		this.drop_zones.render();
+		
+//-------------------------------------------------------
+		this.fsm = fsm = StateMachine.create(WORKSPACE_FSM_CONFIG,{},this);
+		
+		//this.fsm.start();	
+		//this.trigger('start');
+//-------------------------------------------------------
 
 		// Generate table
 		this.table = new Table({
@@ -184,6 +192,9 @@ var Workspace = Backbone.View.extend({
 		.html('');
 
 		$(this.el).find('.workspace_report .report_inner')
+		.html('');
+		
+		$(this.el).find('.workspace_error')
 		.html('');
 
 	},
@@ -373,13 +384,15 @@ var Workspace = Backbone.View.extend({
 			}
 
 			this.query.run();
-
 		}
 		
 			// Make sure appropriate workspace buttons are enabled
 			this.trigger('query:new', {
 				workspace: this
 			});
+			
+			//FSM
+			this.trigger('FSM:ENew');
 
 			// Update caption when saved
 			this.query.bind('query:save', this.update_caption);

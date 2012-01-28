@@ -13,6 +13,8 @@ var Report = Backbone.View.extend({
         this.workspace.bind('query:report', this.render);
                 
        	this.workspace.bind('report:edit', this.show_editor);
+
+       	this.dragresize = new DragResize({workspace: this.workspace, el: $(this.el)});
         
     },
     
@@ -63,6 +65,16 @@ var Report = Backbone.View.extend({
 		$(".nav-container #next").click(this.nextPage);
 		$(".nav-container #first").click(this.firstPage);
 		$(".nav-container #last").click(this.lastPage);
+		
+		this.dragresize.render();
+		
+		self = this;
+		
+		$(this.el).find('.col-header').mouseover(function(event){
+			self.dragresize.summonDragResize(event);});
+
+		$(this.el).find('.col-header').mouseout(function(event){
+			self.dragresize.banishDragResize(event);});			
 
         this.workspace.query.trigger('report:render', {
             workspace: this.workspace,

@@ -1,0 +1,204 @@
+/*
+ * Colour dictionary:
+ *
+ * Table control elements:   #719ba7
+ * Header cells:             #66A9BD
+ * Body header cells:        #91c5d4
+ * Body content cells:       #d5eaf0
+ * Body content cells (alt): #bcd9e1
+ * Footer header:            #b0cc7f
+ * Footer content:           #d7e1c5
+ */
+
+/* Tables
+-------------------------------------------------------------- */
+
+/* 
+	Because of the need for padding on TH and TD, the vertical rhythm 
+	on table cells has to be 27px, instead of the standard 18px or 36px 
+	of other elements. 
+ */ 
+.dataTables_wrapper table       { margin-bottom: 1.4em; width:100%; }
+.dataTables_wrapper th          { font-weight: bold; }
+.dataTables_wrapper thead th    { 
+    background: none repeat scroll 0 0 #E5E5E5;
+    border-top: 1px solid #D5D5D5;
+	}
+.dataTables_wrapper th, .dataTables_wrapper td, .dataTables_wrapper caption { padding: 4px 10px 4px 5px; }
+/*
+	You can zebra-stripe your tables in outdated browsers by adding 
+	the class "even" to every other table row. 
+ */
+.dataTables_wrapper tbody tr:nth-child(even) td, 
+.dataTables_wrapper tbody tr.even td  { 
+	/*background: #e5ecf9; */
+}
+.dataTables_wrapper tfoot       { font-style: italic; }
+.dataTables_wrapper caption     { /*background: #eee;*/ }
+
+
+
+
+/*
+ * DataTables framework
+ */
+div.dataTables_wrapper {
+	background-color: white;
+}
+
+div.dataTables_length {
+	float: left;
+}
+
+div.dataTables_filter {
+	float: right;
+}
+
+div.dataTables_info {
+	padding: 9px 6px 6px 6px;
+	float: right;
+}
+
+div.dataTables_paginate {
+	/*float: left;*/
+}
+
+div.dataTables_length,
+div.dataTables_filter,
+div.dataTables_paginate {
+	padding: 6px;
+}
+
+
+
+/* Self clearing - http://www.webtoolkit.info/css-clearfix.html */
+.dataTables_wrapper:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+.dataTables_wrapper .top{
+	border: 1px solid #CCCCCC;
+	
+	background: -moz-linear-gradient(center top , #FFFFFF 0%, #F0F0F0 100%) repeat scroll 0 0 transparent;
+	/*
+	background: none repeat scroll 0 0 #E5E5E5;
+	*/
+    border-radius: 3px 3px 3px 3px;
+    margin-bottom: 10px;
+}
+ 
+html[xmlns] .dataTables_wrapper {
+	display: block;
+}
+ 
+* html .dataTables_wrapper {
+	height: 1%;
+}
+
+.dataTables_wrapper table td {
+border-left: 1px solid #D5D5D5;
+border-top: 1px solid #D5D5D5;
+}
+
+/*
+ * Table styles
+ */
+table.pretty {
+	width: 100%;
+	clear: both;
+}
+
+
+
+table.pretty td,
+table.pretty th {
+	padding: 5px;
+	border: 1px solid #fff;
+}
+
+/* Header cells */
+table.pretty thead th {
+	text-align: center;
+	background: #66a9bd;
+}
+
+/* Body cells */
+table.pretty tbody th {
+	text-align: left;
+	background: #91c5d4;
+}
+	
+table.pretty tbody td {
+	text-align: center;
+	background: #d5eaf0;
+}
+		
+table.pretty tbody tr.odd td { 
+	background: #bcd9e1;
+}
+
+/* Footer cells */	
+table.pretty tfoot th {
+	background: #b0cc7f;
+	text-align: left;
+}
+	
+table.pretty tfoot td {
+	background: #d7e1c5;
+	text-align: center;
+	font-weight: bold;
+}
+
+
+/*
+ * Pagination
+ */
+
+span.paginate_button,
+span.paginate_active {
+	display: inline-block;
+	cursor: pointer;
+	*cursor: hand;
+	padding: 2px 6px;
+	margin-left: 2px;
+
+    background: -moz-linear-gradient(center top , #FFFFFF 0%, #F0F0F0 100%) repeat scroll 0 0 transparent;
+    border: 1px solid #CCCCCC;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #FFFFFF;
+}
+
+span.paginate_active {
+	background-color: transparent;
+	border: 1px solid black;
+}
+
+span.paginate_button_disabled {
+	color: #3d6672;
+}
+
+div.dataTables_paginate span>span {
+	width: 15px;
+	text-align: center;
+}
+
+
+/*
+ * Sorting
+ */
+table.pretty thead th.sorting_asc {
+	background: #66A9BD url('images/sort_asc.png') no-repeat right center;
+}
+
+table.pretty thead th.sorting_desc {
+	background: #66A9BD url('images/sort_desc.png') no-repeat right center;
+}
+
+table.pretty thead th.sorting {
+	background: #66A9BD url('images/sort_both.png') no-repeat right center;
+}
