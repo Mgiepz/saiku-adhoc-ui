@@ -913,6 +913,15 @@ li.ui-draggable-dragging {
     overflow: auto;
 }
 
+.workspace_error {
+	display: none;
+	background-color: #FAD9D9;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding-top: 10px;
+    overflow: auto;
+}
+
 /** Workspace Results */
 
 .workspace_results {

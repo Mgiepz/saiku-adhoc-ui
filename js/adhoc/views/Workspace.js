@@ -97,6 +97,12 @@ var Workspace = Backbone.View.extend({
                 $(this.el).find('.workspace_fields').height() - 80
         });        
         
+        // Adjust the dimensions of the error window
+        $(this.el).find('.workspace_error').css({
+            height: $(document).height() - $("#header").height() -
+                $(this.el).find('.workspace_toolbar').height() - 
+                $(this.el).find('.workspace_fields').height() - 40
+        });
         
         
         // Fire off the adjust event

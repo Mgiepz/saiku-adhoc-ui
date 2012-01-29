@@ -12,6 +12,7 @@ var WORKSPACE_FSM_CONFIG = {
 	callbacks: {
 		onbeforestart: function(event, from, to) {
 			console.log("STARTING UP");
+			$(workspace.el).find('.workspace_error').hide();	
 		},
 		onENew: function(event, from, to) {
 			var view = this.view;
