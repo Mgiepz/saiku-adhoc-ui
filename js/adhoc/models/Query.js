@@ -52,28 +52,27 @@ var Query = Backbone.Model.extend({
             return;
         }
 
-		Application.ui.block("Rendering Report");
-
 		var self = this;
 
 		if(!this.reportPerspective){
+			Application.ui.block("Rendering Table");
 			this.result.fetch( {error: 
 				function(model, response){
-					self.error = new ClientError({ query: self, message: response.responseText, el: $('.error')});
+					self.error = new ClientError({ query: self, message: response.responseText});
 					self.workspace.reset_canvas();
-					self.error.render();					
+					self.workspace.trigger('FSM:ETableError');			
 					Application.ui.unblock();
 				}});
 		}else{
+			Application.ui.block("Rendering Report");
 			this.reportresult.fetch( {error: 
 				function(model, response){
-					self.error = new ClientError({ query: self, message: response.responseText, el: $('.report_inner')});
+					self.error = new ClientError({ query: self, message: response.responseText});
 					self.workspace.reset_canvas();
-					self.error.render();
+					self.workspace.trigger('FSM:EReportError');
 					Application.ui.unblock();
 				}});
 		}
-
    },
     
     move_dimension: function(dimension, $target_el, index) {

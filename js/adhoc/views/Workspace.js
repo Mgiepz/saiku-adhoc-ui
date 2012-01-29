@@ -39,13 +39,9 @@ var Workspace = Backbone.View.extend({
 		});
 		
 		this.drop_zones.render();
-		
-//-------------------------------------------------------
+
+		//Create the UI-Statemachine
 		this.fsm = fsm = StateMachine.create(WORKSPACE_FSM_CONFIG,{},this);
-		
-		//this.fsm.start();	
-		//this.trigger('start');
-//-------------------------------------------------------
 
 		// Generate table
 		this.table = new Table({
@@ -210,19 +206,7 @@ var Workspace = Backbone.View.extend({
 			'margin-left': new_margin
 		});
 	},
-	
-	toggle_report: function() {
 
-		this.query.reportPerspective = this.query.reportPerspective ? false : true;
-		$('.workspace_toolbar .view').toggleClass("table");
-
-		$(this.el).find('.workspace_results').toggle();
-		$(this.el).find('.workspace_report').toggle();
-
-		this.query.run();
-
-	},
-	
 	prepare: function() {
 		// Draw user's attention to cube navigation
 		$(this.el).find('.mdModels')

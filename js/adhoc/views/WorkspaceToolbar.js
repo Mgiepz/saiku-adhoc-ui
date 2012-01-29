@@ -90,7 +90,7 @@ var WorkspaceToolbar = Backbone.View.extend({
     },
 
     toggle_report: function(event) {
-        this.workspace.toggle_report();
+		this.workspace.trigger('FSM:EToggle');
     },
 
     

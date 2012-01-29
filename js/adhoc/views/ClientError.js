@@ -14,7 +14,8 @@ var ClientError = Backbone.View.extend({
     },
 
     render: function() {
-    	$(this.el).html('<tr><td>' + this.message + '</td></tr>');
+    	$('.workspace_error').html('<tr><td>' + this.message + '</td></tr>');
+    	Application.ui.unblock();
     }
     
 });

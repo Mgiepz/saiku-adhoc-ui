@@ -8,6 +8,8 @@ var Result = Backbone.Model.extend({
     },
     
     parse: function(response) {
+    	
+    	this.query.workspace.trigger('FSM:ETableResult');
 
         this.query.workspace.trigger('query:result', {
             workspace: this.query.workspace,

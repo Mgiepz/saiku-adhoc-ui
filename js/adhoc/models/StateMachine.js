@@ -40,6 +40,8 @@ var StateMachine = Backbone.Model.extend({
       var events    = cfg.events || [];
       var callbacks = cfg.callbacks || {};
       var map       = {};
+      
+      this.view = view;
 
       var add = function(e) {
         var from = (e.from instanceof Array) ? e.from : (e.from ? [e.from] : [StateMachine.WILDCARD]); // allow 'wildcard' transition if 'from' is not specified

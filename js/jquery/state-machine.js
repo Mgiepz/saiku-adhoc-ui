@@ -73,6 +73,8 @@
       if (initial && !initial.defer)
         fsm[initial.event]();
 
+	  fsm.view = view;
+
       return fsm;
 
     },
