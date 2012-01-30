@@ -73,11 +73,8 @@ var DragResize = Backbone.View.extend({
 				points.right = Math.max( points.right, p.left + width);
 				points.bottom = Math.max( points.bottom, p.top + height);
 			});
-			
 			//while one header is dragging we must not allow others to be made draggable
 			//the last column will also be disallowed
-
-
 
 			$('#draghandle').draggable({
 				helper : function() {
@@ -90,11 +87,10 @@ var DragResize = Backbone.View.extend({
 
 					return $helper.clone().removeAttr( "id" ).removeClass("hide");
 				} ,
-				//TODO: find a better containment
 				containment:  [points.left + 30, points.top, points.right - 30, points.bottom],
 				axis: 'x',
-				dragging: function(event,ui){
-					event.stopPropagation();
+				dragging: function(event,ui) {
+					//event.stopPropagation();
 				},
 				stop : function(event,ui) {
 					var $ele = $('.resizable_row');
@@ -116,11 +112,13 @@ var DragResize = Backbone.View.extend({
 							break;
 						}
 					}
-
-self.workspace.query.action.get("/FORMAT/ELEMENT/" + elementClass , {
-			success: function(model, response){ self.submit(model, response, prcChange, elementClass); }
-});
-
+					if(ui.position.left != (points.left + 30) && ui.position.left != (points.right - 30)) {
+						self.workspace.query.action.get("/FORMAT/ELEMENT/" + elementClass , {
+							success: function(model, response) {
+								self.submit(model, response, prcChange, elementClass);
+							}
+						});
+					}
 				}
 			});
 
@@ -141,8 +139,7 @@ self.workspace.query.action.get("/FORMAT/ELEMENT/" + elementClass , {
 
 		$('#resizearea').hide();
 	},
-	
-	submit: function(model, response, prcChange, elementClass){
+	submit: function(model, response, prcChange, elementClass) {
 		// Notify server
 		var lastRealWidth = response.format.width;
 		var newRealWidth = lastRealWidth + prcChange;
@@ -155,8 +152,7 @@ self.workspace.query.action.get("/FORMAT/ELEMENT/" + elementClass , {
 
 		return false;
 	},
-	
-	finished: function(response) {	
+	finished: function(response) {
 		this.workspace.query.run();
 	},
 });

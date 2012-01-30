@@ -55,7 +55,7 @@
       for(var name in map) {
         if (map.hasOwnProperty(name))
           fsm[name] = StateMachine.buildEvent(name, map[name]);
-          console.log("BINDING " + name);
+          //console.log("BINDING " + name);
           view.bind("FSM:" + name, fsm[name]);
       }
 

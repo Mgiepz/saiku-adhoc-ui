@@ -14,12 +14,16 @@ var InplaceEdit = Backbone.Model.extend({
  
         $(args.report.el).find(".saiku").click(this.clicked_element).hover(
         	//beginn hover
-        	function() {    	
-    			if($('.resizer.ui-draggable-dragging').length){
-    				return true;
+        	function() {   
+ 	
+    			if(!$('.resizer.ui-draggable-dragging').length){
+    				//return true;
+        		that.block_highlight($(this), "report-hover");}
     			}        		
-        		that.block_highlight($(this), "report-hover"); },
-        	function() { }
+        		,
+        		
+     		
+        	function() {}
    		 );
               
         //simulate click on last edited element    

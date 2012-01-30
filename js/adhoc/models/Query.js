@@ -53,6 +53,17 @@ var Query = Backbone.Model.extend({
         }
 
 		var self = this;
+		
+		var columns = $(this.workspace.el).find('.columns ul li.d_dimension').size(); 
+		
+		if (columns == 0) {
+			var message = '<tr><td><span class="i18n">You need to select at least one (non-calculated) Column for a valid query.</td></tr>';
+            $(this.workspace.el).find('.report_inner')
+                .html(message);
+            $(this.workspace.el).find('.workspace_results div')
+                .html(message);   
+            return;
+        }
 
 		if(!this.reportPerspective){
 			Application.ui.block("Rendering Table");

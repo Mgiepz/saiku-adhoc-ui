@@ -70,9 +70,7 @@ var Workspace = Backbone.View.extend({
 	},
 	
 	adjust: function() {
-		 // Adjust the height of the separator
-		console.log("body height " + $("body").height());
-		 
+ 
         // Adjust the height of the separator
         $separator = $(this.el).find('.sidebar_separator');
         var heightReduction = 87;

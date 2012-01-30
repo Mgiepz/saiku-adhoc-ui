@@ -62,7 +62,7 @@ var StateMachine = Backbone.Model.extend({
         if (map.hasOwnProperty(name))
           //fsm[name] = StateMachine.buildEvent(name, map[name]);
           fsm[name] = this.buildEvent(name, map[name]);
-          console.log("built fsm." + name + "()");
+          //console.log("built fsm." + name + "()");
       }
 
       for(var name in callbacks) {
