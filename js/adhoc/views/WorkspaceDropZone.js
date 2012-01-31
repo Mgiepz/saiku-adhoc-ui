@@ -156,7 +156,9 @@ var WorkspaceDropZone = Backbone.View.extend({
         var url = "/" + target + "/" + dimension + "/POSITION/" + index;
         
         this.workspace.query.action.del(url, {
-            success: this.workspace.query.run
+            success: function(){
+            	this.query.page=null; 
+            	this.workspace.query.run;}
         });
         
         // Remove element

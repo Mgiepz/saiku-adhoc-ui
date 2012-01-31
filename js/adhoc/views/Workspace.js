@@ -371,6 +371,7 @@ var Workspace = Backbone.View.extend({
 				}
 			}
 
+			this.query.page=null;
 			this.query.run();
 		}
 		

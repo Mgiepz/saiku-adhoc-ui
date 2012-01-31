@@ -75,17 +75,21 @@ var DragResize = Backbone.View.extend({
 			});
 			//while one header is dragging we must not allow others to be made draggable
 			//the last column will also be disallowed
+			var draggableHeight = $('.report_inner').height() - borderTop
+			
+			$helper = $('#resizer').addClass('resizer').css({height: draggableHeight});
 
 			$('#draghandle').draggable({
-				helper : function() {
-					$helper = $('#resizer').addClass('resizer').css({
-						top: borderTop,
-						left: 0,
-						height: $('.report_inner')
+				helper : function() {				
+					/*
+					.css({
+						top: 0, //borderTop,
+						//left: 0,
+						height: draggableHeight
 					}
 					);
-
-					return $helper.clone().removeAttr( "id" ).removeClass("hide");
+					*/
+					return $helper.clone().removeAttr( "id" ).removeClass("hide").css({lef: colHeaderPos.left});
 				} ,
 				containment:  [points.left + 30, points.top, points.right - 30, points.bottom],
 				axis: 'x',

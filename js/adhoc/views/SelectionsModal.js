@@ -209,6 +209,7 @@ var SelectionsModal = Modal.extend({
     
     finished: function() {
         $(this.el).dialog('destroy').remove();
+        this.query.page=null;
         this.query.run();
     }
 });

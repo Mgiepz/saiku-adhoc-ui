@@ -27,6 +27,7 @@ var WORKSPACE_FSM_CONFIG = {
 			$(workspace.el).find('.workspace_results').hide();
 			$(workspace.el).find('.workspace_report').show();
 			workspace.query.reportPerspective = true;
+			workspace.query.page=null;
 			workspace.query.run();		
 		},
 		onSTable: function(event, from, to) {

@@ -68,6 +68,7 @@ var WorkspaceToolbar = Backbone.View.extend({
 		
 		this.workspace.query.action.get("/ROWLIMIT/" + $(event.target).val() , { 
             success: function(){
+            	that.workspace.query.page=null;
             	that.workspace.query.run(true);
             }
         });

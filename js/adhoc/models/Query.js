@@ -109,6 +109,7 @@ var Query = Backbone.Model.extend({
 
             	if (this.query.properties
                     .properties['saiku.adhoc.query.automatic_execution'] === 'true' && target != 'FILTER') {
+                    this.query.page=null;
                     this.query.run();
                 }
             }

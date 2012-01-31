@@ -462,7 +462,7 @@ div.resizer {
 	border-left: 2px dashed black;
 	z-index: 1000;
 	cursor: e-resize;
-    position: fixed;
+    position: absolute;
     width: 2px;
     opacity: 0.5;
 
