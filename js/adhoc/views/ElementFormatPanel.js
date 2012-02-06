@@ -192,8 +192,13 @@ var ElementFormatPanel = Backbone.View.extend({
 			//Details should not be click-editable
 			if(!($(this).attr('class').indexOf('rpt-dtl') > -1)){
 				$(this).editInPlace({
+					preinit: function(){
+						if(that.isEditing) return false;
+						that.isEditing = true;
+					},
 					callback: function(unused, enteredText) {
 						//save the value to the server
+						that.isEditing=false;
 						that.json.value = enteredText;
 						that.save(that.json);
 						return true;
@@ -219,11 +224,14 @@ var ElementFormatPanel = Backbone.View.extend({
 
 	fetch_values: function(element, type) {
 
+		if(this.isEditing) return false;
+
 		this.element = element;
 
 		this.workspace.query.action.get("/FORMAT/ELEMENT/" + element , {
 			success: this.reflect_formatting
 		});
+		
 	},
 
 	save: function(model) {

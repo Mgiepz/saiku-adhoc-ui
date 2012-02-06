@@ -461,29 +461,33 @@ div.rowlimit{
 div.resizer {
 	border-left: 2px dashed black;
 	z-index: 1000;
-	cursor: e-resize;
+	cursor: ew-resize;
     position: absolute;
     width: 2px;
     opacity: 0.5;
 
 }
 
-
-
 #resizearea {
 	width: 30px;
 	position: absolute;
+	padding: 4px;
+	/*border: 1px solid black;*/
+	/*margin: -2px;*/
 }
 
 div.resize_horizontal {
     cursor: ew-resize;
+    z-index: 1000;
     opacity: 0.5;
     width: 1px;
     height:20pt;
     border-right: 3px solid black;
+    border-left: 3px solid black;
     background-color: black;
     margin-left: auto;
     margin-right: 0px;
+    margin-top: -4px;
 }
 
 textarea.formula{
@@ -523,4 +527,55 @@ ul.fontselector a {
 ul.fontselector a:hover {
   background: #ddd;
   cursor:     pointer;
+}
+
+.page_format {
+    height: 60px;
+    margin: 5px auto;
+    width: 245px;
+}
+
+
+.page_format .landscape {
+    background: url('../../../images/document-horizontal.png') 50% 50% no-repeat;
+}
+
+.page_format .portrait {
+    background: url('../../../images/document.png') 50% 50% no-repeat;
+}
+
+h3#template_name{
+	text-align: center;
+	margin: 5px	
+}
+
+.page_format ul {
+	padding:0; 
+	margin-left: 70px;
+	list-style-type: none;
+	}
+
+.page_format ul li {
+    display: inline;
+    float: left;
+}
+
+.page_format a.button {
+    display: block;
+     border: 1px solid #CCC;
+    height: 30px;
+    padding: 9px;
+    width: 30px;
+    margin-left: 5px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+.page_format a.button:hover {
+    border: 1px solid #CCC;
+    padding: 10px;
+}
+.page_format a.on {
+    border: 1px solid #CCC;
+    background-color: #E0E0E0;
+    padding: 9px !important;
 }

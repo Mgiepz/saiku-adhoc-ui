@@ -23,6 +23,6 @@ var ReportResult = Backbone.Model.extend({
 	url: function() {
 		var template = this.query.template!=null ? this.query.template : "default";
 		var page = this.query.page!=null ? this.query.page : "1";
-		return encodeURI(this.query.url() + "/report/" + template + "/" + page);
+		return encodeURI(this.query.url() + "/report/" + page);
 	}
 });

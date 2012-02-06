@@ -10,6 +10,7 @@ var WorkspaceDropZone = Backbone.View.extend({
     events: {
         'sortstop': 'select_dimension',
         'click a': 'selections',
+        'click .parent_dimension ul li a' : 'select_dimension',
         'click span.sort': 'sort'
     },
     
@@ -155,10 +156,15 @@ var WorkspaceDropZone = Backbone.View.extend({
         
         var url = "/" + target + "/" + dimension + "/POSITION/" + index;
         
+        var self = this;
+        
         this.workspace.query.action.del(url, {
-            success: function(){
-            	this.query.page=null; 
-            	this.workspace.query.run;}
+            success: //function(){this.workspace.query.run()}
+           
+            function(){
+            	self.workspace.query.page=null; 
+            	self.workspace.query.run();}
+        
         });
         
         // Remove element

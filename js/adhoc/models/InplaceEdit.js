@@ -65,6 +65,8 @@ var InplaceEdit = Backbone.Model.extend({
 
  		this.query.workspace.edit_panel.disable_buttons();
  		
+ 		
+ 		//??????????
  		$('#dragzone').remove();
 		
  		this.block_highlight($target, 'adhoc-highlight');
@@ -104,44 +106,6 @@ var InplaceEdit = Backbone.Model.extend({
  			$('.' + elementClass).addClass(clazzToAdd);				
  		}
 
-    },
-  /*
-    check_input: function(event) {
-        if (event.which == 13) {
-            this.save_writeback(event);
-        } else if (event.which == 27 || event.which == 9) {
-            this.cancel_writeback(event);
-        }
-         
-        return false;
-    },
-   
-    save_writeback: function(event) {
-        var $input = $(event.target).closest('input');
-        this.set({
-            value: $input.val(),
-            position: $input.parent().attr('rel')
-        });
-        alert("saving");
-        this.save();
-        
-        var value = $input.val();
-        $input.parent().text(value);
-   
-    },
-    
-    cancel_writeback: function(event) {
-        var $input = $(event.target).closest('input');
-        $input.parent().text($input.parent().attr('alt'));
-    },
-    
-    parse: function() {
-        this.query.run();
-    },
-	
-    url: function() {
-        return this.query.url() + "/edit/" + this.get('position') + 
-            "/" + this.get('value'); 
     }
-    */
+    
 });

@@ -4,6 +4,8 @@ var DragResize = Backbone.View.extend({
 
 		this.workspace = args.workspace;
 
+		this.dragging = false;
+
 		_.bindAll(this, "render","summonDragResize","banishDragResize","submit","finished");
 
 	},
@@ -18,15 +20,16 @@ var DragResize = Backbone.View.extend({
 		$('#draghandle').css('display', 'none')
 
 		$('#resizearea').mouseover( function() {
-			$('#draghandle').css('display', 'block');
+			if(!this.dragging == true ) $('#draghandle').css('display', 'block');
 		});
 		$('#resizearea').mouseout( function() {
-			$('#draghandle').css('display', 'none');
+			if(!this.dragging == true ) $('#draghandle').css('display', 'none'); //.css('margin-top', '-2px');
 		});
 	},
 	summonDragResize: function(event) {
 
-		if(!$(event.currentTarget).parent().children('.saiku').last().is($(event.currentTarget))) {
+		if( !this.dragging == true 
+			&& !$(event.currentTarget).parent().children('.saiku').last().is($(event.currentTarget))) {
 
 			var self = this;
 			var colHeader = $(event.currentTarget);
@@ -63,6 +66,8 @@ var DragResize = Backbone.View.extend({
 
 			//Find the points of the containment
 			td_elements.each( function() {
+				console.log($(this).attr('class'));
+			
 				var t = $(this);
 				var p = t.position();
 				var width = t.width();
@@ -73,30 +78,26 @@ var DragResize = Backbone.View.extend({
 				points.right = Math.max( points.right, p.left + width);
 				points.bottom = Math.max( points.bottom, p.top + height);
 			});
-			//while one header is dragging we must not allow others to be made draggable
-			//the last column will also be disallowed
-			var draggableHeight = $('.report_inner').height() - borderTop
-			
-			$helper = $('#resizer').addClass('resizer').css({height: draggableHeight});
+		
+			$helper = $('#resizer').addClass('resizer').css({height: borderHeight});//,{top: borderTop});
 
 			$('#draghandle').draggable({
 				helper : function() {				
-					/*
-					.css({
-						top: 0, //borderTop,
-						//left: 0,
-						height: draggableHeight
-					}
-					);
-					*/
-					return $helper.clone().removeAttr( "id" ).removeClass("hide").css({lef: colHeaderPos.left});
+					return $helper.clone().removeAttr( "id" ).removeClass("hide").css({left: colHeaderPos.left} ,{position: 'absolute'});
 				} ,
 				containment:  [points.left + 30, points.top, points.right - 30, points.bottom],
 				axis: 'x',
+				start: function(event,ui){
+					console.log("start dragging");
+					self.dragging = true;
+				},
 				dragging: function(event,ui) {
-					//event.stopPropagation();
+					event.stopPropagation();
 				},
 				stop : function(event,ui) {
+					console.log("start dragging");
+					self.dragging = false;
+					
 					var $ele = $('.resizable_row');
 					var containmentWidth = $ele.width();
 
@@ -116,13 +117,11 @@ var DragResize = Backbone.View.extend({
 							break;
 						}
 					}
-					if(ui.position.left != (points.left + 30) && ui.position.left != (points.right - 30)) {
 						self.workspace.query.action.get("/FORMAT/ELEMENT/" + elementClass , {
 							success: function(model, response) {
 								self.submit(model, response, prcChange, elementClass);
 							}
 						});
-					}
 				}
 			});
 
@@ -130,6 +129,8 @@ var DragResize = Backbone.View.extend({
 
 	},
 	banishDragResize: function(event) {
+
+	if(!this.dragging==true){
 
 		var el = event.relatedTarget;
 		var position = $(el).offset()
@@ -142,6 +143,9 @@ var DragResize = Backbone.View.extend({
 		}
 
 		$('#resizearea').hide();
+		
+	}
+		
 	},
 	submit: function(model, response, prcChange, elementClass) {
 		// Notify server
@@ -150,6 +154,9 @@ var DragResize = Backbone.View.extend({
 		response.format.width = newRealWidth;
 
 		this.workspace.query.action.post("/FORMAT/ELEMENT/" + elementClass, {
+			
+			
+			
 			success: this.finished,
 			data: response
 		});
