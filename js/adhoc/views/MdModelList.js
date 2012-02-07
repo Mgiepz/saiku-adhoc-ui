@@ -6,7 +6,8 @@
 var MdModelList = Backbone.View.extend({
     events: {
         'click span': 'select',
-        'click a': 'select'
+        'click a': 'select',
+        'click .parent_dimension ul li a' : 'select_dimension'
     },
     
     initialize: function(args) {
@@ -62,6 +63,22 @@ var MdModelList = Backbone.View.extend({
                 left: 35
             }
         });
+    },
+    
+    select_dimension: function(event, ui) {
+        if ($(event.target).parent().hasClass('ui-state-disabled')) {
+            return;
+        }
+        
+        $axis = $(this.workspace.el).find(".columns ul");
+        $target = $(event.target).parent().clone()
+            .appendTo($axis);
+        this.workspace.drop_zones.select_dimension({
+            target: $axis
+        }, {
+            item: $target
+        });
+        return false;
     },
     
     select: function(event) {
