@@ -21,7 +21,7 @@ var TemplatesModal = Modal.extend({
 	initialize: function(args) {
 		// Initialize properties
 		_.extend(this, args);
-		this.options.title = "Select Template ";
+		this.options.title = "Report Setup ";
 		this.message = "Fetching Templates...";
 		this.options.resizable = true;
 		this.query = args.workspace.query;

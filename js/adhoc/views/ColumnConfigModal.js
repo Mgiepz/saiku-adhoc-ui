@@ -106,7 +106,7 @@ var ColumnConfigModal = Modal.extend({
     },
     
     post_render: function(args) {
-        $(args.modal.el).parents('.ui-dialog').css({ width: "200px" });
+        //$(args.modal.el).parents('.ui-dialog').css({ width: "200px" });
     },
     
     save: function() {

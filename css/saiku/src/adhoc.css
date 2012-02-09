@@ -493,7 +493,7 @@ div.resize_horizontal {
 textarea.formula{
 	height: 100px !important;
     padding: 5px;
-    width: 250px !important;
+    width: 200px !important;
 }
 
 /*
@@ -531,8 +531,8 @@ ul.fontselector a:hover {
 
 .page_format {
     height: 60px;
-    margin: 5px auto;
-    width: 245px;
+    margin: 5px 0 0 0;
+
 }
 
 
@@ -550,13 +550,16 @@ h3#template_name{
 }
 
 .page_format ul {
-	padding:0; 
-	margin-left: 70px;
+	padding: 0; 
 	list-style-type: none;
+	text-align: center;
+	display: block;
+	width: 220px;
+	margin: 0 auto;
 	}
 
-.page_format ul li {
-    display: inline;
+.page_format li {
+	display: inline;
     float: left;
 }
 
@@ -578,4 +581,44 @@ h3#template_name{
     border: 1px solid #CCC;
     background-color: #E0E0E0;
     padding: 9px !important;
+}
+
+select#selectedFormat {
+	width: 100px;
+	line-height: 1.3em;
+}
+
+
+.page_margin {
+	height: 60px;
+    margin: 0;
+	text-align: center;
+}
+
+.page_margin input[type="text"] {
+	width: 30px;
+	margin-right: 10px;
+}
+
+.alertbox_standard div {
+	margin-top: 10px;
+}
+
+.alertbox_standard div label {
+	width: 150px;
+	text-align: left;
+	font-weight: normal;
+	display: block;
+	float: left;
+}
+
+.alertbox_h1 {
+	font-family: inherit !important;
+    padding: 5px 5px 6px 10px !important;
+	font-size: 12px;
+    font-weight: bold;
+    line-height: 18px;
+    margin: 15px 0 0 0;
+    text-shadow: 1px 1px 0 #FFFFFF;
+	border-top: 1px solid #CCCCCC;
 }

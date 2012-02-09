@@ -54,6 +54,7 @@ var Report = Backbone.View.extend({
 
     	$(this.el).empty();
         $(this.el).html(html).wrapInner('<div class="report_border" />');
+       // .wrapInner('<iframe/>');
         $('.report_border').width($('.report_border table').width()+30);
 	    
 		$(".nav-container #curr_page").html(json.data.currentPage + 1);;		

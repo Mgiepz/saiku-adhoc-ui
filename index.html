@@ -309,32 +309,30 @@
         </script>
         
         <script type="text/x-jquery-tmpl" id="template-column-setup">
-        	<div>
+        	<div class="alertbox_standard">
             <div id="displayname"> 
-            	Display Name:<br/>
-            	<input id="name">
+            	<label>Display Name:</label><input id="name">
                 </input>
             </div>
             <div id="formula" class="hide"> 
-            	Formula:<br/>
-            	 <textarea class="formula" style="resize: none;" name="formula" cols="4" rows="2"></textarea>
+            	<label>Formula:</label><textarea class="formula" style="resize: none;" name="formula" cols="4" rows="2"></textarea>
             </div>               
             <div id="format"> 
-            	Format:<br/>
-            	<input id="formatMask" disabled>
+            	<label>Format: </label><input id="formatMask" disabled>
                 </input>
             </div>    
             <div>
                 <input name="show_unique" id="show_unique" type="checkbox" /><label for="show_unique">Hide Repeating Values</label>
+			</div>
+			<div>
+				<input name="show_on_report" id="show_on_report" type="checkbox" /><label for="show_unique">Hide on Report</label>
             </div>
             <div id="aggregation"> 
-            	Aggregation:<br/>
-            	<select id="selectedAggType">
+            	<label>Aggregation: </label><select id="selectedAggType">
                 </select>
             </div>
             <div id="summary"> 
-            	Summary:<br/>
-            	<select id="selectedSummaryType">
+            	<label>Summary: </label><select id="selectedSummaryType">
                 </select>
             </div>
             </div>     

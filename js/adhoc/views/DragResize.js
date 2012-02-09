@@ -81,13 +81,14 @@ var DragResize = Backbone.View.extend({
 		
 			$helper = $('#resizer').addClass('resizer').css({height: borderHeight});//,{top: borderTop});
 
-			$('#draghandle').draggable({
+			$('#draghandle').draggable({	
 				helper : function() {				
-					return $helper.clone().removeAttr( "id" ).removeClass("hide").css({left: colHeaderPos.left} ,{position: 'absolute'});
+					return $helper.clone().removeAttr( "id" ).removeClass("hide");
 				} ,
 				containment:  [points.left + 30, points.top, points.right - 30, points.bottom],
 				axis: 'x',
 				start: function(event,ui){
+					$(ui.helper).css({top: borderTop - points.top});
 					console.log("start dragging");
 					self.dragging = true;
 				},
