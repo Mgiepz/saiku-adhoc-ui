@@ -338,7 +338,7 @@ var Workspace = Backbone.View.extend({
 
 				for (var groups_iter = 0; groups_iter < groups.length; groups_iter++) {
 					var group = groups[groups_iter];
-					var name = group.groupName;
+					var name = group.columnName;
 
 					var $logicalColumn = $(this.el).find('.category_tree')
 					.find('a[title="' + name + '"]')
@@ -348,7 +348,7 @@ var Workspace = Backbone.View.extend({
 					.addClass('d_dimension')
 					.appendTo($groups);
 					
-					$("<span />").addClass('sort').prependTo($clone);
+					$("<span />").addClass('sort').addClass(group.sort.toLowerCase()).prependTo($clone);
 				}
 			}
 

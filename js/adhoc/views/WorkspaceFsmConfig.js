@@ -19,8 +19,7 @@ var WORKSPACE_FSM_CONFIG = {
 			//console.log("QUERY CREATED");
 		},
 		onSReport: function(event, from, to) {
-			//console.log("ENTER   STATE: SReport");
-			
+			//console.log("ENTER   STATE: SReport");			
 			var workspace = this.view;
 			$('.workspace_toolbar .view').addClass("table");
 			$(workspace.el).find('.workspace_error').hide();	
@@ -31,8 +30,7 @@ var WORKSPACE_FSM_CONFIG = {
 			workspace.query.run();		
 		},
 		onSTable: function(event, from, to) {
-			//console.log("ENTER   STATE: STable");
-			
+			//console.log("ENTER   STATE: STable");			
 			var workspace = this.view;
 			$('.workspace_toolbar .view').removeClass("table");
 			$(workspace.el).find('.workspace_error').hide();	
@@ -42,8 +40,7 @@ var WORKSPACE_FSM_CONFIG = {
 			workspace.query.run();	
 		},
 		onSReportError: function(event, from, to) {
-			//console.log("ENTER   STATE: SReportError");
-					
+			//console.log("ENTER   STATE: SReportError");					
 			var workspace = this.view;
 			$(workspace.el).find('.workspace_report').hide();
 			$(workspace.el).find('.workspace_results').hide();
@@ -51,8 +48,7 @@ var WORKSPACE_FSM_CONFIG = {
 			workspace.query.error.render();
 		},		
 		onSTableError: function(event, from, to) {
-			//console.log("ENTER   STATE: STableError");
-					
+			//console.log("ENTER   STATE: STableError");					
 			var workspace = this.view;
 			$(workspace.el).find('.workspace_report').hide();
 			$(workspace.el).find('.workspace_results').hide();

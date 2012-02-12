@@ -66,7 +66,20 @@ var TemplatesModal = Modal.extend({
 		var i = 1;
 
 		$('#template_name').html(response.reportTemplate.name);
+		
+		$('#selectedFormat').empty();
+		
+		$.each(Application.session.page_formats, function() {
+			$('#selectedFormat').append( new Option(arguments[1],arguments[1]) );
+		});
 
+		$(this.el).find("input[name=margin-top]").val(this.json.marginTop);
+		$(this.el).find("input[name=margin-bottom]").val(this.json.marginBottom);
+		$(this.el).find("input[name=margin-left]").val(this.json.marginLeft);
+		$(this.el).find("input[name=margin-right]").val(this.json.marginRight);
+		
+		$("#selectedFormat option[value='" + this.json.pageFormat + "']").attr('selected', 'selected');
+		
 		$.each(Application.session.prpt_templates, function() {
 			var name = this.name.split('.')[0];
 
@@ -145,6 +158,8 @@ var TemplatesModal = Modal.extend({
 	},
 	save: function() {
 
+        this.json.pageFormat = $(this.el).find('#selectedFormat option:selected').val();
+		
 		// Notify server
 		this.query.action.post('/SETTINGS', {
 			success: this.finished,
