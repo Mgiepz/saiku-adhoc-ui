@@ -188,7 +188,7 @@ var WorkspaceDropZone = Backbone.View.extend({
         if ($li.parent('.connectable').parent().hasClass('columns')) target = "COLUMNS";
         if ($li.parent('.connectable').parent().hasClass('group')) target = "GROUP";
 
- 		$(event.target).cycleClass(["none","asc,"desc"]);
+ 		$(event.target).cycleClass(["none","asc","desc"]);
 
  		var order = "NONE";	
  		
