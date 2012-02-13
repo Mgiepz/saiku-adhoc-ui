@@ -37,11 +37,11 @@ var Workspace = Backbone.View.extend({
 		this.drop_zones = new WorkspaceDropZone({
 			workspace: this
 		});
-		
+
 		this.drop_zones.render();
 
 		//Create the UI-Statemachine
-		this.fsm = fsm = StateMachine.create(WORKSPACE_FSM_CONFIG,{},this);
+		this.fsm = fsm = StateMachine.create(WORKSPACE_FSM_CONFIG, {},this);
 
 		// Generate table
 		this.table = new Table({
@@ -68,46 +68,45 @@ var Workspace = Backbone.View.extend({
 		Application.session.bind('tab:add', this.prepare);
 
 	},
-	
 	adjust: function() {
- 
-        // Adjust the height of the separator
-        $separator = $(this.el).find('.sidebar_separator');
-        var heightReduction = 87;
-        if (Settings.PLUGIN == true || Settings.BIPLUGIN == true) {
-            heightReduction = 2;
-        }
-        $separator.height($("body").height() - heightReduction);
-        $(this.el).find('.sidebar').height($("body").height() - heightReduction);
-        
-        // Adjust the dimensions of the results window
-        $(this.el).find('.workspace_results').css({
-            height: $(document).height() - $("#header").height() -
-                $(this.el).find('.workspace_toolbar').height() - 
-                $(this.el).find('.workspace_fields').height() - 40
-        });
-        
-        // Adjust the dimensions of the report inner
-        $(this.el).find('.report_inner').css({
-            height: $(document).height() - $("#header").height() -
-                $(this.el).find('.workspace-report-toolbar').height() - 
-                $(this.el).find('.workspace_toolbar').height() - 
-                $(this.el).find('.workspace_fields').height() - 80
-        });        
-        
-        // Adjust the dimensions of the error window
-        $(this.el).find('.workspace_error').css({
-            height: $(document).height() - $("#header").height() -
-                $(this.el).find('.workspace_toolbar').height() - 
-                $(this.el).find('.workspace_fields').height() - 40
-        });
-        
-        
-        // Fire off the adjust event
-        this.trigger('workspace:adjust', { workspace: this });
-        
+
+		// Adjust the height of the separator
+		$separator = $(this.el).find('.sidebar_separator');
+		var heightReduction = 87;
+		if (Settings.PLUGIN == true || Settings.BIPLUGIN == true) {
+			heightReduction = 2;
+		}
+		$separator.height($("body").height() - heightReduction);
+		$(this.el).find('.sidebar').height($("body").height() - heightReduction);
+
+		// Adjust the dimensions of the results window
+		$(this.el).find('.workspace_results').css({
+			height: $(document).height() - $("#header").height() -
+			$(this.el).find('.workspace_toolbar').height() -
+			$(this.el).find('.workspace_fields').height() - 40
+		});
+
+		// Adjust the dimensions of the report inner
+		$(this.el).find('.report_inner').css({
+			height: $(document).height() - $("#header").height() -
+			$(this.el).find('.workspace-report-toolbar').height() -
+			$(this.el).find('.workspace_toolbar').height() -
+			$(this.el).find('.workspace_fields').height() - 80
+		});
+
+		// Adjust the dimensions of the error window
+		$(this.el).find('.workspace_error').css({
+			height: $(document).height() - $("#header").height() -
+			$(this.el).find('.workspace_toolbar').height() -
+			$(this.el).find('.workspace_fields').height() - 40
+		});
+
+		// Fire off the adjust event
+		this.trigger('workspace:adjust', {
+			workspace: this
+		});
+
 	},
-	
 	caption: function() {
 		if (this.query && this.query.name) {
 			return this.query.name;
@@ -115,13 +114,11 @@ var Workspace = Backbone.View.extend({
 
 		return "Unsaved query (" + (Application.tabs.queryCount + 1) + ")";
 	},
-	
 	template: function() {
 		return _.template($("#template-workspace").html())({
 			model_navigation: Application.session.model_navigation
 		});
 	},
-	
 	render: function() {
 		// Load template
 		$(this.el).html(this.template());
@@ -173,7 +170,6 @@ var Workspace = Backbone.View.extend({
 
 		return this;
 	},
-	
 	clear: function() {
 		// Prepare the workspace for a new query
 		$(this.el).find('.workspace_results table,.connectable')
@@ -185,7 +181,6 @@ var Workspace = Backbone.View.extend({
 		// Trigger clear event
 		this.trigger('workspace:clear');
 	},
-
 	reset_canvas: function() {
 		// Prepare the workspace for a new query
 		$(this.el).find('.workspace_results table')
@@ -193,13 +188,11 @@ var Workspace = Backbone.View.extend({
 
 		$(this.el).find('.workspace_report .report_inner')
 		.html('');
-		
+
 		$(this.el).find('.workspace_error')
 		.html('');
 
 	},
-
-	
 	toggle_sidebar: function() {
 		// Toggle sidebar
 		$(this.el).find('.sidebar').toggleClass('hide');
@@ -210,7 +203,6 @@ var Workspace = Backbone.View.extend({
 			'margin-left': new_margin
 		});
 	},
-
 	prepare: function() {
 		// Draw user's attention to cube navigation
 		$(this.el).find('.mdModels')
@@ -225,9 +217,8 @@ var Workspace = Backbone.View.extend({
 		if(!$(this.el).find('.workspace_report').is(':hidden')) {
 			$('.workspace_toolbar .view').addClass("table");
 		}
-		
+
 	},
-	
 	new_query: function() {
 		// Delete the existing query
 		if(!$(this.el).find('.workspace_report').is(':hidden')) {
@@ -257,7 +248,6 @@ var Workspace = Backbone.View.extend({
 
 		this.init_query();
 	},
-	
 	init_query: function() {
 
 		if(this.query.get('json')) {
@@ -295,7 +285,6 @@ var Workspace = Backbone.View.extend({
 		this.populate_selections();
 
 	},
-	
 	populate_selections: function() {
 
 		//I only get past here once
@@ -329,7 +318,26 @@ var Workspace = Backbone.View.extend({
 					.appendTo($selections);
 
 					$("<span />").addClass('sort').addClass(column.sort.toLowerCase()).prependTo($clone);
-					
+
+					//-----------IF IT IS CALCULATED
+					var $logicalColumn = $(this.el).find('.category_tree')
+					.find('a[title="calc_column"]')
+					.parent();
+
+					var $clone = $logicalColumn.clone()
+					.addClass('d_measure')
+					.addClass('.calculated')
+					.attr("id",this.json.uid)
+					.removeClass('hide');
+
+					var href = '#CATEGORY/' + this.json.category + '/COLUMN/' + this.json.name;
+
+					$clone.find('a[title="calc_column"]').attr("title",this.json.name).html(this.json.name)
+					.attr("href",href);
+
+					$clone.appendTo($selections);
+					//-------------------------------
+
 				}
 			}
 
@@ -347,7 +355,7 @@ var Workspace = Backbone.View.extend({
 					var $clone = $logicalColumn.clone()
 					.addClass('d_dimension')
 					.appendTo($groups);
-					
+
 					$("<span />").addClass('sort').addClass(group.sort.toLowerCase()).prependTo($clone);
 				}
 			}
@@ -366,7 +374,7 @@ var Workspace = Backbone.View.extend({
 					var $clone = $logicalColumn.clone()
 					.addClass('d_dimension')
 					.appendTo($filters);
-					
+
 					$("<span />").addClass('sprite').prependTo($clone);
 				}
 			}
@@ -374,28 +382,25 @@ var Workspace = Backbone.View.extend({
 			this.query.page=null;
 			this.query.run();
 		}
-		
-			// Make sure appropriate workspace buttons are enabled
-			this.trigger('query:new', {
-				workspace: this
-			});
-			
-			//FSM
-			this.trigger('FSM:ENew');
 
-			// Update caption when saved
-			this.query.bind('query:save', this.update_caption);
+		// Make sure appropriate workspace buttons are enabled
+		this.trigger('query:new', {
+			workspace: this
+		});
+
+		//FSM
+		this.trigger('FSM:ENew');
+
+		// Update caption when saved
+		this.query.bind('query:save', this.update_caption);
 	},
-	
 	update_caption: function() {
 		var caption = this.query.get('name');
 		$(this.tab.el).find('a').html(caption);
 	},
-	
 	remove_concept: function(event, ui) {
 		this.drop_zones.remove_dimension(event, ui);
 	},
-	
 	// Generate a unique integer id (unique within the entire client session).
 	// Useful for temporary DOM ids.
 	uniqueId : function(prefix) {

@@ -267,6 +267,25 @@ var ElementFormatPanel = Backbone.View.extend({
         })).open();
 	},
 
+	padding_inc: function(event) {
+
+		this.json.format.paddingLeft += 5;
+		this.json.format.paddingRight += 5;
+		this.save(this.json);
+	},
+
+	padding_dec: function(event) {
+		this.json.format.paddingLeft -= 5;
+		this.json.format.paddingRight -= 5;
+		if(this.json.format.paddingLeft < 0) {
+			this.json.format.paddingLeft = 0;
+		} 
+		if(this.json.format.paddingRight < 0) {
+			this.json.format.paddingRight = 0;
+		} 
+		this.save(this.json);
+	},
+
 	align_left: function(event) {
 		this.json.format.horizontalAlignment = "LEFT";
 		this.save(this.json);
