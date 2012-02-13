@@ -159,6 +159,12 @@ var TemplatesModal = Modal.extend({
 	save: function() {
 
         this.json.pageFormat = $(this.el).find('#selectedFormat option:selected').val();
+        
+		this.json.marginTop = $(this.el).find("input[name=margin-top]").val();
+		this.json.marginBottom = $(this.el).find("input[name=margin-bottom]").val();
+		this.json.marginLeft = $(this.el).find("input[name=margin-left]").val();
+		this.json.marginRight = $(this.el).find("input[name=margin-right]").val();
+
 		
 		// Notify server
 		this.query.action.post('/SETTINGS', {

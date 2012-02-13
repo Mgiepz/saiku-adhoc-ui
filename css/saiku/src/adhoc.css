@@ -98,7 +98,7 @@
     color: #2a6085 !important;
 }
 
-.d_dimension span.sort.up {
+.d_dimension span.sort.asc {
 	/*background-position: -264px 2px;*/
 	background: url(../../../images/sort_up.png) no-repeat;
     height: 16px;
@@ -107,7 +107,7 @@
     cursor: pointer;
 }
 
-.d_dimension span.sort.down {
+.d_dimension span.sort.desc {
 	/*background-position: -264px 2px;*/
 	background: url(../../../images/sort_down.png) no-repeat;
     height: 16px;
@@ -164,6 +164,7 @@
    float: left;
    display: inline;
    margin-left: 100px;
+   background: -moz-linear-gradient(center top , #F0F0F0 0%, #FFFFFF  100%) repeat scroll 0 0 transparent;
 }
 
 .report-toolbar .nav-container a{
@@ -297,6 +298,15 @@
     float: left;
 }
 
+.singlefont {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  background-color: #F0F0F0 !important;
+  /*background: -moz-linear-gradient(center top , #F0F0F0 0%, #FFFFFF 100%) repeat scroll 0 0 transparent;*/
+  width: 135px !important;
+  float:left;
+}
+
 .sizeSelector select{
 	margin: 0 !important;
 }
@@ -383,11 +393,11 @@
 }
 
 .editor .padding-left {
-    background: url('../../../images/edit-padding-left.png') 50% 50% no-repeat;
+    background: url('../../../images/edit-indent.png') 50% 50% no-repeat;
 }
 
 .editor .padding-right {
-    background: url('../../../images/edit-padding-right.png') 50% 50% no-repeat;
+    background: url('../../../images/edit-outdent.png') 50% 50% no-repeat;
 }
 
 .editor .padding-top {
