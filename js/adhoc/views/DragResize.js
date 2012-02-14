@@ -150,6 +150,7 @@ var DragResize = Backbone.View.extend({
 	},
 	submit: function(model, response, prcChange, elementClass) {
 		// Notify server
+
 		var lastRealWidth = response.format.width;
 		var newRealWidth = lastRealWidth + prcChange;
 		response.format.width = newRealWidth;

@@ -236,6 +236,10 @@ var ElementFormatPanel = Backbone.View.extend({
 
 	save: function(model) {
 		// Notify server
+
+		//TODO: This is a dirty hack
+		model.format.width = null;
+		
 		this.workspace.query.action.post("/FORMAT/ELEMENT/" + this.element, {
 			success: this.finished,
 			data: model
