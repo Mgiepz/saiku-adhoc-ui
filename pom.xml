@@ -51,7 +51,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
 	<includes>
 
 	<include>classes/Settings.js</include>
-	<include>classes/models/FileTree.js</include>
 	<include>classes/models/InplaceEdit.js</include>
 	<include>classes/models/MdModel.js</include>
 	<include>classes/models/Properties.js</include>
@@ -66,14 +65,11 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
 	<include>classes/views/ColumnConfigModal.js</include>
 	<include>classes/views/ElementFormatPanel.js</include>
 	<include>classes/views/ExportFileModal.js</include>
-	<include>classes/views/FilterDropzone.js</include>
 	<include>classes/views/MdModelList.js</include>
 	<include>classes/views/Modal.js</include>
 	<include>classes/views/Report.js</include>
-	<include>classes/views/SelectionDropzone.js</include>
 	<include>classes/views/SelectionsModal.js</include>
 	<include>classes/views/TemplatesModal.js</include>
-	<include>classes/views/Tab.js</include>
 	<include>classes/views/Table.js</include>
 	<include>classes/views/Tabs.js</include>
 	<include>classes/views/Toolbar.js</include>
