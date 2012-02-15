@@ -1,3 +1,23 @@
+/*
+ * WorkspaceDropZone.js
+ * 
+ * Copyright (c) 2011, Marius Giepz, OSBI Ltd. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301  USA
+ */
 /**
  * 
  * Sets up workspace drop zones for DnD and other interaction
@@ -29,7 +49,7 @@ var WorkspaceDropZone = Backbone.View.extend({
         $(this.el).html(this.template());
         
         // Activate drop zones
-        $(this.el).find('.connectable').sortable({
+        $(this.el).find('.connectable').sortable({         
             connectWith: $(this.el).find('.connectable'),
             cursorAt: {
                 top: 10,
@@ -41,7 +61,15 @@ var WorkspaceDropZone = Backbone.View.extend({
             placeholder: 'placeholder',
             tolerance: 'pointer'
         });
-        
+
+        //Droprules 
+		$(this.el).find('.filter ul').bind("sortreceive", function(event, ui) {
+			console.log($(ui.sender).find('li').attr('class'));
+			if($(ui.sender).find('li').hasClass('calculated')) {
+            	$(ui.sender).sortable('cancel');
+        	}
+		});
+    
         return this; 
     },
     
