@@ -59,9 +59,10 @@ var DragResize = Backbone.View.extend({
 			var colHeaderWidth = colHeader.width();
 			var colHeaderHeight = colHeader.height();
 			var areaWidth = $('#resizearea').width();
+			var padding = parseInt(colHeader.css('padding-right').replace("px", ""));
 
 			$('#resizearea').css('top', colHeaderPos.top);
-			$('#resizearea').css('left', colHeaderPos.left + colHeaderWidth - areaWidth) ;
+			$('#resizearea').css('left', colHeaderPos.left + colHeaderWidth - areaWidth + (2 * padding)) ;
 			$('#resizearea').css('height', colHeaderHeight);
 
 			$('#resizearea').show();
