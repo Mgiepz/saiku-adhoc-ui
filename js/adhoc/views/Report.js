@@ -89,7 +89,7 @@ var Report = Backbone.View.extend({
 		
 		this.dragresize.render();
 		
-		self = this;
+		var self = this;
 		
 		$(this.el).find('.col-header').mouseover(function(event){
 			self.dragresize.summonDragResize(event);});

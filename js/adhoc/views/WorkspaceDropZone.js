@@ -134,7 +134,13 @@ var WorkspaceDropZone = Backbone.View.extend({
                 $(event.target).parent(), index);
 
       // Prevent workspace from getting this event
-        event.stopPropagation();
+       agent = jQuery.browser;
+	   if(agent.msie) {
+			event.cancelBubble = true;
+		} else {
+		event.stopPropagation();
+		}
+
     },
     
     move_dimension: function(event, ui) {        
@@ -149,7 +155,13 @@ var WorkspaceDropZone = Backbone.View.extend({
         }
   
         // Prevent workspace from getting this event
-        event.stopPropagation();
+               agent = jQuery.browser;
+	   if(agent.msie) {
+			event.cancelBubble = true;
+		} else {
+		event.stopPropagation();
+		}
+
         return false;
     },
     
@@ -199,7 +211,13 @@ var WorkspaceDropZone = Backbone.View.extend({
         ui.draggable.addClass('deleted').remove();
         
         // Prevent workspace from getting this event
-        event.stopPropagation();
+       agent = jQuery.browser;
+	   if(agent.msie) {
+			event.cancelBubble = true;
+		} else {
+		event.stopPropagation();
+		}
+        
         event.preventDefault();
         return false;
     },

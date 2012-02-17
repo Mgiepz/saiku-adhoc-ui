@@ -155,9 +155,12 @@ var ColumnConfigModal = Modal.extend({
         $(this.el).find('.dialog_body').children().hide();
         $(this.el).find('.dialog_body').prepend($loading);
        
+        var self = this;
+       
         // Notify server
             this.query.action.post("/COLUMNS/CATEGORY/" + this.category + "/COLUMN/" + this.column + "/POSITION/" + this.index + "/config", { 
             success: this.finished,
+            error: this.finished,    
             data: this.json// JSON.stringify(values)
         });
         

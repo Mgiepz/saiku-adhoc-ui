@@ -87,7 +87,7 @@ var Session = Backbone.Model.extend({
             session: this
         });
 
-        self = this;
+        var self = this;
         $.get(encodeURI(Settings.REST_URL) + '/discover/templates', function(templates){self.prpt_templates = templates;});
         $.get(encodeURI(Settings.REST_URL) + '/discover/pageformats', function(formats){self.page_formats = formats;});
         
