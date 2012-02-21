@@ -95,5 +95,23 @@ var defaultCalcColumn =
 "selectedSummaryType":"NONE"
 };
 
+var emptyFormat =
+{
+    "value": null,
+    "format": {
+        "width": null,
+        "horizontalAlignment": null,
+        "verticalAlignment": null,
+        "fontName": null,
+        "fontColor": null,
+        "backgroundColor": null,
+        "fontBold": null,
+        "fontItalic": null,
+        "fontSize": null,
+        "fontUnderlined": null,
+        "paddingLeft": null,
+        "paddingRight": null
+    }
+}
 //Backbone.emulateHTTP=true;    
 //Backbone.emulateJSON=true;

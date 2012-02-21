@@ -218,15 +218,18 @@ var ElementFormatPanel = Backbone.View.extend({
 					},
 					callback: function(unused, enteredText) {
 						//save the value to the server
+						var model = $.extend(true, {}, emptyFormat);
+						model.value = enteredText;
+						
 						that.isEditing=false;
-						that.json.value = enteredText;
-						that.save(that.json);
+						//that.json.value = enteredText;
+						that.save(model);
 						return true;
 					},
 					delegate: inplaceEditDelegate,
-					show_buttons: true,
-					save_button: '<button class="inplace_save"><img src="images/src/accept.png"></button>',
-					cancel_button: '',		
+					//show_buttons: true,
+					//save_button: '<button class="inplace_save"><img src="images/src/accept.png"></button>',
+					//cancel_button: '',		
 					default_text: function(){return that.json.value;},
 					select_text: function(){return that.json.value;},
 					save_if_nothing_changed: true,
@@ -341,39 +344,48 @@ var ElementFormatPanel = Backbone.View.extend({
 	},
 
 	fontstyle_bold: function(event) {
+		
+		var model = $.extend(true, {}, emptyFormat);
+		model.value=this.json.value;
 
 		$(this.el).find('.fontstyle-bold').toggleClass('on');
 
 		if($(this.el).find('.fontstyle-bold').hasClass('on')){
-			this.json.format.fontBold = true;
+			model.format.fontBold = true;
 		}else{
-			this.json.format.fontBold = false;
+			model.format.fontBold = false;
 		}
-		this.save(this.json);
+		this.save(model);
 	},
 
 	fontstyle_italic: function(event) {
+		
+		var model = $.extend(true, {}, emptyFormat);
+		model.value=this.json.value;
 
 		$(this.el).find('.fontstyle-italic').toggleClass('on');
 
 		if($(this.el).find('.fontstyle-italic').hasClass('on')){
-			this.json.format.fontItalic = true;
+			model.format.fontItalic = true;
 		}else{
-			this.json.format.fontItalic= false;
+			model.format.fontItalic= false;
 		}
-		this.save(this.json);
+		this.save(model);
 	},
 
 	fontstyle_udl: function(event) {
+		
+		var model = $.extend(true, {}, emptyFormat);
+		model.value=this.json.value;
 
 		$(this.el).find('.fontstyle-udl').toggleClass('on');
 
 		if($(this.el).find('.fontstyle-udl').hasClass('on')){
-			this.json.format.fontUnderlined = true;
+			model.format.fontUnderlined = true;
 		}else{
-			this.json.format.fontUnderlined = false;
+			model.format.fontUnderlined = false;
 		}
-		this.save(this.json);
+		this.save(model);
 	}
 	
 });

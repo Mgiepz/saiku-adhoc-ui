@@ -172,17 +172,16 @@ var DragResize = Backbone.View.extend({
 	},
 	submit: function(model, response, prcChange, elementClass) {
 		// Notify server
+		var out = $.extend(true, {}, emptyFormat);
+		out.value=response.value;
 
 		var lastRealWidth = response.format.width;
 		var newRealWidth = lastRealWidth + prcChange;
-		response.format.width = newRealWidth;
+		out.format.width = newRealWidth;
 
 		this.workspace.query.action.post("/FORMAT/ELEMENT/" + elementClass, {
-			
-			
-			
 			success: this.finished,
-			data: response
+			data: out
 		});
 
 		return false;
