@@ -258,17 +258,18 @@
                 class="i18n cda button sprite" 
                 title="Export CDA"></a></li>
             <li class="seperator">
-            	<div class="rowlimit">					
-					<div style="float: left">Row Limit  </div>
-            		<select style="margin: 0px; margin-left: 10px">
+			<div class="rowlimit">			
+					Row Limit<select style="margin: 0px; margin-left: 10px">
 		    			<option value="-1">NONE</option>
 		    			<option value="10">10</option>
 		    			<option value="100">100</option>
 		    			<option value="1000">1000</option>
-		    		</select>	
+		    		</select>
+					<label for="show_unique">Distinct</label>	
+					<input name="distinct" id="distinct" type="checkbox"/>								
             	</div>
-            </li>
         </ul>
+	
         </script>
         
         <script type="text/x-jquery-tmpl" id="template-selections">
@@ -312,10 +313,10 @@
                 </input>
             </div>    
             <div>
-                <input name="show_unique" id="show_unique" type="checkbox" /><label for="show_unique">Hide Repeating Values</label>
+                <input name="hide_repeating" id="hide_repeating" type="checkbox" /><label for="hide_repeating">Hide Repeating Values</label>
 			</div>
 			<div>
-				<input name="show_on_report" id="show_on_report" type="checkbox" /><label for="show_unique">Hide on Report</label>
+				<input name="hide_on_report" id="hide_on_report" type="checkbox" /><label for="hide_on_report">Hide on Report</label>
             </div>
             <div id="aggregation"> 
             	<label>Aggregation: </label><select id="selectedAggType">

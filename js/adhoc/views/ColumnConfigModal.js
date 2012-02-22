@@ -111,7 +111,8 @@ var ColumnConfigModal = Modal.extend({
 
 		$(this.el).find('#aggregation select').val(this.json.selectedAggType);
 		
-		$(this.el).find('#show_unique').attr('checked', this.json.hideRepeating);
+		$(this.el).find('#hide_repeating').attr('checked', this.json.hideRepeating);
+ 		$(this.el).find('#hide_on_report').attr('checked', this.json.hideOnReport);
  
         for (var value in AggTypes) {
               $("<option />").text(AggTypes[value]).val(value)
@@ -142,14 +143,14 @@ var ColumnConfigModal = Modal.extend({
     	this.json.selectedSummaryType = $(this.el).find('#summary select').val();  
 
 
-    	this.json.hideRepeating = $(this.el).find('#show_unique').is(':checked');  
+    	this.json.hideRepeating = $(this.el).find('#hide_repeating').is(':checked');  
+    	this.json.hideOnReport = $(this.el).find('#hide_on_report').is(':checked');  
     	
-    	//this.json.elementFormat.horizontalAlignment = $(this.el).find('#alignment select').val();   
-    	
- 		//if(this.json.uid == null) this.json.uid = this.workspace.uniqueId('rpt-dtl-');
+    	$(this.el).find('#hide_repeating').attr('checked', this.json.hideRepeating);
+ 		$(this.el).find('#hide_on_report').attr('checked', this.json.hideOnReport);
+ 
     	if(this.json.uid == null) this.json.uid = this.workspace.uniqueId('uid-');
-    	
-    	
+    	   	
         // Notify user that updates are in progress
         var $loading = $("<div>Saving...</div>");
         $(this.el).find('.dialog_body').children().hide();

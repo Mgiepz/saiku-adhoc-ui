@@ -1,23 +1,23 @@
 /*
- * Workspace.js
- * 
- * Copyright (c) 2011, Marius Giepz, OSBI Ltd. All rights reserved.
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301  USA
- */
+* Workspace.js
+*
+* Copyright (c) 2011, Marius Giepz, OSBI Ltd. All rights reserved.
+*
+* This library is free software; you can redistribute it and/or
+* modify it under the terms of the GNU Lesser General Public
+* License as published by the Free Software Foundation; either
+* version 2.1 of the License, or (at your option) any later version.
+*
+* This library is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+* Lesser General Public License for more details.
+*
+* You should have received a copy of the GNU Lesser General Public
+* License along with this library; if not, write to the Free Software
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+* MA 02110-1301  USA
+*/
 /**
  * The query workspace
  *
@@ -339,24 +339,24 @@ var Workspace = Backbone.View.extend({
 
 					$("<span />").addClass('sort').addClass(column.sort.toLowerCase()).prependTo($clone);
 
-					//-----------IF IT IS CALCULATED
-					var $logicalColumn = $(this.el).find('.category_tree')
-					.find('a[title="calc_column"]')
-					.parent();
+					if(column.fomula!=null) {
+						var $logicalColumn = $(this.el).find('.category_tree')
+						.find('a[title="calc_column"]')
+						.parent();
 
-					var $clone = $logicalColumn.clone()
-					.addClass('d_measure')
-					.addClass('.calculated')
-					.attr("id",this.json.uid)
-					.removeClass('hide');
+						var $clone = $logicalColumn.clone()
+						.addClass('d_measure')
+						.addClass('.calculated')
+						.attr("id",column.uid)
+						.removeClass('hide');
 
-					var href = '#CATEGORY/' + this.json.category + '/COLUMN/' + this.json.name;
+						var href = '#CATEGORY/' + column.category + '/COLUMN/' + column.name;
 
-					$clone.find('a[title="calc_column"]').attr("title",this.json.name).html(this.json.name)
-					.attr("href",href);
+						$clone.find('a[title="calc_column"]').attr("title",column.name).html(column.name)
+						.attr("href",href);
 
-					$clone.appendTo($selections);
-					//-------------------------------
+						$clone.appendTo($selections);
+					}
 
 				}
 			}

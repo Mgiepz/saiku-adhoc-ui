@@ -30,6 +30,13 @@
 	text-align: right	
 }
 
+.distinct{
+	float: left;
+    padding-top: 8px;	
+}
+
+
+
 /*
  * Model Navigation Tree
  */
@@ -462,10 +469,11 @@
 		background: black;
 }
 */
-div.rowlimit{
-	/*margin-top: 5px;*/
-	padding: 8px;
-	height: 16px
+div.rowlimit {
+	line-height:32px;
+}
+div.rowlimit input[type="checkbox"], div.rowlimit input[type="select"] {
+	margin: 0 5px 0 5px;
 }
 
 div.resizer {
