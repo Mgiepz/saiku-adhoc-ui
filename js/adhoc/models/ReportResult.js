@@ -44,5 +44,9 @@ var ReportResult = Backbone.Model.extend({
 		var template = this.query.template!=null ? this.query.template : "default";
 		var page = this.query.page!=null ? this.query.page : "1";
 		return encodeURI(this.query.url() + "/report/" + page);
-	}
+	},
+	fetch: function (options) {
+         options.cache = false;
+         return Backbone.Model.prototype.fetch.call(this, options);
+     }
 });

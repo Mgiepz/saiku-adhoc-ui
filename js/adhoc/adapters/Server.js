@@ -142,8 +142,7 @@ Backbone.sync = function(method, model, options) {
         if (Backbone.emulateHTTP) params.data._method = type;
         params.type = 'POST';
         params.beforeSend = function(xhr) {
-          xhr.setRequestHeader("X-HTTP-Method-Override", type);
-          xhr.setRequestHeader("Pragma", "Cache-Control: no-cache");
+          xhr.setRequestHeader("X-HTTP-Method-Override", type)
         };
       }
     }
