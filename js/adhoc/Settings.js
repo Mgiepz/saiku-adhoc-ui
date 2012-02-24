@@ -67,7 +67,7 @@ var defaultCalcColumn =
 {"name":"Calculated Column",
 "id":"NEW",
 "description":"",
-"formula" : "=\"Hello World\"",
+"formula" : "\"Formula\"",
 "category":"CALCULATED",
 "sort":"NONE",
 "fieldType":"",

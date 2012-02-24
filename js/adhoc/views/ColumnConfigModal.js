@@ -45,7 +45,7 @@ var ColumnConfigModal = Modal.extend({
         this.message = "Fetching config...";
         this.show_unique = false;
         this.query = args.workspace.query;
-        _.bindAll(this, "fetch_values", "populate", "finished", "changed", "add_calculated_column");
+        _.bindAll(this, "fetch_values", "populate", "finished", "changed", "add_calculated_column","error");
           
         // Resize when rendered
         this.bind('open', this.post_render);
@@ -152,20 +152,27 @@ var ColumnConfigModal = Modal.extend({
     	if(this.json.uid == null) this.json.uid = this.workspace.uniqueId('uid-');
     	   	
         // Notify user that updates are in progress
-        var $loading = $("<div>Saving...</div>");
+        this.loading = $("<div>Saving...</div>");
         $(this.el).find('.dialog_body').children().hide();
-        $(this.el).find('.dialog_body').prepend($loading);
+        $(this.el).find('.dialog_body').prepend(this.loading);
        
         var self = this;
        
         // Notify server
             this.query.action.post("/COLUMNS/CATEGORY/" + this.category + "/COLUMN/" + this.column + "/POSITION/" + this.index + "/config", { 
             success: this.finished,
-            error: this.finished,    
+            error: this.error,    
             data: this.json// JSON.stringify(values)
         });
         
         return false;
+    },
+    
+    error: function(){
+    	$(this.el).find('.dialog_body').children().show();
+        this.loading.remove();
+    	$(this.el).find('#formula .formula').css('border', '1px solid red');
+    	console.log('wrong');
     },
     
     add_calculated_column: function(){
