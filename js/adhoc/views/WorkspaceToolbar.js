@@ -32,11 +32,10 @@ var WorkspaceToolbar = Backbone.View.extend({
     enabled: false,
     events: {
         'click a': 'call',
-        'change select' : 'changed'    
-    },
-    
-    
-    
+        'change select' : 'changed_rowlimit',
+        'change input' : 'changed_distinct'
+	},
+
     initialize: function(args) {
         // Keep track of parent workspace
         this.workspace = args.workspace;
@@ -82,7 +81,7 @@ var WorkspaceToolbar = Backbone.View.extend({
     },
     
 
-	changed: function(event){
+	changed_rowlimit: function(event){
 		
 		var that = this;
 		
@@ -93,6 +92,20 @@ var WorkspaceToolbar = Backbone.View.extend({
             }
         });
 	},
+
+	changed_distinct: function(event){
+		
+		var that = this;
+		
+		this.workspace.query.action.get("/DISTINCT/" + $(event.target).val() , { 
+            success: function(){
+            	that.workspace.query.page=null;
+            	that.workspace.query.run(true);
+            }
+        });
+	},
+
+
 
     call: function(event) {
         //Determine callback
