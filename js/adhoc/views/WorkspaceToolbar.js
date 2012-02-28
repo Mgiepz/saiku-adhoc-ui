@@ -41,7 +41,7 @@ var WorkspaceToolbar = Backbone.View.extend({
         this.workspace = args.workspace;
         
         // Maintain `this` in callbacks 
-         _.bindAll(this, "call", "changed", "reflect_properties", "run_query", "toggle_report", "calculated_column");
+         _.bindAll(this, "call", "changed_rowlimit", "changed_distinct", "reflect_properties", "run_query", "toggle_report", "calculated_column");
         
         // Redraw the toolbar to reflect properties
         this.workspace.bind('properties:loaded', this.reflect_properties);
