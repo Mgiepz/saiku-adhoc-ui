@@ -38,6 +38,8 @@ var WorkspaceDropZone = Backbone.View.extend({
         // Keep track of parent workspace
         this.workspace = args.workspace;
         
+        this.filterTabs = new FilterTabSet({ dropzone: this }),
+        
         // Maintain `this` in jQuery event handlers
         _.bindAll(this, "select_dimension", "move_dimension", 
                 "remove_dimension", "sort");
@@ -69,7 +71,9 @@ var WorkspaceDropZone = Backbone.View.extend({
             	$(ui.sender).sortable('cancel');
         	}
 		});
-    
+
+		this.filterTabs.render();
+
         return this; 
     },
     

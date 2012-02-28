@@ -34,14 +34,17 @@ var WorkspaceToolbar = Backbone.View.extend({
         'click a': 'call',
         'change select' : 'changed_rowlimit',
         'change input' : 'changed_distinct'
-	},
-
+    },
+    
+    
+    
     initialize: function(args) {
         // Keep track of parent workspace
         this.workspace = args.workspace;
         
         // Maintain `this` in callbacks 
-         _.bindAll(this, "call", "changed", "reflect_properties", "run_query", "toggle_report", "calculated_column");
+         _.bindAll(this, "call", "changed", "reflect_properties", 
+         "run_query", "toggle_report", "calculated_column", "add_union");
         
         // Redraw the toolbar to reflect properties
         this.workspace.bind('properties:loaded', this.reflect_properties);
@@ -65,7 +68,7 @@ var WorkspaceToolbar = Backbone.View.extend({
             $(args.workspace.toolbar.el).find('.button')
                 .addClass('disabled_toolbar');
             $(args.workspace.toolbar.el)
-                .find('.auto,.formula,.toggle_fields,.toggle_sidebar, .export_xls, .export_pdf, .export_csv,.cda,.prpt, .view, .report')
+                .find('.auto,.union,.formula,.toggle_fields,.toggle_sidebar, .export_xls, .export_pdf, .export_csv,.cda,.prpt, .view, .report')
                 .removeClass('disabled_toolbar');
         }
     },
@@ -106,7 +109,6 @@ var WorkspaceToolbar = Backbone.View.extend({
 	},
 
 
-
     call: function(event) {
         //Determine callback
         var callback = event.target.hash.replace('#', '');
@@ -116,6 +118,11 @@ var WorkspaceToolbar = Backbone.View.extend({
            this[callback](event);
         }
         
+        return false;
+    },
+    
+    add_union: function() {
+        this.workspace.drop_zones.filterTabs.add(new Filter());
         return false;
     },
     
@@ -166,11 +173,7 @@ var WorkspaceToolbar = Backbone.View.extend({
             workspace: this.workspace
         })).open();     
     },
-   
-   add_union: function(event) {
-        alert("Union Queries are not yet implemented, sorry!");
-    },
-   
+
    add_join: function(event) {
         alert("Joined Queries are not yet implemented, sorry!");
     },

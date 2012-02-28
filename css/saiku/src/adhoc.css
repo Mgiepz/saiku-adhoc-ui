@@ -150,7 +150,7 @@
 
 .workspace-report-toolbar{
 	width: 100%;
-	border-top: medium none !important;
+	/*border-top: medium none !important;*/
     /*margin-top: 10px;*/
     margin-bottom: 10px;
     margin-left:auto; 
@@ -164,7 +164,9 @@
     border: 1px solid #CCCCCC;
     font-size: 12px;
     text-shadow: 1px 1px 0 #FFFFFF;
-        text-align: center;
+    text-align: center;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
 }
 
 .report-toolbar .nav-container{
@@ -639,4 +641,114 @@ select#selectedFormat {
     margin: 15px 0 0 0;
     text-shadow: 1px 1px 0 #FFFFFF;
 	border-top: 1px solid #CCCCCC;
+}
+
+
+/** Filter-Tabs */
+
+.filter_tabs {
+    /*background: #F5F5F5;*/
+    border-top: 1px solid #CCC;
+    height: 28px;
+    /*margin-bottom: 3px;*/
+    padding-bottom: 3px;
+    text-align: left;
+    overflow: hidden;
+}
+.filter_tabs a.pager {
+	background-position: -1919px -86px;
+    background-color: #DDD;
+    border: 1px solid #BBB;
+    float: right;
+    font-size: 120%;
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+    text-decoration: none;
+}
+.filter_pager_contents {
+	position: absolute;
+	top: 75px;
+	right: 5px;
+	width: 200px;
+	height: 300px;
+	overflow: auto;
+	background-color: #EEE;
+	border: 1px solid #BBB;
+}
+.filter_pager_contents a {
+	color: #666;
+	text-decoration: none;
+}
+.filter_tabs ul {
+    background: #F8F8F8;
+    margin: 0;
+    /*padding: 0 0 0 10px;*/
+}
+.filter_tabs ul li {
+    float: left;
+    list-style: none;
+    padding-right: 4px;
+    background: #F2F2F2;
+    color: #888;
+    border-left: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;
+    border-right: 1px solid #DDD;
+    display: block;
+    margin:1px 1px -1px 0;
+    /*padding: 4px 0px 4px 0px;*/
+    text-decoration: none;
+    -moz-border-radius: 0 0 2px 2px;
+    -webkit-border-radius: 0 0 2px 2px;
+}
+.filter_tabs ul li.selected {
+    background: #F0F0F0;
+    border-left: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+    border-right: 1px solid #CCC;
+    background: -webkit-gradient(linear, left bottom, left top, from(#FFFFFF), to(#F0F0F0));
+    background: -moz-linear-gradient(bottom, #FFFFFF 0%, #F0F0F0 100%);
+    border-bottom: 1px solid #F0F0F0 !important;
+    font-weight: bold;
+}
+.filter_tabs ul li:hover {
+    border-left: 1px solid #BBB;
+    border-bottom: 1px solid #BBB;
+    border-right: 1px solid #BBB;
+}
+.filter_tabs ul li a {
+    color: #777;
+    cursor: pointer;
+    padding: 5px 2px 5px 10px;
+    text-decoration: none;
+    text-shadow: 1px 1px 0 #FFFFFF;
+}
+.filter_tabs ul li.selected a {
+    color: #222;
+}
+.filter_tabs ul li a:hover{
+    color: #222;
+}
+.filter_tabs ul li span.close_tab {
+    -moz-background-origin: 0px 2px;
+    background-position: -624px -96px;
+    display: inline-block;
+    height: 18px;
+    text-indent: -9999px;
+    width: 20px;
+
+}
+.filter_tabs ul li span.close_tab:hover {
+    background-position: -690px -96px;
+    cursor: pointer !important;
+    display: inline-block;
+    height: 18px;
+    width: 20px;
+    -moz-background-origin: 0px 2px;
+}
+
+.fields_list .filter_tabs_head{
+    float: left;
+    padding:  0;
+    margin-left: 57px;
 }

@@ -1,7 +1,7 @@
 /*
  * Tab.js
  * 
- * Copyright (c) 2011, Marius Giepz, OSBI Ltd. All rights reserved.
+ * Copyright (c) 2011, OSBI Ltd. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -101,11 +101,14 @@ var Tab = Backbone.View.extend({
      */
     remove: function(event) {
         if (!event || event.which === 2 || $(event.target).hasClass('close_tab')) {
-            // Remove the tab element
-            $(this.el).remove();
-            
-            // Remove the tab
+            // Remote the tab object from the container
+            this.parent.remove(this);
+
             try {
+                // Remove the tab element
+                $(this.el).remove();
+                
+                // Remove the tab                
                 this.destroy();
             } catch (e) {
                 Log.log(JSON.stringify({
@@ -113,11 +116,8 @@ var Tab = Backbone.View.extend({
                     Tab: JSON.stringify(this)
                 }));
             }
-            
-            // Remote the tab object from the container
-            this.parent.remove(this);
         }
-        
+   
         return false;
     }
 });
@@ -134,6 +134,13 @@ var TabPager = Backbone.View.extend({
     initialize: function(args) {
         this.tabset = args.tabset;
         $(this.el).hide().appendTo('body');
+        
+        // Hide when focus is lost
+        $(window).click(function(event) {
+            if (! $(event.target).hasClass('pager_contents')) {
+                $('.pager_contents').hide();
+            }
+        });
     },
     
     render: function() {
@@ -219,7 +226,7 @@ var TabSet = Backbone.View.extend({
     remove: function(tab) {
         // Add another tab if the last one has been deleted
         if (this._tabs.length == 1) {
-            return;
+            this.add(new Workspace());
         }
         
         for (var i = 0; i < this._tabs.length; i++) {
@@ -230,10 +237,12 @@ var TabSet = Backbone.View.extend({
                 this.pager.render();
                 
                 // Select the previous, or first tab
-                var next = this._tabs[i] ? i : 0;
+                var next = this._tabs[i] ? i : (this._tabs.length - 1);
                 this._tabs[next].select();
             }
         }
+        
+        return true;
     },
     
     togglePager: function() {

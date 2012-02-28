@@ -98,6 +98,8 @@
 		<script src="js/adhoc/views/Report.js"></script>
 		<script src="js/adhoc/views/MdModelList.js"></script>
 		<script src="js/adhoc/views/DragResize.js"></script>
+		<script src="js/adhoc/views/Filter.js"></script>
+		<script src="js/adhoc/views/FilterTab.js"></script>
 		<script src="js/adhoc/Settings.js"></script>
 		<script src="js/adhoc/Application.js"></script>
 		<script src="js/adhoc/routers/QueryRouter.js"></script>
@@ -164,13 +166,16 @@
                 </div>
                 <div class="clear"></div>
             </div>
+
             <div class="fields_list" title="FILTERS">
                 <div class="fields_list_header i18n">Filters</div>
                 <div class="fields_list_body filter">
                     <ul class="connectable">
                     </ul>
-                </div>
+                </div>             
                 <div class="clear"></div>
+            <div class="filter_tabs_head"/>
+            <div class="filter_tab_container"/>
             </div>
         </div>
         </script>
@@ -233,10 +238,10 @@
             <li class="seperator"><a href="#calculated_column" 
                 class="i18n formula button  sprite" 
                 title="Add Calculated Column"></a></li>
-            <!--li><a href="#add_union" 
+            <li><a href="#add_union" 
                 class="i18n union button sprite" 
                 title="Add Union"></a></li>
-            <li><a href="#add_join" 
+            <!--li><a href="#add_join" 
                 class="i18n join button  sprite" 
                 title="Add Join"></a></li-->
             <li class="seperator"><a href="#export_xls" 
