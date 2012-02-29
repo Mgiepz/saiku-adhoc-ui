@@ -107,6 +107,7 @@ var Workspace = Backbone.View.extend({
 		});
 
 		// Adjust the dimensions of the report inner
+
 		$(this.el).find('.report_inner').css({
 			height: $(document).height() - $("#header").height() -
 			$(this.el).find('.workspace-report-toolbar').height() -

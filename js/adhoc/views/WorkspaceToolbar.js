@@ -154,7 +154,25 @@ var WorkspaceToolbar = Backbone.View.extend({
     },
     
     toggle_fields: function(event) {
-        $(this.workspace.el).find('.workspace_fields').toggle();
+
+		var $fields = $(this.workspace.el).find('.workspace_fields')
+
+        $fields.toggle();
+
+        var fieldsHeight = 0;
+
+        if($fields.is(":visible")){
+        	fieldsHeight = $fields.height() + 112; 	
+        }
+     
+      	var height = $(document).height() - $("#header").height() -
+			$(this.el).find('.workspace-report-toolbar').height() -
+			$(this.el).find('.workspace_toolbar').height() - fieldsHeight - 100;
+
+		$(this.workspace.el).find('.report_inner').css({
+			height: height
+		});
+
     },
     
     toggle_sidebar: function() {
