@@ -62,10 +62,16 @@ var WorkspaceDropZone = Backbone.View.extend({
             tolerance: 'pointer'
         });
 
-        //Droprules 
+        //Droprules: Prevent calculated columns from being dropped 
 		$(this.el).find('.filter ul').bind("sortreceive", function(event, ui) {
-			console.log($(ui.sender).find('li').attr('class'));
-			if($(ui.sender).find('li').hasClass('calculated')) {
+			console.log($(ui.item).attr('class'));
+			if($(ui.item).hasClass('calculated')) {
+            	$(ui.sender).sortable('cancel');
+        	}
+		});
+		$(this.el).find('.group ul').bind("sortreceive", function(event, ui) {
+			console.log($(ui.item).attr('class'));
+			if($(ui.item).hasClass('calculated')) {
             	$(ui.sender).sortable('cancel');
         	}
 		});
