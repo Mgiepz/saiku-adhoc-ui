@@ -58,7 +58,7 @@ var ExportFileModal = Modal.extend({
     	
     	$.ajaxSetup({traditional:true});
 
-    	var url = "http://localhost:8080/pentaho/content/adhoc-service/ExploreFolder?fileExtensions=." + this.extension.toLowerCase();
+    	var url =  Settings.BASE_URL + "/adhoc-service/ExploreFolder?fileExtensions=." + this.extension.toLowerCase();
     	
     	var that = this;
     	
