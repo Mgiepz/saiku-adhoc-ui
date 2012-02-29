@@ -97,7 +97,7 @@ var WorkspaceToolbar = Backbone.View.extend({
 		
 		var that = this;
 		
-		this.workspace.query.action.get("/DISTINCT/" + $(event.target).val() , { 
+		this.workspace.query.action.get("/DISTINCT/" + $(event.target).is(':checked') , { 
             success: function(){
             	that.workspace.query.page=null;
             	that.workspace.query.run(true);
