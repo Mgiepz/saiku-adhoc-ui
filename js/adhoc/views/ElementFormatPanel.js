@@ -27,7 +27,8 @@ var ElementFormatPanel = Backbone.View.extend({
 
 	events: {
 		'click a': 'call',
-		'change .sizeSelector select' : 'size_select'
+		'change .sizeSelector select' : 'size_select',
+		'change .fontSelector select' : 'font_select'
 	},
 
 	initialize: function(args) {
@@ -70,6 +71,11 @@ var ElementFormatPanel = Backbone.View.extend({
 			panel.json.format.fontName = $(event.target).val();
 			panel.save(panel.json);
 		}
+	},
+
+	font_select: function(event){
+		this.json.format.fontName = $(event.target).val();
+		this.save(this.json);
 	},
 
 	size_select: function(event){
@@ -147,6 +153,7 @@ var ElementFormatPanel = Backbone.View.extend({
 
 	enable_template_button: function(){
 		$(this.el).find('.button.templates').removeClass('disabled_editor');
+		$(this.el).find('.button.page').removeClass('disabled_editor');
 	},
 
 	enable_buttons: function(){
@@ -174,6 +181,8 @@ var ElementFormatPanel = Backbone.View.extend({
 		$(this.el).find('.vert.align-' + vertAlignment).addClass('on');
 
 		$(this.el).find('.sizeSelector select').val(format.fontSize);
+
+		$(this.el).find('.fontSelector select').val(format.fontName);
 
 		//this.oFontpicker.fontFamily(format.fontName);
 		$(this.el).find('.fontPicker').fontPicker('option', 'defaultFont', format.fontName);

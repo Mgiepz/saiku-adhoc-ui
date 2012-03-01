@@ -121,20 +121,10 @@ var WorkspaceDropZone = Backbone.View.extend({
         // Notify the model of the change
         var dimension = ui.item.find('a').attr('href').replace('#', '');
         var index = ui.item.parent('.connectable').children().index(ui.item);
-        
-        //ui.item.attr('id', _.uniqueId('col'));
-        
+     
         //uid- independent of the dropzone
+        
         ui.item.attr('id', this.workspace.uniqueId('uid-'));
-        
-        /*
-        if(ui.item.parents('.fields_list').attr('title')=='COLUMNS'){
-        	ui.item.attr('id', this.workspace.uniqueId('rpt-dtl-'));
-        }else if(ui.item.parents('.fields_list').attr('title')=='GROUPS'){
-        	ui.item.attr('id', this.workspace.uniqueId('rpt-grp-'));
-        }
-        */
-        
 
         this.workspace.query.move_dimension(dimension, 
                 $(event.target).parent(), index);

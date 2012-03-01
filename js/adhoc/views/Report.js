@@ -77,15 +77,15 @@ var Report = Backbone.View.extend({
        // .wrapInner('<iframe/>');
         $('.report_border').width($('.report_border table').width()+30);
 	    
-		$(".nav-container #curr_page").html(json.data.currentPage + 1);;		
-		$(".nav-container #off_page").html(json.data.pageCount);
+		$(".pager #curr_page").html(json.data.currentPage + 1);;		
+		$(".pager #off_page").html(json.data.pageCount);
 		
 		//each click must only be bound once
-		$(".nav-container").children().unbind();
-		$(".nav-container #prev").click(this.prevPage);
-		$(".nav-container #next").click(this.nextPage);
-		$(".nav-container #first").click(this.firstPage);
-		$(".nav-container #last").click(this.lastPage);
+		$(".pager").children().unbind();
+		$(".pager .prev_page").click(this.prevPage);
+		$(".pager .next_page").click(this.nextPage);
+		$(".pager .first_page").click(this.firstPage);
+		$(".pager .last_page").click(this.lastPage);
 		
 		this.dragresize.render();
 		

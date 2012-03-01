@@ -44,10 +44,17 @@ var puc = {
         var query = Application.tabs._tabs[0].content.query;
         query.action.get("/json", {
             success: function(model, response) {
+            	
+            	var queryToSave = jQuery.parseJSON(response.json);
+
+            	queryToSave.maxClientSeq = query.workspace.idCounter;
+            	
+            	var savedQuery = JSON.stringify(queryToSave, null, ' ');
+            	
                 (new SavedQuery({
                     name: filename,
                     newname: query.get('name'),
-                    json: JSON.stringify(jQuery.parseJSON(response.json), null, ' '),
+                    json: savedQuery,
                     solution: solution,
                     path: path,
                     action: filename,

@@ -167,6 +167,7 @@
         text-align: center;
 }
 
+/*
 .report-toolbar .nav-container{
    float: left;
    display: inline;
@@ -183,7 +184,7 @@
    float: left;
    display: inline;
 }
-
+*/
 .report-toolbar a.button{
 	float: left;
     display: block;
@@ -195,51 +196,6 @@
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
 }
-
-.report-toolbar .first_page{
-	/*background-position: -264px 2px;*/
-	background: url(../../../images/resultset_first.png) no-repeat;
-    height: 16px;
-    width: 16px;
-        margin-left: 2px;
-    margin-right: 2px;
-    float: right;
-    cursor: pointer;
-}
-
-.report-toolbar .last_page{
-	/*background-position: -264px 2px;*/
-	background: url(../../../images/resultset_last.png) no-repeat;
-    height: 16px;
-    width: 16px;
-        margin-left: 2px;
-    margin-right: 2px;
-    float: right;
-    cursor: pointer;
-}
-
-.report-toolbar .prev_page{
-	/*background-position: -264px 2px;*/
-	background: url(../../../images/resultset_previous.png) no-repeat;
-    height: 16px;
-    width: 16px;
-        margin-left: 2px;
-    margin-right: 2px;
-    float: right;
-    cursor: pointer;
-}
-
-.report-toolbar .next_page{
-	/*background-position: -264px 2px;*/
-	background: url(../../../images/resultset_next.png) no-repeat;
-    height: 16px;
-    width: 16px;
-        margin-left: 2px;
-    margin-right: 2px;
-    float: right;
-    cursor: pointer;
-}
-
 
 .report_border {
    margin-left:auto; 
@@ -286,42 +242,27 @@
 	margin-top: 5px
 }
 */
-
+/*b
 .fontpick_container{
-	background: -moz-linear-gradient(center top , #F0F0F0 0%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+	/*background: -moz-linear-gradient(center top , #F0F0F0 0%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+	 * width: 150px !important;
+
 	margin-left: 15px !important;
-	width: 150px !important;
+	
 	display: inline;
     float: left;
 }
-
-.fontPicker{
-	/*background: -moz-linear-gradient(center top , #FFFFFF 0%, #F0F0F0 100%) repeat scroll 0 0 transparent;*/
-	margin-top: 2px !important;
-	margin-left: 15px !important;
-	margin-bottom: 2px !important;/
-	width: 110px !important;
+*/
+.fontpick_container {
     display: inline;
     float: left;
+    margin-left: 5px !important;
 }
 
-.singlefont {
-  padding-top: 1px;
-  padding-bottom: 1px;
-  background-color: #F0F0F0 !important;
-  /*background: -moz-linear-gradient(center top , #F0F0F0 0%, #FFFFFF 100%) repeat scroll 0 0 transparent;*/
-  width: 135px !important;
-  float:left;
-}
-
-.sizeSelector select{
+.fontpick_container select{
 	margin: 0 !important;
 }
 
-#fontbox{
-	width: 110px !important;
-	/*background: -moz-linear-gradient(center top , #FFFFFF 0%, #F0F0F0 100%) repeat scroll 0 0 transparent;*/	
-}
 
 .sizeSelector{
 	margin-left: 5px !important;
@@ -329,10 +270,57 @@
     float: left;
 }
 
+.sizeSelector select{
+	margin: 0 !important;
+}
+
 .editor ul{
    margin-left:auto; 
    margin-right:auto
 }
+
+.pager ul{
+   margin-left:auto; 
+   margin-right:auto
+}
+
+.pager a.button{
+    display: block;
+    height: 9px;
+    padding: 5px;
+    width: 9px;
+    /*margin-top: 5px;*/
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+.pager a.button:hover {
+    border: 1px solid #CCC;
+    padding: 4px;
+}
+
+.pager ul{
+	display: inline;
+    float: left;
+    margin: 0;
+    padding-left: 0
+  }
+
+.pager li {
+    display: inline;
+    float: left;
+}
+.pager ul li.seperator {
+    border-left: 1px solid #D5D5D5;
+    margin-left: 5px;
+}
+
+.pager a.on {
+    background-color: #E0E0E0 !important;
+    border: 1px solid #CCCCCC;
+    padding: 4px !important;
+}
+
+
 
 .editor a.button{
     display: block;
@@ -434,6 +422,23 @@
 .editor .fontstyle-udl  {
     background: url('../../../images/edit-underline.png') 50% 50% no-repeat;
 }
+
+.pager .first_page{
+	background: url(../../../images/resultset_first.png) no-repeat;
+}
+
+.pager .last_page{
+	background: url(../../../images/resultset_last.png) no-repeat;
+}
+
+.pager .prev_page{
+	background: url(../../../images/resultset_previous.png) no-repeat;
+}
+
+.pager .next_page{
+	background: url(../../../images/resultset_next.png) no-repeat;
+}
+
 
 /*
  * Modal Dialogs

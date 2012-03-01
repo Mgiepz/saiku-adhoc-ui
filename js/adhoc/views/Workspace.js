@@ -82,7 +82,7 @@ var Workspace = Backbone.View.extend({
 			});
 		}
 
-		this.idCounter = 0;
+	this.idCounter = 0;
 
 		//Flash cube navigation when rendered
 		Application.session.bind('tab:add', this.prepare);
@@ -316,6 +316,10 @@ var Workspace = Backbone.View.extend({
 		}
 
 		if(model) {
+			
+			if(model.maxClientSeq!=null){
+				this.idCounter = model.maxClientSeq;
+			}
 
 			var columns = model.columns ? model.columns : false;
 
@@ -422,8 +426,8 @@ var Workspace = Backbone.View.extend({
 	remove_concept: function(event, ui) {
 		this.drop_zones.remove_dimension(event, ui);
 	},
+	
 	// Generate a unique integer id (unique within the entire client session).
-	// Useful for temporary DOM ids.
 	uniqueId : function(prefix) {
 		var id = this.idCounter++;
 		return prefix ? prefix + id : id;

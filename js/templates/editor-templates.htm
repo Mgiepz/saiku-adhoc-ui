@@ -5,12 +5,37 @@
 </script>
 
 <script type="text/x-jquery-tmpl" id="format-editor">
+		    <div id="pager" class="pager">
+		<ul>
+             <li>
+            	<a href="#first_page" 
+                class="i18n first_page button page" 
+                title="First Page"></a></li>
+            <li><a href="#prev_page" 
+                class="i18n prev_page  button page" 
+                title="Previous Page"></a></li> 
+            <li id='curr_page'>1</li> 
+            <li>/</li> 
+            <li id='off_page'>1</li>     
+            <li><a href="#next_page" 
+                class="i18n next_page  button page" 
+                title="Next Page"></a></li>  
+             <li><a href="#last_page" 
+                class="i18n last_page  button page" 
+                title="Last Page"></a></li>              
+        </ul>
+	</div>
+	
 	<div id="edit-align" class="editor">
         <ul>
-        	<li>
+        	<li class="seperator">
             	<a href="#select_templates" 
                 class="i18n templates button disabled_editor" 
                 title="select template"></a></li>
+                
+                
+                
+                
             <li class="seperator"><a href="#align_left" 
                 class="i18n horz align-left button" 
                 title="align left"></a></li>
@@ -64,18 +89,50 @@
             <li><a href="#background_color" 
                 class="i18n background-color button" 
                 title="background color"></a></li> 
+                <li class="seperator"></li>
         </ul>
 	</div>
-	<div class='fontpick_container'><div id='fontpicker' class='fontPicker'></div></div>	
+	<div class='fontpick_container'> 	
+		<!--div id='fontpicker' class='fontPicker'></div-->
+	<div class='fontSelector'>
+<select id='fontfamily' class='fontSelector' style='font-size:12px;'>
+	<option value='' selected>- FONT -</option>
+	<option value='Arial' style='font-family:arial;'>Arial</option>
+	<option value='Courier' style='font-family:courier;'>Courier</option>
+	<option value='Cursive' style='font-family:cursive;'>Cursive</option>
+	<option value='Georgia' style='font-family:georgia;'>Georgia</option>
+	<option value='Monospace' style='font-family:monospace;'>Monospace</option>
+	<option value='Tahoma' style='font-family:tahoma;'>Tahoma</option>
+	<option value='Verdana' style='font-family:verdana;'>Verdana</option>
+</select>
+</div>	
+</div>	
 	<div id='fontsize' class='sizeSelector'></div>
 	
-	<div class="nav-container">
-		<a id="first" href="#first_page" class="first_page" title="First Page"></a>
+
+	<!--div class="nav-container">
+		<ul>
+             <li class="seperator">
+            	<a id="first" href="#first_page" class="first_page button" title="First Page"></a>
+            </li>
+            <li>
+            	<a id="prev" href="#prev_page" class="prev_page button" title="Previous Page"></a>
+            </li> 
+            <li>
+            	<a id="next" href="#next_page" class="next_page button" title="Next Page"></a>
+            </li>              
+            <li>
+            	<a id="last" href="#last_page" class="last_page button" title="Last Page"></a>
+            </li>  
+        </ul>
+		
+		
+		<!--a id="first" href="#first_page" class="first_page" title="First Page"></a>
 		<a id="prev" href="#prev_page" class="prev_page" title="Previous Page"></a>
 		<div id="curr_page"></div><div>/</div><div id="off_page"></div>
 		<a id="next" href="#next_page" class="next_page" title="Next Page"></a>
 		<a id="last" href="#last_page" class="last_page" title="Last Page"></a>
-	</div>
+	</div-->
 </script>
 
         <script type="text/x-jquery-tmpl" id="template-selection">   

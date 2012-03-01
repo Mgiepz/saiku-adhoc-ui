@@ -80,8 +80,10 @@ var Session = Backbone.Model.extend({
         
         // Add initial tab
         Application.tabs.render();
-        Application.tabs.add(new Workspace());
-        
+		if (! Settings.ACTION) {
+			Application.tabs.add(new Workspace());
+		}
+
         // Notify the rest of the application that login was successful
         Application.events.trigger('session:new', {
             session: this
