@@ -645,3 +645,13 @@ select#selectedFormat {
     text-shadow: 1px 1px 0 #FFFFFF;
 	border-top: 1px solid #CCCCCC;
 }
+
+.adhoc-error{
+	border:solid 1px #DEDEDE;
+	background:#FAD9D9  url('../../../images/exclamation.png') 8px 6px no-repeat;
+	color:#222222;
+	padding:4px;
+	height: 40px;
+	text-align:center;
+	vertical-align: middle;
+}

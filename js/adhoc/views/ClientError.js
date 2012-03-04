@@ -34,7 +34,7 @@ var ClientError = Backbone.View.extend({
     },
 
     render: function() {
-    	$('.workspace_error').html('<tr><td>' + this.message + '</td></tr>');
+    	$('.workspace_error').html('<div class="adhoc-error">' + this.message + '</div>');
     	Application.ui.unblock();
     }
     

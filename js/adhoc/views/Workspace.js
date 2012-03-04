@@ -344,7 +344,7 @@ var Workspace = Backbone.View.extend({
 
 					$("<span />").addClass('sort').addClass(column.sort.toLowerCase()).prependTo($clone);
 
-					if(column.fomula!=null) {
+					if(column.formula!=null) {
 						var $logicalColumn = $(this.el).find('.category_tree')
 						.find('a[title="calc_column"]')
 						.parent();

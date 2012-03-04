@@ -915,10 +915,10 @@ li.ui-draggable-dragging {
 
 .workspace_error {
 	display: none;
-	background-color: #FAD9D9;
-    margin-right: 10px;
-    margin-left: 10px;
-    padding-top: 10px;
+	/*background-color: #FAD9D9;*/
+    margin-right: 100px;
+    margin-left: 100px;
+    padding-top: 100px;
     overflow: auto;
 }
 

@@ -145,7 +145,7 @@ var ElementFormatPanel = Backbone.View.extend({
 	},
 	
 	disable_buttons: function(){
-		$(this.el).find('.button').not('.templates').removeClass('on').addClass('disabled_editor');
+		$(this.el).find('.button').not('.templates').not('.page').removeClass('on').addClass('disabled_editor');
 		$(this.el).find('select').attr('disabled', 'disabled');
 		$(this.el).find('.fontPicker').fontPicker('option', 'disabled', true);
 	},

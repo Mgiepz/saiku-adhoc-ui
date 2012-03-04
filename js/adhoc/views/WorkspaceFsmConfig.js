@@ -25,7 +25,9 @@ var WORKSPACE_FSM_CONFIG = {
 				{name: 'EToggle',		from: 'SReport',		to: 'STable'},
 				{name: 'EToggle',		from: 'STable',			to: 'SReport'},
 				{name: 'EReportError',	from: 'SReport',		to: 'SReportError'},
+				{name: 'EReportError',	from: 'SReportError',	to: 'SReportError'},
 				{name: 'ETableError',	from: 'STable',			to: 'STableError'},
+				{name: 'ETableError',	from: 'STableError',	to: 'STableError'},
 				{name: 'EReportResult',	from: '*',	to: 'SReport'},
 				{name: 'ETableResult',	from: '*',	to: 'STable'}
 			],
@@ -37,10 +39,8 @@ var WORKSPACE_FSM_CONFIG = {
 		},
 		onENew: function(event, from, to) {
 			var view = this.view;
-			//console.log("QUERY CREATED");
 		},
-		onSReport: function(event, from, to) {
-			//console.log("ENTER   STATE: SReport");			
+		onSReport: function(event, from, to) {			
 			var workspace = this.view;
 			$('.workspace_toolbar .view').addClass("table");
 			$(workspace.el).find('.workspace_error').hide();	
@@ -51,7 +51,6 @@ var WORKSPACE_FSM_CONFIG = {
 			workspace.query.run();		
 		},
 		onSTable: function(event, from, to) {
-			//console.log("ENTER   STATE: STable");			
 			var workspace = this.view;
 			$('.workspace_toolbar .view').removeClass("table");
 			$(workspace.el).find('.workspace_error').hide();	
@@ -60,21 +59,21 @@ var WORKSPACE_FSM_CONFIG = {
 			workspace.query.reportPerspective = false;
 			workspace.query.run();	
 		},
-		onSReportError: function(event, from, to) {
-			//console.log("ENTER   STATE: SReportError");					
+		onSReportError: function(event, from, to) {					
 			var workspace = this.view;
 			$(workspace.el).find('.workspace_report').hide();
 			$(workspace.el).find('.workspace_results').hide();
 			$(workspace.el).find('.workspace_error').show();	
 			workspace.query.error.render();
+			Application.ui.unblock();
 		},		
-		onSTableError: function(event, from, to) {
-			//console.log("ENTER   STATE: STableError");					
+		onSTableError: function(event, from, to) {					
 			var workspace = this.view;
 			$(workspace.el).find('.workspace_report').hide();
 			$(workspace.el).find('.workspace_results').hide();
 			$(workspace.el).find('.workspace_error').show();	
 			workspace.query.error.render();
+			Application.ui.unblock();
 		},			
 		onchangestate: function(event, from, to) {
 			//console.log("CHANGED STATE: " + from + " to " + to);

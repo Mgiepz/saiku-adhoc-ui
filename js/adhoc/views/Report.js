@@ -81,7 +81,11 @@ var Report = Backbone.View.extend({
 		$(".pager #off_page").html(json.data.pageCount);
 		
 		//each click must only be bound once
-		$(".pager").children().unbind();
+		$(".pager .prev_page").unbind();
+		$(".pager .next_page").unbind();
+		$(".pager .first_page").unbind();
+		$(".pager .last_page").unbind();
+
 		$(".pager .prev_page").click(this.prevPage);
 		$(".pager .next_page").click(this.nextPage);
 		$(".pager .first_page").click(this.firstPage);
