@@ -208,12 +208,16 @@ var ElementFormatPanel = Backbone.View.extend({
 
 		$('.report_inner').one('click', function(evt) {
     		if (evt.target == this) {
-        		$('.saiku').removeClass('adhoc-highlight').removeClass('report-hover');		
+        		$('.saiku').removeClass('adhoc-highlight');		
         		$(this).find('#dragzone').fadeOut('slow').remove();
         		that.disable_buttons();	
     		}
 		});
 		
+		$('.report_border').mouseout(function(){
+			$('.saiku').removeClass('report-hover');		
+		});
+
 		/*
 		 * Inplace edit for column headers
 		 */		
