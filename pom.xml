@@ -4,7 +4,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
 <groupId>org.saiku</groupId>
 <artifactId>saiku-adhoc-ui</artifactId>
 <packaging>pom</packaging>
-<version>2.2-SNAPSHOT</version>
+<version>1.0-RC1</version>
 <build>
 <plugins>
 <plugin>
