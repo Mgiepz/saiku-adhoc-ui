@@ -21,7 +21,7 @@
 /**
  * Dialog for column configuration
  */
-var ExportFileModal = Modal.extend({
+var ExportPrptModal = Modal.extend({
     type: "export",
     
     buttons: [
@@ -52,7 +52,7 @@ var ExportFileModal = Modal.extend({
 
     post_render: function(args) {
     	
-       this.treeTemplate = _.template($("#template-filetree").html())(); 
+       this.treeTemplate = _.template($("#template-export-prpt").html())(); 
 
     	$(this.el).find('.dialog_body').html(this.treeTemplate);
     	
@@ -93,12 +93,14 @@ var ExportFileModal = Modal.extend({
     	$.ajaxSetup({traditional:false});
     	
     	var file = $("#fileInput").val();
+    	var user = $("#exportUser").val();
+    	var password = $("#exportPassword").val();
     	
     	if(file=='undefined' || this.selectedFolder == 'undefined'){
     		return false;
     	}
 	
-		var values = {"path": this.selectedFolder ,"file": file};
+		var values = {"path": this.selectedFolder ,"file": file, "user": user, "password" : password};
 
         this.query.action.post('/EXPORT/' + this.extension, { 
             success: this.finished,

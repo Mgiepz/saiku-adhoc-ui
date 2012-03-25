@@ -63,19 +63,23 @@ var WorkspaceDropZone = Backbone.View.extend({
         });
 
         //Droprules: Prevent calculated columns from being dropped 
+        //TODO: make more readable
 		$(this.el).find('.filter ul').bind("sortreceive", function(event, ui) {
-			console.log($(ui.item).attr('class'));
-			if($(ui.item).hasClass('calculated')) {
+			if($(ui.item).hasClass('calculated') || $(ui.item).find('span').hasClass('sort')) {
             	$(ui.sender).sortable('cancel');
         	}
 		});
 		$(this.el).find('.group ul').bind("sortreceive", function(event, ui) {
-			console.log($(ui.item).attr('class'));
-			if($(ui.item).hasClass('calculated')) {
+			if($(ui.item).hasClass('calculated') || $(ui.item).find('span').hasClass('sprite')) {
             	$(ui.sender).sortable('cancel');
         	}
 		});
-    
+		$(this.el).find('.columns ul').bind("sortreceive", function(event, ui) {
+			if($(ui.item).find('span').hasClass('sprite')) {
+            	$(ui.sender).sortable('cancel');
+        	}
+		});    
+
         return this; 
     },
     
@@ -150,8 +154,16 @@ var WorkspaceDropZone = Backbone.View.extend({
                 , index);
         }
   
+		//reassign icon
+		if(ui.item.parents('.fields_list').attr('title')=='COLUMNS' ||
+		ui.item.parents('.fields_list').attr('title')=='GROUPS') {
+			ui.item.find('span').removeClass('sprite').addClass('sort').addClass('none');
+		} else {
+			ui.item.find('span').removeClass('sort').addClass('sprite');
+		}
+
         // Prevent workspace from getting this event
-               agent = jQuery.browser;
+       agent = jQuery.browser;
 	   if(agent.msie) {
 			event.cancelBubble = true;
 		} else {

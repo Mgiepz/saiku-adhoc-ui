@@ -120,7 +120,7 @@ var TemplatesModal = Modal.extend({
 
 		var that = this;
 
-		$('#template-carousel').jcarousel({
+		$('.template-carousel').jcarousel({
 			scroll: 1,
 			visible: 3,
 			start: selected,
@@ -128,7 +128,7 @@ var TemplatesModal = Modal.extend({
 			itemFallbackDimension: 300
 		});
 
-		$("#template-carousel").delegate("li", "click", function() {
+		$(".template-carousel").delegate("li", "click", function() {
 			var clickedItem = $(this).attr('id');
 			//query.template = clickedItem;
 			$('#template_name').html(clickedItem);
@@ -145,21 +145,7 @@ var TemplatesModal = Modal.extend({
 
 	},
 	post_render: function(args) {
-		/*
-		 var height = $(document).height() - 600;
-		 var width = $(document).width() - 800;
-
-		 var top = ($(document).height() - height)/2 - 200;
-		 var left = ($(document).width() - width)/2;
-
-		 $(args.modal.el).parent().css({
-		 height: height,
-		 width: width,
-		 position: 'absolute',
-		 top: top,
-		 left: left
-		 });
-		 */
+    	this.center();
 
 	},
 	changed: function(event) {

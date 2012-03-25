@@ -32,11 +32,7 @@
             	<a href="#select_templates" 
                 class="i18n templates button disabled_editor" 
                 title="select template"></a></li>
-                
-                
-                
-                
-            <li class="seperator"><a href="#align_left" 
+          <li class="seperator"><a href="#align_left" 
                 class="i18n horz align-left button" 
                 title="align left"></a></li>
             <li><a href="#align_center" 
@@ -108,38 +104,13 @@
 </div>	
 </div>	
 	<div id='fontsize' class='sizeSelector'></div>
-	
-
-	<!--div class="nav-container">
-		<ul>
-             <li class="seperator">
-            	<a id="first" href="#first_page" class="first_page button" title="First Page"></a>
-            </li>
-            <li>
-            	<a id="prev" href="#prev_page" class="prev_page button" title="Previous Page"></a>
-            </li> 
-            <li>
-            	<a id="next" href="#next_page" class="next_page button" title="Next Page"></a>
-            </li>              
-            <li>
-            	<a id="last" href="#last_page" class="last_page button" title="Last Page"></a>
-            </li>  
-        </ul>
-		
-		
-		<!--a id="first" href="#first_page" class="first_page" title="First Page"></a>
-		<a id="prev" href="#prev_page" class="prev_page" title="Previous Page"></a>
-		<div id="curr_page"></div><div>/</div><div id="off_page"></div>
-		<a id="next" href="#next_page" class="next_page" title="Next Page"></a>
-		<a id="last" href="#last_page" class="last_page" title="Last Page"></a>
-	</div-->
 </script>
 
         <script type="text/x-jquery-tmpl" id="template-selection">   
         	<div class="alertbox_h1">
 			<span>Document Template </span>
 			</div>   	
-           <div id="template-carousel" style="text-align:center" class="jcarousel-skin-ie7">
+           <div id="template-carousel" style="text-align:center" class="template-carousel jcarousel-skin-ie7">
              <ul>      
 			 </ul>
             </div>
@@ -174,9 +145,34 @@
         </script>
 
 <script type="text/x-jquery-tmpl" id="template-filetree">
-<div id="container_id">
-</div>
-<span class="folderexplorerfileinput">
-<input id="fileInput" type="text">
-</span>
+	<div id="container_id"  class="folderexplorer" width="300px">
+	</div>
+	<div class="alertbox_standard">
+	<div id="export_file">
+	<span class="folderexplorerfileinput">
+	<label>File: </label><input id="fileInput" type="text">
+	</span>
+	</div>
+	</div>
 </script>
+
+<script type="text/x-jquery-tmpl" id="template-export-prpt">
+	<div id="container_id"  class="folderexplorer" width="300px">
+	</div>
+	<div class="alertbox_standard">
+	<div id="export_file">
+	<span class="folderexplorerfileinput">
+	<label>File: </label><input id="fileInput" type="text">
+	</span>
+	</div>
+	<div id="export_user">
+	<label>User: </label><input id="exportUser" type="text">
+	</input>
+	</div>
+	<div id="export_password">
+	<label>Password: </label><input id="exportPassword" type="text">
+	</input>
+	</div>
+	</div>
+</script>
+

@@ -655,3 +655,33 @@ select#selectedFormat {
 	text-align:center;
 	vertical-align: middle;
 }
+
+
+div.folderexplorer{
+    height: 320px;
+    width: 390px !important;
+}
+
+.dialog_export .dialog_body {
+   padding-left: 5px;
+   float: left;
+}
+
+.dialog_export .alertbox_standard {
+   padding-left: 5px;
+   width: 300px !important;
+}
+
+
+.dialog_export .alertbox_standard input{
+   width: 200px !important;
+}
+
+.dialog_export .alertbox_standard span{
+   left: 0px !important;
+}
+
+
+.dialog_export .alertbox_standard label{
+   width: 60px !important;
+}

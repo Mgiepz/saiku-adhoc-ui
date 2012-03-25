@@ -162,6 +162,7 @@ var SelectionsModal = Modal.extend({
     
     post_render: function(args) {
         $(args.modal.el).parents('.ui-dialog').css({ width: "500px" });
+    	this.center();
     },
     
     move_selection: function(event) {

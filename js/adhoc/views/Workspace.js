@@ -191,6 +191,7 @@ var Workspace = Backbone.View.extend({
 
 		return this;
 	},
+	
 	clear: function() {
 		// Prepare the workspace for a new query
 		$(this.el).find('.workspace_results table,.connectable')
@@ -199,9 +200,12 @@ var Workspace = Backbone.View.extend({
 		$(this.el).find('.workspace_report .report_inner')
 		.html('');
 
+		$('.workspace_toolbar .view').addClass('disabled_toolbar');
+
 		// Trigger clear event
 		this.trigger('workspace:clear');
 	},
+	
 	reset_canvas: function() {
 		// Prepare the workspace for a new query
 		$(this.el).find('.workspace_results table')
@@ -212,6 +216,8 @@ var Workspace = Backbone.View.extend({
 
 		$(this.el).find('.workspace_error')
 		.html('');
+		
+		$('.workspace_toolbar .view').addClass('disabled_toolbar');
 
 	},
 	toggle_sidebar: function() {
@@ -265,7 +271,10 @@ var Workspace = Backbone.View.extend({
 		});
 
 		// Save the query to the server and init the UI
-		this.query.save();
+		if(this.selected_model){
+			this.query.save();	
+		}
+		
 
 		this.init_query();
 	},

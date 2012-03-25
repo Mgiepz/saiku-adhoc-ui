@@ -1,5 +1,5 @@
 /*
- * DragResize.js
+ * WorkspaceFsmConfig.js
  * 
  * Copyright (c) 2012, Marius Giepz. All rights reserved.
  *
@@ -28,8 +28,8 @@ var WORKSPACE_FSM_CONFIG = {
 				{name: 'EReportError',	from: 'SReportError',	to: 'SReportError'},
 				{name: 'ETableError',	from: 'STable',			to: 'STableError'},
 				{name: 'ETableError',	from: 'STableError',	to: 'STableError'},
-				{name: 'EReportResult',	from: '*',	to: 'SReport'},
-				{name: 'ETableResult',	from: '*',	to: 'STable'}
+				{name: 'EReportResult',	from: '*',				to: 'SReport'},
+				{name: 'ETableResult',	from: '*',				to: 'STable'}
 			],
 
 	callbacks: {
@@ -39,6 +39,7 @@ var WORKSPACE_FSM_CONFIG = {
 		},
 		onENew: function(event, from, to) {
 			var view = this.view;
+			$('.workspace_toolbar .view').addClass('disabled_toolbar');
 		},
 		onSReport: function(event, from, to) {			
 			var workspace = this.view;
@@ -76,6 +77,7 @@ var WORKSPACE_FSM_CONFIG = {
 			Application.ui.unblock();
 		},			
 		onchangestate: function(event, from, to) {
+			return true;
 			//console.log("CHANGED STATE: " + from + " to " + to);
 		}
 	}

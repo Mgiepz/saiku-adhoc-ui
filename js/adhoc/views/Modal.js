@@ -36,7 +36,8 @@ var Modal = Backbone.View.extend({
     },
     
     events: {
-        'click a': 'call'
+        'click a': 'call',
+        'click span.ui-icon-closethick' : 'close'        
     },
     
     buttons: [
@@ -55,14 +56,21 @@ var Modal = Backbone.View.extend({
     
     initialize: function(args) {
         _.extend(this, args);
-        _.bindAll(this, "call");
+        _.bindAll(this, "call", "center");
         _.extend(this, Backbone.Events);
+        
+        args.session.bind('workspace:adjust', this.center);
+        
+        
     },
     
     render: function() {
         $(this.el).html(this.template())
             .addClass("dialog_" + this.type)
             .dialog(this.options);
+        
+        $(this.el).parent().find('.ui-dialog-titlebar-close').bind('click',this.close);    
+            
         return this;
     },
     
@@ -87,5 +95,31 @@ var Modal = Backbone.View.extend({
     close: function() {
         $(this.el).dialog('destroy').remove();
         return false;
-    }
+    },
+
+    center: function (){
+    	
+    	$dialog = $(this.el).parent('.ui-dialog');
+    	
+    	var winWidth=$(window).width();
+    	var winHeight=$(window).height();
+    	var windowCenter=winWidth/2;
+    	var itemCenter= $dialog.width()/2;
+    	var theCenter=windowCenter-itemCenter;
+    	var windowMiddle=winHeight/2;
+    	var itemMiddle= $dialog.height()/2;
+    	var theMiddle=windowMiddle-itemMiddle;
+    	if(winWidth> $dialog.width()){
+        	 $dialog.css('left',theCenter);
+    	} else {
+        	 $dialog.css('left','0');
+    	}
+    	if(winHeight> $dialog.height()){
+        	 $dialog.css('top',theMiddle);
+    	} else {
+        	 $dialog.css('top','0');
+    	}
+    	$dialog.css("position", "absolute");
+}    
+        
 });

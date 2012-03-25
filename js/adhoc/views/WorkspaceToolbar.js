@@ -231,7 +231,7 @@ var WorkspaceToolbar = Backbone.View.extend({
     },    
 
     export_prpt: function(event) {
-        (new ExportFileModal({
+        (new ExportPrptModal({
             workspace: this.workspace,
             extension: "PRPT"
         })).open();   
