@@ -84,10 +84,14 @@ var SelectionsModal = Modal.extend({
      	var template = _.template($("#template-datefilter").html())(this);
      	$(this.el).find('.dialog_body').html(template);
 
+		var selectedDateFrom = response.selectedValues[0];
+		var selectedDateTo = response.selectedValues[1];
+
         $(this.el).find('.datepicker_from').datepicker({
         	dateFormat: "dd.mm.yy",
         	changeMonth: true,
         	changeYear: true,
+        	defaultDate: selectedDateFrom,
         	//minDate: startDate,
         	//maxDate: endDate,
         	onSelect: function(date, input){     
@@ -99,6 +103,7 @@ var SelectionsModal = Modal.extend({
         	dateFormat: "dd.mm.yy",
         	changeMonth: true,
         	changeYear: true,
+        	defaultDate: selectedDateTo,
         	//minDate: startDate,
         	//maxDate: endDate,
         	onSelect: function(date, input){    

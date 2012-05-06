@@ -62,7 +62,7 @@ var DragResize = Backbone.View.extend({
 			var padding = parseInt(colHeader.css('padding-right').replace("px", ""));
 
 			$('#resizearea').css('top', colHeaderPos.top);
-			$('#resizearea').css('left', colHeaderPos.left + colHeaderWidth - areaWidth + (2 * padding)) ;
+			$('#resizearea').css('left', 12 + colHeaderPos.left + colHeaderWidth - areaWidth + (2 * padding)) ;
 			$('#resizearea').css('height', colHeaderHeight);
 
 			$('#resizearea').show();
@@ -103,10 +103,15 @@ var DragResize = Backbone.View.extend({
 		
 			$helper = $('#resizer').addClass('resizer').css({height: borderHeight});//,{top: borderTop});
 
-			$('#draghandle').draggable({	
+//it sometimes mixes up the one that is being dragged with its neighbor
+
+
+			$('#draghandle').css('height', colHeaderHeight).draggable({	
 				helper : function() {				
 					return $helper.clone().removeAttr( "id" ).removeClass("hide");
 				} ,
+				//delay: 1500,
+				grid: [5, 20],
 				containment:  [points.left + 30, points.top, points.right - 30, points.bottom],
 				axis: 'x',
 				start: function(event,ui){
