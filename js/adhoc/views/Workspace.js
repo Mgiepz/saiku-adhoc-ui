@@ -343,8 +343,11 @@ var Workspace = Backbone.View.extend({
 					var column = columns[columns_iter];
 					var name = column.name;
 
-					var $logicalColumn = $(this.el).find('.category_tree')
-					.find('a[title="' + name + '"]')
+				var href = '#CATEGORY/' + column.category + '/COLUMN/' + column.id;
+				
+				var $logicalColumn = $(this.el).find('.category_tree')
+					//.find('a[title="' + name + '"]')
+					.find('a[href="' + href + '"]')
 					.parent();
 
 					var $clone = $logicalColumn.clone()
