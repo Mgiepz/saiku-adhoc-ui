@@ -1,6 +1,6 @@
 /*
  * SelectionsModal.js
- * 
+ * aa
  * Copyright (c) 2011, Marius Giepz, OSBI Ltd. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
@@ -74,7 +74,44 @@ var SelectionsModal = Modal.extend({
 		}	    
 		else{
 			this.populate_multiselect(model, response);
-		}    
+		}
+		
+		var self = this;
+		$(this.el).find('.filterbox').autocomplete({
+			minLength: 1,
+			source: function(request, response ) {
+				response( $.map( self.available_values, function( item ) {
+					if (item[0] != null){
+						var item_str = item[0]+"";
+						if (item_str.toLowerCase().indexOf(request.term.toLowerCase()) > -1) {
+							var aa = item[0];
+							return {
+								label: item[0] ,
+								value: item[0]
+								//label: item_str ,
+								//value: item_str										
+							};
+						}
+					}
+				}));
+			},
+			select:  function(event, ui) { 
+				var value = self.show_unique_option == false? escape(ui.item.value) : ui.item.label;
+				$(self.el).find('.available_selections select option[value="' + value + '"]')
+					.appendTo($(self.el).find('.used_selections select'));
+				$('#filter_selections').val('');
+			},
+			close: function(event, ui) { 
+				$('#filter_selections').val('');
+			}
+		}).data( "autocomplete" )._renderItem = function( ul, item ) {
+			return $( "<li></li>" )
+			.data( "item.autocomplete", item )
+			//.append( "<a class='label'>" + item.label + "</a><br><a class='description'>" + item.value + "</a>" )
+			.append( "<a class='label'>" + item.label + "</a>" )
+			.appendTo( ul );
+		};
+		
         // Show dialog
         Application.ui.unblock();
     },

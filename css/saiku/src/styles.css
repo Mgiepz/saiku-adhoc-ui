@@ -689,7 +689,7 @@ li.ui-draggable-dragging {
 .ui-dialog {
     background: #FFF;
     border: 3px solid #EEE;
-    min-width: 400px !important;
+    min-width: 800px !important;
     min-height: auto !important;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -857,6 +857,7 @@ li.ui-draggable-dragging {
 }
 .dialog_selections .dialog_body .used_selections {
     padding-right: 5px;
+    padding-top: 34px;
     float: right;
 }
 
@@ -869,7 +870,7 @@ li.ui-draggable-dragging {
 .dialog_selections .dialog_body .used_selections select,
 .dialog_selections .dialog_body .available_selections select {
     height: 270px;
-    width: 200px;
+    width: 350px;
     font-size: 11px;
     overflow-x: scroll;
 }
