@@ -67,8 +67,8 @@ var Query = Backbone.Model.extend({
 
     run: function(force) {
     	
-        if (! this.properties.properties['saiku.adhoc.query.automatic_execution'] &&
-            ! force) {
+        if ( (this.properties.properties['saiku.adhoc.query.automatic_execution'] == "false") &&
+            ! (force === true)) {
             return;
         }
 
