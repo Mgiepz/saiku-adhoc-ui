@@ -20,7 +20,8 @@
  */
 var MdModel = Backbone.Model.extend({
     initialize: function(args) {
-        this.url = encodeURI(Settings.REST_URL + "/discover/" + args.path + "/model");
+        var path = args.path.replace('%2Fmetadata.xmi','');
+        this.url = encodeURI(Settings.REST_URL + "/discover/" + path + "/model");
     },
     
     parse: function(response) {
